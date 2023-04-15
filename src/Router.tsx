@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ErrorBoundary from './components/ErrorBoundary';
 import Spinner from './components/Spinner';
 import NotFound from './pages/NotFound/NotFound';
+import Main from './pages/Main';
 
 const Router = () => {
   return (
@@ -10,13 +11,7 @@ const Router = () => {
       <ErrorBoundary>
         <Suspense fallback={<Spinner />}>
           <Routes>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/foodList" element={<FoodList />} />
-            <Route path="/foodList/:id" element={<FoodDetail />} />
-            <Route path="/admin" element={<Admin />} />
-            <Route path="/mypage" element={<MyPage />} />
+            <Route path="/" element={<Main />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

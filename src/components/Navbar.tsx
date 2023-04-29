@@ -1,6 +1,5 @@
 import { Button } from '@mui/material';
 import styled from 'styled-components';
-import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 
 const NavBarContainer = styled.div`
   display: flex;
@@ -58,7 +57,6 @@ const ExitIcon = styled.div`
 const NavBar = () => {
   return (
     <NavBarContainer>
-      <img src="/img/logo.svg" className="logo" />
       <div className="contentContainer">
         <span className="nameBox">
           <div className="round"></div>
@@ -70,9 +68,7 @@ const NavBar = () => {
         >
           미리보기
         </Button>
-        <ExitIcon>
-          <PowerSettingsNewIcon sx={{ color: 'white', fontSize: '40px' }} />
-        </ExitIcon>
+        <ExitIcon></ExitIcon>
       </div>
     </NavBarContainer>
   );

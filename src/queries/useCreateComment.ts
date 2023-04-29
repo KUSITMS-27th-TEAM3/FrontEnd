@@ -1,6 +1,12 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import * as API from '../api/API';
 
+type PostComment = {
+  shopId: number;
+  comment: string;
+  rating: number;
+};
+
 const postComment = async (comment: PostComment) => {
   return await API.post('/api/comments', comment);
 };

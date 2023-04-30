@@ -1,10 +1,13 @@
 import Navbar from '../../components/Navbar';
+import { Outlet } from 'react-router-dom';
+import MemoryNav from './MemoryNav';
 
 const MemoryPage = () => {
   return (
     <div>
       <Navbar />
-      <div>MemoryPage</div>
+      <MemoryNav />
+      <Outlet />
     </div>
   );
 };

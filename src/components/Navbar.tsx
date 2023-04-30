@@ -1,75 +1,74 @@
-import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-const NavBarContainer = styled.div`
+const NavBarContainer = styled.nav`
   display: flex;
-  position: absolute;
-  left: 10vw;
-  top: 0;
-  width: 90vw;
+  width: 100vw;
   height: 70px;
   background-color: #ffffff;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+  border: 1px solid black;
+  background-color: black;
+  color: white;
 
-  .contentContainer {
-    display: flex;
-    width: 20vw;
-    height: 100%;
-    justify-content: space-between;
-    align-items: center;
+  img {
     cursor: pointer;
   }
 
-  .round {
-    background-color: #d9d9d9;
-    width: 37px;
-    height: 37px;
-    border-radius: 50%;
-  }
+  button {
+    all: unset;
+    cursor: pointer;
+    padding: 10px;
 
-  .nameBox {
-    width: 90px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-right: 14px;
+    &:hover {
+      border-bottom: 1px solid white;
+    }
   }
-
-  .name {
-    font-size: 15px;
-  }
-
-  .logo {
-    margin-left: 10px;
-  }
-`;
-
-const ExitIcon = styled.div`
-  background-color: #e31e26;
-  width: 62px;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 const NavBar = () => {
+  const navigate = useNavigate();
+
+  const handleLogoClick = () => {
+    navigate(`/`);
+  };
+
+  const handleNavClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const currentId = e.currentTarget.id;
+    console.log(currentId);
+
+    if (currentId === 'memory') {
+      navigate(`/memory`);
+    } else if (currentId === 'diary') {
+      navigate('/diary');
+    } else if (currentId === 'funeral') {
+      navigate('/funeral ');
+    } else if (currentId === 'login') {
+      navigate('/login');
+    } else if (currentId === 'mypage') {
+      navigate('/mypage');
+    }
+  };
+
   return (
     <NavBarContainer>
-      <div className="contentContainer">
-        <span className="nameBox">
-          <div className="round"></div>
-          <div className="name">김땡땡</div>
-        </span>
-        <Button
-          variant="text"
-          sx={{ color: 'black', border: '1px solid #D9D9D9', width: '87px', height: '32px' }}
-        >
-          미리보기
-        </Button>
-        <ExitIcon></ExitIcon>
-      </div>
+      <img src="/img/BI.svg" alt="logo" onClick={handleLogoClick} />
+      <button id="memory" onClick={handleNavClick}>
+        추억앨범
+      </button>
+      <button id="diary" onClick={handleNavClick}>
+        의미기록
+      </button>
+      <button id="funeral" onClick={handleNavClick}>
+        장례정보
+      </button>
+      <button id="login" onClick={handleNavClick}>
+        로그인
+      </button>
+      <button id="mypage" onClick={handleNavClick}>
+        마이페이지
+      </button>
     </NavBarContainer>
   );
 };

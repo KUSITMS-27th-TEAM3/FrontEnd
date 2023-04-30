@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { BasicLink } from '../styles/GlobalStyle';
 
 const NavBarContainer = styled.nav`
   display: flex;
@@ -27,11 +27,6 @@ const NavBarContainer = styled.nav`
   }
 `;
 
-const BasicLink = styled(Link)`
-  color: white;
-  text-decoration: none;
-`;
-
 const NavBar = () => {
   return (
     <NavBarContainer>
@@ -48,7 +43,7 @@ const NavBar = () => {
         <button>장례정보</button>
       </BasicLink>
       <BasicLink to="/login">
-        <button>login</button>
+        <button>로그인</button>
       </BasicLink>
       <BasicLink to="/mypage">
         <button>마이페이지</button>

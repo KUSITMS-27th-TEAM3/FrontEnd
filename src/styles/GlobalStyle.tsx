@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
@@ -51,4 +52,9 @@ export const FlexContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
+`;
+
+export const BasicLink = styled(Link)`
+  color: white;
+  text-decoration: none;
 `;

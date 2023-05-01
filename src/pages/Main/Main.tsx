@@ -1,10 +1,12 @@
-import Navbar from '../../components/Navbar';
+import Navbar from '../../components/MainPageNavbar';
 import styled from 'styled-components';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
 
 const MainContent = styled.div`
   display : flex;
   flex-direction : column;
   align-items: center;
+  position : relative;
 
   div {
     width : 100%;
@@ -28,12 +30,17 @@ const MainContent = styled.div`
     }
   }
 `
-
 const Main = () => {
+
+  // const trigger = useScrollTrigger({
+  //   target: window,
+  //   threshold: 0.5,
+  // });
+
   return (
     <>
-      <Navbar />
       <MainContent>
+        <Navbar />
         <div className='main1'><img src="/img/main1.png" alt="serviceInfo"></img></div>
         <div className='main2'><img src="/img/main2.png" alt="syndromeInfo"></img></div>
         <div className='main3'><img src="/img/main3.png" alt="serviceInfo"></img></div>

@@ -3,14 +3,16 @@ import { BasicLink } from '../styles/GlobalStyle';
 
 const NavBarContainer = styled.nav`
   display: flex;
-  width: 100vw;
+  width: 99vw;
   height: 70px;
-  background-color: #ffffff;
+  background-color: black;
   justify-content: space-around;
   align-items: center;
-  border: 1px solid black;
-  background-color: black;
   color: white;
+
+  // position:absolute;
+  // z-index: 1;
+  // background-color: rgba(255, 255, 255, 0);
 
   img {
     cursor: pointer;

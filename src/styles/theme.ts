@@ -17,8 +17,8 @@ const theme: DefaultTheme = {
 
   font: {
     family: {
-      gmarketSans_bold: 'string',
-      gmarketSans_medium: 'string',
+      gmarketSans_bold: 'GmarketSans Bold',
+      gmarketSans_medium: 'GmarketSans Medium',
       pretendard_bold: 'Pretendard Bold',
       pretendard_medium: 'Pretendard Medium',
       pretendard_regular: 'Prentendard Regular',

@@ -28,9 +28,6 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
-*{
-    font-family: 'Pretendard';
-}
 body {
 	line-height: 1;
 }

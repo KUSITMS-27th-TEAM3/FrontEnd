@@ -73,3 +73,25 @@ http://scripts.sil.org/OFL
   font-display: swap;
   src: local('Pretendard Thin'), url('./woff-subset/Pretendard-Thin.subset.woff') format('woff');
 }
+
+@font-face {
+  font-family: 'GmarketSans Bold';
+  font-weight: 400;
+  font-display: swap;
+  src: local('GmarketSansTTFBold'), url('./GmarketSans/GmarketSansTTFBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'GmarketSans Medium';
+  font-weight: 400;
+  font-display: swap;
+  src: local('GmarketSansTTFMedium'),
+    url('./GmarketSans/GmarketSansTTFMedium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'GmarketSans Light';
+  font-weight: 400;
+  font-display: swap;
+  src: local('GmarketSansTTFLight'), url('./GmarketSans/GmarketSansTTFLight.ttf') format('truetype');
+}

@@ -22,7 +22,7 @@ const Router = () => {
           <Route path="myAlbum" element={<MyAlbum />} />
           <Route path="question" element={<QuestionAlbum />} />
           <Route path="sharedAlbum" element={<SharedAlbum />} />
-          <Route path="writeAlbum" element={<WriteAlbum />} />
+          <Route path="writeAlbum" element={<WriteAlbum />} />가로 고정 사이즈: 1920PX
         </Route>
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/funeral" element={<FuneralPage />} />

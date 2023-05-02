@@ -6,7 +6,7 @@ const NavBarContainer = styled.nav`
   width: 570px;
   height: 96px;
   margin: 0 auto;
-  background-color: #ffffff;
+  background-color: ${(props) => props.theme.color.grayScale.white};
   justify-content: space-between;
   align-items: center;
   color: black;
@@ -24,18 +24,18 @@ const NavBarContainer = styled.nav`
     padding-bottom: 16px;
 
     &:hover {
-      border-bottom: 2px solid #ebebeb;
+      border-bottom: 2px solid ${(props) => props.theme.color.main.orange};
     }
   }
 
   .navtitle {
-    color: ${(props) => props.theme.color.grayScale.gray}};
+    color: ${(props) => props.theme.color.grayScale.gray};
     font-size: 16px;
     font-family: ${(props) => props.theme.font.family.pretendard_medium};
   }
 `;
 
-const MemoryNav = () => {
+function MemoryNav() {
   return (
     <NavBarContainer>
       <BlackLink to="sharedAlbum">
@@ -64,6 +64,6 @@ const MemoryNav = () => {
       </BlackLink>
     </NavBarContainer>
   );
-};
+}
 
 export default MemoryNav;

@@ -18,15 +18,18 @@ time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-family:'Pretendard-Regular';
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
+}
+*{
+    font-family: 'Pretendard';
 }
 body {
 	line-height: 1;
@@ -54,7 +57,12 @@ export const FlexContainer = styled.div`
   justify-content: space-around;
 `;
 
-export const BasicLink = styled(Link)`
-  color: white;
+export const WhiteLink = styled(Link)`
   text-decoration: none;
+  color: white;
+`;
+
+export const BlackLink = styled(Link)`
+  text-decoration: none;
+  color: black;
 `;

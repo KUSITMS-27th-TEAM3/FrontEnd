@@ -1,5 +1,11 @@
+import AlbumPresenter from '../components/AlbumPresenter';
+
 const QuestionAlbum = () => {
-  return <div>QuestionAlbum</div>;
+  return (
+    <div>
+      <AlbumPresenter />
+    </div>
+  );
 };
 
 export default QuestionAlbum;

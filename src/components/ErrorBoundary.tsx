@@ -1,5 +1,5 @@
 import React, { Component, ErrorInfo, ReactNode } from 'react';
-import { FlexContainer } from '../styles/GlobalStyle';
+import { FlexContainer } from '../styles/CommonStyle';
 
 interface Props {
   children?: ReactNode;

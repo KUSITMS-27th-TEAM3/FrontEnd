@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { WhiteLink } from '../styles/GlobalStyle';
+import { WhiteLink } from '../styles/CommonStyle';
 
 const NavBarContainer = styled.nav`
   display: flex;

@@ -1,6 +1,6 @@
 import { ClipLoader } from 'react-spinners';
 import styled from 'styled-components';
-import { FlexContainer } from '../styles/GlobalStyle';
+import { FlexContainer } from '../styles/CommonStyle';
 
 const SpinnerContainer = styled(FlexContainer)`
   justify-content: center;

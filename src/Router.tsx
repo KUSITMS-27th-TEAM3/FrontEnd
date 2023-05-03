@@ -6,10 +6,10 @@ import DiaryPage from './pages/DiaryPage/DiaryPage';
 import MemoryPage from './pages/MemoryPage/MemoryPage';
 import MyPage from './pages/MyPage/MyPage';
 import FuneralPage from './pages/FuneralPage/FuneralPage';
-import MyAlbum from './pages/MemoryPage/MyAlbum/MemoryPage';
-import QuestionAlbum from './pages/MemoryPage/QuestionsAlbum/MemoryPage';
-import SharedAlbum from './pages/MemoryPage/SharedAlbum/MemoryPage';
-import WriteAlbum from './pages/MemoryPage/WriteAlbum/MemoryPage';
+import MyAlbum from './pages/MemoryPage/MyAlbum/MyAlbum';
+import QuestionAlbum from './pages/MemoryPage/QuestionsAlbum/QuestionAlbum';
+import SharedAlbum from './pages/MemoryPage/SharedAlbum/SharedAlbum';
+import WriteAlbum from './pages/MemoryPage/WriteAlbum/WriteAlbum';
 
 const Router = () => {
   return (
@@ -22,8 +22,8 @@ const Router = () => {
           <Route path="myAlbum" element={<MyAlbum />} />
           <Route path="question" element={<QuestionAlbum />} />
           <Route path="sharedAlbum" element={<SharedAlbum />} />
-          <Route path="writeAlbum" element={<WriteAlbum />} />
         </Route>
+        <Route path="/writeAlbum" element={<WriteAlbum />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/funeral" element={<FuneralPage />} />
         <Route path="*" element={<NotFound />} />

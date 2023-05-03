@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
-import { BlackLink } from '../../styles/GlobalStyle';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { BlackLink, IconButton } from '../../styles/CommonStyle';
 
 const hoverCss = css`
   .nav_pageTittle {
@@ -71,23 +71,6 @@ const NavBarContainer = styled.nav`
     justify-content: flex-end;
     margin-right: 3.75vw;
   }
-`;
-
-const WriteButton = styled.button`
-  all: unset;
-  background-color: ${(props) => props.theme.color.main.orange};
-  display: flex;
-  color: white;
-  font-family: ${(props) => props.theme.font.family.pretendard_medium};
-  border-radius: 8px;
-  padding: 12px 18px;
-  align-items: center;
-  justify-content: space-around;
-  height: 32px;
-  width: calc(8.3vw - 36px);
-  min-width: 80px;
-  max-width: 102px;
-  cursor: pointer;
 `;
 
 function MemoryNav() {
@@ -176,10 +159,15 @@ function MemoryNav() {
             </MenuItem>
           </Select>
         </FormControl>
-        <WriteButton onClick={handleToWrite}>
+        <IconButton
+          onClick={handleToWrite}
+          width="calc(8.3vw - 36px)"
+          height="32px"
+          maxWidth="102px"
+        >
           <div>앨범쓰기</div>
           <img src="/img/앨범쓰기.svg" alt="앨범쓰기" />
-        </WriteButton>
+        </IconButton>
       </div>
     </NavBarContainer>
   );

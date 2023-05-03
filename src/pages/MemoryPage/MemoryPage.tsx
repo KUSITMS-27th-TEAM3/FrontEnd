@@ -6,6 +6,9 @@ import styled from '@emotion/styled';
 
 const MemoryPageContainer = styled.section`
   position: relative;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const MemoryPage = () => {

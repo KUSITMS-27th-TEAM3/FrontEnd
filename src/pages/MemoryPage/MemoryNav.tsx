@@ -1,15 +1,8 @@
 import styled, { css } from 'styled-components';
 import { BlackLink } from '../../styles/GlobalStyle';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import {
-  Button,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-} from '@mui/material';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
 const hoverCss = css`
   .nav_pageTittle {
@@ -100,10 +93,15 @@ const WriteButton = styled.button`
 function MemoryNav() {
   const [activeNum, setActiveNum] = useState(0);
   const location = useLocation();
+  const navigate = useNavigate();
   const [age, setAge] = useState<string | number>('');
 
   const handleChange = (event: SelectChangeEvent<typeof age>) => {
     setAge(event.target.value);
+  };
+
+  const handleToWrite = (e: React.MouseEvent) => {
+    navigate('/writeAlbum');
   };
 
   const handleNavToOne = () => {
@@ -178,7 +176,7 @@ function MemoryNav() {
             </MenuItem>
           </Select>
         </FormControl>
-        <WriteButton>
+        <WriteButton onClick={handleToWrite}>
           <div>앨범쓰기</div>
           <img src="/img/앨범쓰기.svg" alt="앨범쓰기" />
         </WriteButton>

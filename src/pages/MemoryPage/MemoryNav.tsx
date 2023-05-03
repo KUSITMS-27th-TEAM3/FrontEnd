@@ -2,11 +2,17 @@ import styled, { css } from 'styled-components';
 import { BlackLink } from '../../styles/GlobalStyle';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from '@mui/material';
 
 const hoverCss = css`
-  border-bottom: 2px solid ${(props) => props.theme.color.main.orange};
-
-  .navtitle {
+  .nav_pageTittle {
     color: ${(props) => props.theme.color.main.orange};
   }
   .navIcon {
@@ -17,25 +23,29 @@ const hoverCss = css`
 
 const NavBarContainer = styled.nav`
   display: flex;
-  width: 570px;
-  height: 96px;
+  width: 80vw;
+  height: 132px;
   margin: 0 auto;
   background-color: ${(props) => props.theme.color.grayScale.white};
-  justify-content: space-between;
   align-items: center;
   color: black;
   border-bottom: 2px solid #ebebeb;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  position: absolute;
+  top: 560px;
+  left: 10vw;
+  border-radius: 16px;
   img {
     cursor: pointer;
   }
 
   .navbox {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    height: 80px;
-    padding-bottom: 18px;
+    border-right: 2px solid #dddddd;
+    height: 24px;
+    flex: 1;
 
     &:hover {
       ${hoverCss}
@@ -46,16 +56,55 @@ const NavBarContainer = styled.nav`
     }
   }
 
-  .navtitle {
+  .nav_title {
+    font-family: ${(props) => props.theme.font.family.pretendard_bold};
+    font-size: 24px;
+    flex: 1;
+    text-align: center;
+    margin-left: 3.75vw;
+  }
+
+  .nav_pageTittle {
     color: ${(props) => props.theme.color.grayScale.gray};
     font-size: 16px;
     font-family: ${(props) => props.theme.font.family.pretendard_medium};
+    margin-left: 1vw;
   }
+
+  .nav_form {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 3.75vw;
+  }
+`;
+
+const WriteButton = styled.button`
+  all: unset;
+  background-color: ${(props) => props.theme.color.main.orange};
+  display: flex;
+  color: white;
+  font-family: ${(props) => props.theme.font.family.pretendard_medium};
+  border-radius: 8px;
+  padding: 12px 18px;
+  align-items: center;
+  justify-content: space-around;
+  height: 32px;
+  width: calc(8.3vw - 36px);
+  min-width: 80px;
+  max-width: 102px;
+  cursor: pointer;
 `;
 
 function MemoryNav() {
   const [activeNum, setActiveNum] = useState(0);
   const location = useLocation();
+  const [age, setAge] = useState<string | number>('');
+
+  const handleChange = (event: SelectChangeEvent<typeof age>) => {
+    setAge(event.target.value);
+  };
 
   const handleNavToOne = () => {
     setActiveNum(1);
@@ -66,9 +115,6 @@ function MemoryNav() {
   const handleNavToThree = () => {
     setActiveNum(3);
   };
-  const handleNavToFour = () => {
-    setActiveNum(4);
-  };
 
   useEffect(() => {
     if (location.pathname === '/memory') {
@@ -78,30 +124,65 @@ function MemoryNav() {
 
   return (
     <NavBarContainer>
-      <BlackLink to="sharedAlbum">
-        <nav className={activeNum === 1 ? 'navbox active' : 'navbox'} onClick={handleNavToOne}>
+      <div className="nav_title">추억앨범 서비스</div>
+      <nav className={activeNum === 1 ? 'navbox active' : 'navbox'} onClick={handleNavToOne}>
+        <BlackLink to="sharedAlbum">
           <img className="navIcon" src="/img/공유앨범.svg" alt="공유앨범" />
-          <div className="navtitle">공유 앨범</div>
-        </nav>
-      </BlackLink>
-      <BlackLink to="writeAlbum">
-        <nav className={activeNum === 2 ? 'navbox active' : 'navbox'} onClick={handleNavToTwo}>
-          <img className="navIcon" src="/img/앨범쓰기.svg" alt="앨범쓰기" />
-          <div className="navtitle">앨범쓰기</div>
-        </nav>
-      </BlackLink>
-      <BlackLink to="myAlbum">
-        <nav className={activeNum === 3 ? 'navbox active' : 'navbox'} onClick={handleNavToThree}>
+          <div className="nav_pageTittle">공유 앨범</div>
+        </BlackLink>
+      </nav>
+      <nav className={activeNum === 2 ? 'navbox active' : 'navbox'} onClick={handleNavToTwo}>
+        <BlackLink to="myAlbum">
           <img className="navIcon" src="/img/나의앨범.svg" alt="나의앨범" />
-          <div className="navtitle">나의앨범</div>
-        </nav>
-      </BlackLink>
-      <BlackLink to="question">
-        <nav className={activeNum === 4 ? 'navbox active' : 'navbox'} onClick={handleNavToFour}>
+          <div className="nav_pageTittle">나의앨범</div>
+        </BlackLink>
+      </nav>
+      <nav className={activeNum === 3 ? 'navbox active' : 'navbox'} onClick={handleNavToThree}>
+        <BlackLink to="question">
           <img className="navIcon" src="/img/너의의미.svg" alt="너의의미" />
-          <div className="navtitle">너의 의미</div>
-        </nav>
-      </BlackLink>
+          <div className="nav_pageTittle">너의 의미</div>
+        </BlackLink>
+      </nav>
+      <div className="nav_form">
+        <FormControl
+          sx={{
+            m: 1,
+            width: '11vw',
+            maxWidth: 159,
+            border: 'none',
+            backgroundColor: '#F4F4F4',
+            height: 56,
+          }}
+        >
+          <Select
+            value={age}
+            onChange={handleChange}
+            sx={{
+              height: 56,
+              border: 'none',
+              fontFamily: 'Pretendard Medium',
+              textAlign: 'center',
+            }}
+          >
+            <MenuItem value="정렬방식선택" sx={{ fontFamily: 'Pretendard Medium' }}>
+              정렬방식선택
+            </MenuItem>
+            <MenuItem value={10} sx={{ fontFamily: 'Pretendard Medium' }}>
+              Ten
+            </MenuItem>
+            <MenuItem value={20} sx={{ fontFamily: 'Pretendard Medium' }}>
+              Twenty
+            </MenuItem>
+            <MenuItem value={30} sx={{ fontFamily: 'Pretendard Medium' }}>
+              Thirty
+            </MenuItem>
+          </Select>
+        </FormControl>
+        <WriteButton>
+          <div>앨범쓰기</div>
+          <img src="/img/앨범쓰기.svg" alt="앨범쓰기" />
+        </WriteButton>
+      </div>
     </NavBarContainer>
   );
 }

@@ -62,4 +62,7 @@ export const WhiteLink = styled(Link)`
 export const BlackLink = styled(Link)`
   text-decoration: none;
   color: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 `;

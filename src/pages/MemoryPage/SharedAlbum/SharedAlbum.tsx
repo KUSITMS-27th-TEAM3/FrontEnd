@@ -13,8 +13,8 @@ const SharedAlbum = () => {
   return (
     <SharedAlbumContainer>
       <AlbumPresenter />
-      <IconButton width="150px" height="50px">
-        <div>공유 앨범 더보기</div>
+      <IconButton width="171px" height="41px">
+        <div style={{ marginLeft: '15px' }}>공유 앨범 더보기</div>
         <img src="/img/arrow.svg" alt="arrow" />
       </IconButton>
     </SharedAlbumContainer>

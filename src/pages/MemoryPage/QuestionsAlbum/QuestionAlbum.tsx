@@ -1,11 +1,5 @@
-import AlbumPresenter from '../components/AlbumPresenter';
-
 const QuestionAlbum = () => {
-  return (
-    <div>
-      <AlbumPresenter />
-    </div>
-  );
+  return <div>너의 의미</div>;
 };
 
 export default QuestionAlbum;

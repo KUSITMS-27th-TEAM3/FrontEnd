@@ -1,20 +1,27 @@
 import styled from 'styled-components';
 import { WhiteLink } from '../styles/GlobalStyle';
 
-const NavBarContainer = styled.nav`
-  display: flex;
-  width: 99vw;
-  height: 70px;
-  background-color: black;
-  justify-content: space-around;
-  align-items: center;
-  border: 1px solid black;
-  background-color: black;
-  color: white;
+const LinkContainer = styled.div`
+    display: flex;
+    width : 24%;
+    justify-content: space-around;
+    align-items: center;
+`
 
-  // position:absolute;
-  // z-index: 1;
-  // background-color: rgba(255, 255, 255, 0);
+const NavBarContainer = styled.nav`
+@media screen and (max-width: 1460px) {
+  ${LinkContainer} {
+      font-size: 10px;
+  }
+}
+  display: flex;
+  width: 100vw;
+  height: 70px;
+  background-color: rgba(255, 255, 255);
+  align-items: center;
+  justify-content : space-around;
+
+  border-bottom : 1px solid black;
 
   img {
     cursor: pointer;
@@ -24,34 +31,42 @@ const NavBarContainer = styled.nav`
     all: unset;
     cursor: pointer;
     padding: 10px;
+    color: black;
 
     &:hover {
-      border-bottom: 1px solid white;
+      border-bottom: 1px solid black;
     }
   }
 `;
 
+const BIContainer = styled.div`
+`
+
 const NavBar = () => {
   return (
     <NavBarContainer>
-      <WhiteLink to="/">
-        <img src="/img/BI.svg" alt="logo" />
-      </WhiteLink>
-      <WhiteLink to="/memory">
-        <button>추억앨범</button>
-      </WhiteLink>
-      <WhiteLink to="/diary">
-        <button>의미기록</button>
-      </WhiteLink>
-      <WhiteLink to="/funeral">
-        <button>장례정보</button>
-      </WhiteLink>
-      <WhiteLink to="/login">
-        <button>로그인</button>
-      </WhiteLink>
-      <WhiteLink to="/mypage">
-        <button>마이페이지</button>
-      </WhiteLink>
+      <BIContainer>
+        <WhiteLink to="/">
+          <img src="/img/BI2.svg" alt="logo" />
+        </WhiteLink>
+      </BIContainer>
+      <LinkContainer>
+        <WhiteLink to="/memory">
+          <button>추억기록</button>
+        </WhiteLink>
+        <span> | </span>
+        <WhiteLink to="/funeral">
+          <button>장례정보</button>
+        </WhiteLink>
+        <span> | </span>
+        <WhiteLink to="/login">
+          <button>로그인</button>
+        </WhiteLink>
+        <span> | </span>
+        <WhiteLink to="/mypage">
+          <button>마이페이지</button>
+        </WhiteLink>
+      </LinkContainer>
     </NavBarContainer>
   );
 };

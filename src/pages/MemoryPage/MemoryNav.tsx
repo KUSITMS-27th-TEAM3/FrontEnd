@@ -133,6 +133,7 @@ function MemoryNav() {
             border: 'none',
             backgroundColor: '#F4F4F4',
             height: 56,
+            marginRight: '16px',
           }}
         >
           <Select

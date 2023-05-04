@@ -41,7 +41,6 @@ export const IconButton = styled.button<IconButtonProps>`
   min-width: 80px;
   max-width: ${(props) => props.maxWidth};
   cursor: pointer;
-  margin-left: 16px;
   &:hover {
     filter: brightness(1.2);
   }

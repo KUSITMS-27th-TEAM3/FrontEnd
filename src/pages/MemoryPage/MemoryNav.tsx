@@ -1,49 +1,69 @@
 import styled from 'styled-components';
-import { BasicLink } from '../../styles/GlobalStyle';
+import { BlackLink } from '../../styles/GlobalStyle';
 
 const NavBarContainer = styled.nav`
   display: flex;
-  width: 100vw;
-  height: 70px;
-  background-color: #ffffff;
-  justify-content: space-around;
+  width: 570px;
+  height: 96px;
+  margin: 0 auto;
+  background-color: ${(props) => props.theme.color.grayScale.white};
+  justify-content: space-between;
   align-items: center;
-  border: 1px solid black;
-  background-color: black;
-  color: white;
-
+  color: black;
+  border-bottom: 2px solid #ebebeb;
   img {
     cursor: pointer;
   }
 
-  button {
-    all: unset;
-    cursor: pointer;
-    padding: 10px;
+  .navbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 80px;
+    padding-bottom: 16px;
 
     &:hover {
-      border-bottom: 1px solid white;
+      border-bottom: 2px solid ${(props) => props.theme.color.main.orange};
     }
+  }
+
+  .navtitle {
+    color: ${(props) => props.theme.color.grayScale.gray};
+    font-size: 16px;
+    font-family: ${(props) => props.theme.font.family.pretendard_medium};
   }
 `;
 
-const MemoryNav = () => {
+function MemoryNav() {
   return (
     <NavBarContainer>
-      <button>
-        <BasicLink to="myAlbum">나의앨범</BasicLink>
-      </button>
-      <button>
-        <BasicLink to="question">질문열람</BasicLink>
-      </button>
-      <button>
-        <BasicLink to="sharedAlbum">공유앨범</BasicLink>
-      </button>
-      <button>
-        <BasicLink to="writeAlbum"> 앨범쓰기</BasicLink>
-      </button>
+      <BlackLink to="sharedAlbum">
+        <nav className="navbox">
+          <img src="/img/공유앨범.svg" alt="공유앨범" />
+          <div className="navtitle">공유 앨범</div>
+        </nav>
+      </BlackLink>
+      <BlackLink to="writeAlbum">
+        <nav className="navbox">
+          <img src="/img/앨범쓰기.svg" alt="앨범쓰기" />
+          <div className="navtitle">앨범쓰기</div>
+        </nav>
+      </BlackLink>
+      <BlackLink to="myAlbum">
+        <nav className="navbox">
+          <img src="/img/나의앨범.svg" alt="나의앨범" />
+          <div className="navtitle">나의앨범</div>
+        </nav>
+      </BlackLink>
+      <BlackLink to="question">
+        <nav className="navbox">
+          <img src="/img/너의의미.svg" alt="너의의미" />
+          <div className="navtitle">너의 의미</div>
+        </nav>
+      </BlackLink>
     </NavBarContainer>
   );
-};
+}
 
 export default MemoryNav;

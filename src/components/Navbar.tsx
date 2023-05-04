@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BasicLink } from '../styles/GlobalStyle';
+import { WhiteLink } from '../styles/GlobalStyle';
 
 const NavBarContainer = styled.nav`
   display: flex;
@@ -8,6 +8,8 @@ const NavBarContainer = styled.nav`
   background-color: black;
   justify-content: space-around;
   align-items: center;
+  border: 1px solid black;
+  background-color: black;
   color: white;
 
   // position:absolute;
@@ -32,24 +34,24 @@ const NavBarContainer = styled.nav`
 const NavBar = () => {
   return (
     <NavBarContainer>
-      <BasicLink to="/">
+      <WhiteLink to="/">
         <img src="/img/BI.svg" alt="logo" />
-      </BasicLink>
-      <BasicLink to="/memory">
+      </WhiteLink>
+      <WhiteLink to="/memory">
         <button>추억앨범</button>
-      </BasicLink>
-      <BasicLink to="/diary">
+      </WhiteLink>
+      <WhiteLink to="/diary">
         <button>의미기록</button>
-      </BasicLink>
-      <BasicLink to="/funeral">
+      </WhiteLink>
+      <WhiteLink to="/funeral">
         <button>장례정보</button>
-      </BasicLink>
-      <BasicLink to="/login">
+      </WhiteLink>
+      <WhiteLink to="/login">
         <button>로그인</button>
-      </BasicLink>
-      <BasicLink to="/mypage">
+      </WhiteLink>
+      <WhiteLink to="/mypage">
         <button>마이페이지</button>
-      </BasicLink>
+      </WhiteLink>
     </NavBarContainer>
   );
 };

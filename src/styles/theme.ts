@@ -1,36 +1,27 @@
 import { DefaultTheme } from 'styled-components';
 
 const theme: DefaultTheme = {
-  fontSize: {
-    title: '18px',
-    subTitle: '14px',
-    small: '10px',
-  },
-
-  colors: {
-    main: '#E59A59',
-    emphasis: '#712E1E',
-    cancel: '#A82A1E',
-    button: '#E59A59',
-    sub: '#FFD5AF',
-    background: '#FFFAF5',
-    innerContainer: '#f7f7f7',
-    container: '#FCF3EB',
-    gray: '#888870',
-    lightGray: '#C9CACC',
+  color: {
+    main: {
+      orange: '#ff8a33',
+      crimson: '#fc7350',
+    },
+    grayScale: {
+      black: '#000000',
+      lightBlack: '#1c1a19',
+      darkGray: '#2b2826',
+      gray: '#666666',
+      white: '#ffffff',
+    },
   },
 
   font: {
-    color: {
-      black: '#1E1F21',
-      darkGray: '#303030',
-      white: '#ffffff',
-      description: '#5e5f61',
-      subTitle: '#424140',
-    },
-    size: {
-      normal: '14px',
-      containerTitle: '18px',
+    family: {
+      gmarketSans_bold: 'GmarketSans Bold',
+      gmarketSans_medium: 'GmarketSans Medium',
+      pretendard_bold: 'Pretendard Bold',
+      pretendard_medium: 'Pretendard Medium',
+      pretendard_regular: 'Prentendard Regular',
     },
   },
 };

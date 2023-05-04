@@ -92,7 +92,7 @@ const AlbumPresenter = () => {
 
   return (
     <AlbumContainer>
-      <ImageList cols={4} gap={25} rowHeight={480}>
+      <ImageList cols={4} gap={25} rowHeight={360}>
         {itemData.map((item) => (
           <ImageListItem key={item.img}>
             <img
@@ -100,6 +100,8 @@ const AlbumPresenter = () => {
               srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
               alt={item.title}
               loading="lazy"
+              width={360}
+              height={360}
             />
           </ImageListItem>
         ))}

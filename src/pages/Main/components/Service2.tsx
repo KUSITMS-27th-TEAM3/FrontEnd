@@ -4,12 +4,13 @@ import { useScrollFadeIn } from "../../../hooks";
 
 const S = {
     Image: styled.div`
-    width : 100%;
+    width : 70%;
     display: flex;
     justify-content: center;
     align-items: center;
     padding-top : 150px;
     position: relative;
+    left: 5%;
     img{
       width : 80%;
       height : auto;
@@ -20,7 +21,7 @@ const S = {
     position: absolute;
     z-index:1;
     top : 55%;
-    left : 10%;
+    left : -5%;
     width: 35%;
     img{
         width : 100%;
@@ -32,7 +33,7 @@ const S = {
     position: absolute;
     z-index:1;
     top : 55%;
-    left : 10%;
+    left : -5%;
     width: 14%;
     padding-top:12%;
     button {

@@ -57,7 +57,7 @@ const Service2 = () => {
 
     const animatedItem = {
         0: useScrollFadeIn({ direction: 'up', duration: 1, delay: 0 }),
-        1: useScrollFadeIn({ direction: 'up', duration: 1, delay: 0.6 })
+        1: useScrollFadeIn({ direction: 'up', duration: 1, delay: 0.4 })
     };
 
     return (

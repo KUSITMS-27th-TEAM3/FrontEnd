@@ -40,25 +40,23 @@ const S = {
         all: unset;
         cursor: pointer;
         padding: 10px;
-        &:hover {
-          border-bottom: 1px solid white;
-          back
-        }
       }
     img{
         width : 100%;
         height : auto;
         object-fit : contain;
+        &:hover {
+            border-bottom: 1px solid white;
+          }
       }
     `
-
 }
 
 const Service1 = () => {
 
     const animatedItem = {
         0: useScrollFadeIn({ direction: 'up', duration: 1, delay: 0 }),
-        1: useScrollFadeIn({ direction: 'up', duration: 1, delay: 0.6 })
+        1: useScrollFadeIn({ direction: 'up', duration: 1, delay: 0.4 })
     };
 
     return (

@@ -11,7 +11,7 @@ import {
   Service3,
 } from './components';
 
-const MainContainer = styled.div`
+const MainContainer = styled.section`
   display : flex;
   flex-direction : column;
   align-items: center;

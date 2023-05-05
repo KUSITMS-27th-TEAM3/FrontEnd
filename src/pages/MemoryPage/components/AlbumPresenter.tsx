@@ -1,21 +1,11 @@
+import { ImageList, ImageListItem } from '@mui/material';
 import styled from 'styled-components';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
 
 const AlbumContainer = styled.section`
   margin: 10vw 10vw 5vw 10vw;
   width: 80vw;
   height: 100vh;
   overflow: auto;
-
-  &::-webkit-scrollbar {
-    width: 7px;
-    display: block;
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background: ${({ theme }) => theme.color.main.orange};
-  }
 `;
 
 const AlbumPresenter = () => {
@@ -92,16 +82,14 @@ const AlbumPresenter = () => {
 
   return (
     <AlbumContainer>
-      <ImageList cols={4} gap={25} rowHeight={360}>
+      <ImageList sx={{ width: 'inherit', height: 'inherit' }} gap={24} cols={4}>
         {itemData.map((item) => (
           <ImageListItem key={item.img}>
             <img
-              src={`${item.img}?w=248&fit=crop&auto=format`}
-              srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+              src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
+              srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
               alt={item.title}
               loading="lazy"
-              width={360}
-              height={360}
             />
           </ImageListItem>
         ))}

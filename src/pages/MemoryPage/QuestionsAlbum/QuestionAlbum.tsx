@@ -1,5 +1,5 @@
 const QuestionAlbum = () => {
-  return <div>QuestionAlbum</div>;
+  return <div>너의 의미</div>;
 };
 
 export default QuestionAlbum;

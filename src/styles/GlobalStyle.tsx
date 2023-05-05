@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom';
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -30,7 +29,11 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	-ms-overflow-style: none;
 }
+&::-webkit-scrollbar {
+    display: none;
+  }
 ol, ul {
 	list-style: none;
 }
@@ -46,20 +49,4 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-`;
-
-export const FlexContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-`;
-
-export const WhiteLink = styled(Link)`
-  text-decoration: none;
-  color: white;
-`;
-
-export const BlackLink = styled(Link)`
-  text-decoration: none;
-  color: black;
 `;

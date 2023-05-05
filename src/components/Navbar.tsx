@@ -32,7 +32,7 @@ const NavBar = () => {
       <WhiteLink to="/">
         <img src="/img/BI.svg" alt="logo" />
       </WhiteLink>
-      <WhiteLink to="/memory">
+      <WhiteLink to="/memory/sharedAlbum">
         <button>추억앨범</button>
       </WhiteLink>
       <WhiteLink to="/diary">

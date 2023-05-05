@@ -74,7 +74,7 @@ const NavBarContainer = styled.nav`
 `;
 
 function MemoryNav() {
-  const [activeNum, setActiveNum] = useState(0);
+  const [activeNum, setActiveNum] = useState(1);
   const location = useLocation();
   const navigate = useNavigate();
   const [age, setAge] = useState<string | number>('');

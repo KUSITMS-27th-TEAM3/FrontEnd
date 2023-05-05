@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useScrollClipPath } from "../../../hooks";
+import { useScrollFadeIn } from "../../../hooks";
 
 
 const S = {
@@ -12,14 +12,15 @@ const S = {
       object-fit : contain;
     }
     `
-
 }
 
 const Vision = () => {
-    const animatedImage = useScrollClipPath();
+    const animatedItem = {
+        0: useScrollFadeIn({ direction: 'right', duration: 1, delay: 0 }),
+    };
     return (
-        <S.Image {...animatedImage}>
-            <img src="/img/vision.svg" alt="ServiceVision"></img>
+        <S.Image {...animatedItem[0]}>
+            <img src="/img/Vision.svg" alt="ServiceVision"></img>
         </ S.Image>
     )
 }

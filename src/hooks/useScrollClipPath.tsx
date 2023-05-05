@@ -2,7 +2,10 @@ import { useRef, useEffect, useCallback } from 'react';
 
 type Direction = 'up' | 'down' | 'left' | 'right';
 
-const useScrollClipPath = (direction: Direction = 'left', duration = 1, delay = 0) => {
+const useScrollClipPath = (
+    direction: Direction = 'left',
+    duration = 1,
+    delay = 0) => {
     const element = useRef<HTMLDivElement>(null);
 
     const handleClipPath = (name: Direction) => {
@@ -23,6 +26,10 @@ const useScrollClipPath = (direction: Direction = 'left', duration = 1, delay = 
     const onScroll = useCallback(
         ([entry]: IntersectionObserverEntry[]) => {
             const { current } = element;
+
+            if (entry.isIntersecting) {
+                console.log(current)
+            }
             if (entry.isIntersecting) {
                 if (current) {
                     current.style.transitionProperty = 'transform, clip-path';
@@ -39,13 +46,12 @@ const useScrollClipPath = (direction: Direction = 'left', duration = 1, delay = 
 
     useEffect(() => {
         let observer: IntersectionObserver | undefined;
-
         if (element.current) {
-            observer = new IntersectionObserver(onScroll, { threshold: 0.9 });
+            observer = new IntersectionObserver(onScroll, { threshold: 0.4 });
             observer.observe(element.current.parentNode as Element);
         }
 
-        return () => observer && observer.disconnect();
+        return () => observer?.disconnect();
     }, [onScroll]);
 
     return {

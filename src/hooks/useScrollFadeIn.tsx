@@ -35,8 +35,27 @@ const useScrollFadeIn = ({
         }
     };
 
+    // const hasIntersectedRef = useRef(false);
+
+    // useEffect(() => {
+    //     if (hasIntersectedRef.current === false) {
+    //         const { current } = element;
+    //         const { top = 0, bottom = 0 } = current?.getBoundingClientRect() || {};
+    //         const { innerHeight } = window;
+
+
+    //         if (top <= innerHeight * 0.4 && bottom >= 0) {
+    //             hasIntersectedRef.current = true;
+    //         }
+    //     }
+    // }, [element]);
+
     const onScroll = useCallback(([entry]: IntersectionObserverEntry[]) => {
         const { current } = element;
+        // if (entry.isIntersecting) {
+        //     console.log(current)
+        // }
+
         if (entry.isIntersecting) {
             current?.style.setProperty('transition-property', 'all');
             current?.style.setProperty('transition-duration', `${duration}s`);
@@ -49,12 +68,10 @@ const useScrollFadeIn = ({
 
     useEffect(() => {
         let observer: IntersectionObserver | undefined;
-
         if (element.current) {
-            observer = new IntersectionObserver(onScroll, { threshold: 0.5 });
+            observer = new IntersectionObserver(onScroll, { threshold: 0.4 });
             observer.observe(element.current);
         }
-
         return () => observer?.disconnect();
     }, [onScroll]);
 

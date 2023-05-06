@@ -1,25 +1,8 @@
-import Navbar from '../../components/Navbar';
-import { Outlet } from 'react-router-dom';
-import MemoryNav from './MemoryNav';
-import Advertisment from '../../components/Advertisment';
-import styled from '@emotion/styled';
-
-const MemoryPageContainer = styled.section`
-  position: relative;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;
+import LayoutContainer from '../../components/LayoutContainer';
+import Memory from './Memory';
 
 const MemoryPage = () => {
-  return (
-    <MemoryPageContainer>
-      <Navbar />
-      <Advertisment />
-      <MemoryNav />
-      <Outlet />
-    </MemoryPageContainer>
-  );
+  return <LayoutContainer children={<Memory />} />;
 };
 
 export default MemoryPage;

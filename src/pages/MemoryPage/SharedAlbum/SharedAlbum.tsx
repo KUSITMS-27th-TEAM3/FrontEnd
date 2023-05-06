@@ -1,6 +1,6 @@
 import AlbumPresenter from '../components/AlbumPresenter';
 import styled from 'styled-components';
-import { IconButton } from '../../../styles/CommonStyle';
+import { IconButton } from '../../../components/CommonStyle';
 
 const SharedAlbumContainer = styled.section`
   display: flex;

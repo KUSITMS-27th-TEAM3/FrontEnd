@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { WhiteLink } from '../styles/CommonStyle';
+import { WhiteLink } from './CommonStyle';
 
 const LinkContainer = styled.div`
   display: flex;
@@ -39,7 +39,7 @@ const NavBarContainer = styled.nav`
     font-family: ${(props) => props.theme.font.family.pretendard_medium};
 
     &:hover {
-      border-bottom: 1px solid white;
+      color: ${(props) => props.theme.color.main.orange};
     }
   }
 `;

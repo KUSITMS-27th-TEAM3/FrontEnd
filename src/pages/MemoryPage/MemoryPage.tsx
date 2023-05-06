@@ -1,8 +1,9 @@
 import Navbar from '../../components/Navbar';
 import { Outlet } from 'react-router-dom';
-import MemoryNav from './MemoryNav';
+import MemoryNav from './components/MemoryNav';
 import Advertisment from '../../components/Advertisment';
-import styled from '@emotion/styled';
+import styled from 'styled-components';
+import Footer from '../../components/Footer';
 
 const MemoryPageContainer = styled.section`
   position: relative;
@@ -18,6 +19,7 @@ const MemoryPage = () => {
       <Advertisment />
       <MemoryNav />
       <Outlet />
+      <Footer />
     </MemoryPageContainer>
   );
 };

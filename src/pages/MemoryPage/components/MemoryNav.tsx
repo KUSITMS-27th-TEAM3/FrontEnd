@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material';
-import { BlackLink, IconButton } from '../../styles/CommonStyle';
+import { BlackLink, IconButton } from '../../../styles/CommonStyle';
 
 const hoverCss = css`
   .nav_pageTittle {

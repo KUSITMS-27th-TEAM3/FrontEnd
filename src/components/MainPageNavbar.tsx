@@ -36,6 +36,7 @@ const NavBarContainer = styled.nav`
     all: unset;
     cursor: pointer;
     padding: 10px;
+    font-family: ${(props) => props.theme.font.family.pretendard_medium};
 
     &:hover {
       border-bottom: 1px solid white;

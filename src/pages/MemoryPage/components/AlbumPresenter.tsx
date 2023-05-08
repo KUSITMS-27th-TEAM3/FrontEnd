@@ -2,7 +2,7 @@ import { ImageList, ImageListItem } from '@mui/material';
 import styled from 'styled-components';
 
 const AlbumContainer = styled.section`
-  margin: 10vw 10vw 5vw 10vw;
+  margin: 5vw 10vw 5vw 10vw;
   width: 80vw;
   height: 100vh;
   overflow: auto;

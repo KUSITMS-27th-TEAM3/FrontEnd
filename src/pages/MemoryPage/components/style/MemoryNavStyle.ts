@@ -67,4 +67,13 @@ export const NavBarContainer = styled.nav`
     justify-content: flex-end;
     margin-right: 3.75vw;
   }
+
+  @media screen and (max-width: 1460px) {
+    .nav_title {
+      font-size: 16px;
+    }
+    .nav_pageTittle {
+      font-size: 12px;
+    }
+  }
 `;

@@ -36,7 +36,7 @@ function MemoryNav() {
 
   return (
     <S.NavBarContainer>
-      <div className="nav_title">추억앨범 서비스</div>
+      <div className="nav_title">추억기록 서비스</div>
       <nav className={activeNum === 1 ? 'navbox active' : 'navbox'} onClick={handleNavToOne}>
         <BlackLink to="sharedAlbum">
           <img className="navIcon" src="/img/공유앨범.svg" alt="공유앨범" />

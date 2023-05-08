@@ -12,6 +12,7 @@ const NavBarContainer = styled.nav`
   @media screen and (max-width: 1460px) {
     ${LinkContainer} {
       font-size: 10px;
+      width: 30%;
     }
   }
   display: flex;

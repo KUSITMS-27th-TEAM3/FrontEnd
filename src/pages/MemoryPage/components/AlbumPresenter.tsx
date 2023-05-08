@@ -6,6 +6,10 @@ const AlbumContainer = styled.section`
   width: 80vw;
   height: 100vh;
   overflow: auto;
+  img {
+    object-fit: cover;
+    border-radius: 8px;
+  }
 `;
 
 const AlbumPresenter = () => {

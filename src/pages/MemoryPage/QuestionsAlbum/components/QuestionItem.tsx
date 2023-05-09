@@ -5,6 +5,7 @@ const QuestionItemContainer = styled.div`
   height: 120px;
   background-color: ${({ theme }) => theme.color.main.lightOrange};
   border-radius: 16px;
+  margin-top: 24px;
 `;
 
 type QuestionItemProps = {

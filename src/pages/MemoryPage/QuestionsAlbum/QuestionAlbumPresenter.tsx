@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
-import { FlexContainer } from '../../../components/CommonStyle';
 import styled from 'styled-components';
 import QuestionItem from './components/QuestionItem';
 
-const QuestionAlbumContainer = styled(FlexContainer)`
-  margin-top: 100px;
+const QuestionAlbumContainer = styled.section`
+  margin: 100px 10vw 5vw 10vw;
   width: 80vw;
   height: 100vh;
   overflow: auto;

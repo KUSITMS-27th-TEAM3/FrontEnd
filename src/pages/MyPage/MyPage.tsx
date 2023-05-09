@@ -3,7 +3,8 @@ import Footer from '../../components/Footer';
 import {
   Profile,
   MainContent,
-  Stamp
+  Stamp,
+  Question
 } from './components';
 import styled from 'styled-components';
 
@@ -24,6 +25,7 @@ const MyPage = () => {
       <Profile />
       <MainContent />
       <Stamp />
+      <Question />
       <Footer />
     </S.MyPageContainer>
   );

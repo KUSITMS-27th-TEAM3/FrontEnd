@@ -5,6 +5,7 @@ const theme: DefaultTheme = {
     main: {
       orange: '#ff8a33',
       crimson: '#fc7350',
+      lightOrange: '#FFECDE',
     },
     grayScale: {
       black: '#000000',

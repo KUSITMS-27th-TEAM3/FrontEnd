@@ -7,7 +7,7 @@ import MemoryPage from './pages/MemoryPage/MemoryPage';
 import MyPage from './pages/MyPage/MyPage';
 import FuneralPage from './pages/FuneralPage/FuneralPage';
 import MyAlbum from './pages/MemoryPage/MyAlbum/MyAlbum';
-import QuestionAlbum from './pages/MemoryPage/QuestionsAlbum/QuestionAlbum';
+import QuestionAlbum from './pages/MemoryPage/QuestionsAlbum/QuestionAlbumPresenter';
 import SharedAlbum from './pages/MemoryPage/SharedAlbum/SharedAlbum';
 import WriteAlbum from './pages/MemoryPage/WriteAlbum/WriteAlbum';
 

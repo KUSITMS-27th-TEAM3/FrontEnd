@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { IconButton } from '../../../../components/CommonStyle';
 
 const hoverCss = css`
   .nav_pageTittle {
@@ -28,23 +29,6 @@ export const NavBarContainer = styled.nav`
     cursor: pointer;
   }
 
-  .navbox {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    border-right: 2px solid #dddddd;
-    height: 24px;
-    flex: 1;
-
-    &:hover {
-      ${hoverCss}
-    }
-
-    &.active {
-      ${hoverCss}
-    }
-  }
-
   .nav_title {
     font-family: ${(props) => props.theme.font.family.pretendard_bold};
     font-size: 24px;
@@ -53,7 +37,7 @@ export const NavBarContainer = styled.nav`
     margin-left: 3.75vw;
   }
 
-  .nav_pageTittle {
+  .nav_pageTitle {
     color: ${(props) => props.theme.color.grayScale.gray};
     font-size: 16px;
     font-family: ${(props) => props.theme.font.family.pretendard_medium};
@@ -66,14 +50,53 @@ export const NavBarContainer = styled.nav`
     align-items: center;
     justify-content: flex-end;
     margin-right: 3.75vw;
+    height: 35px;
   }
 
-  @media screen and (max-width: 1460px) {
+  .nav_formControl {
+    width: 11vw;
+    max-width: 159px;
+    border: 'none';
+    background-color: '#F4F4F4';
+    margin-right: 16px;
+    font-family: 'Pretendard Medium';
+    padding: 0;
+  }
+
+  .nav_selelct {
+    border: 'none';
+    font-family: 'Pretendard Medium';
+    text-align: 'center';
+    padding: 0;
+  }
+
+  @media screen and (max-width: 1024px) {
     .nav_title {
-      font-size: 16px;
+      font-size: 15px;
     }
-    .nav_pageTittle {
+    .nav_pageTitle {
       font-size: 12px;
     }
+  }
+`;
+
+type NavBoxProps = {
+  isBorder: boolean;
+};
+
+export const NavBox = styled.nav<NavBoxProps>`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-right: ${(props) => (props.isBorder ? '2px solid #dddddd' : 'none')};
+  height: 24px;
+  flex: 1;
+
+  &:hover {
+    ${hoverCss}
+  }
+
+  &.active {
+    ${hoverCss}
   }
 `;

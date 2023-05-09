@@ -24,6 +24,7 @@ type IconButtonProps = {
   width: string;
   height: string;
   maxWidth?: string;
+  minWidth?: string;
 };
 
 export const IconButton = styled.button<IconButtonProps>`
@@ -38,10 +39,17 @@ export const IconButton = styled.button<IconButtonProps>`
   justify-content: space-around;
   height: ${(props) => props.height};
   width: ${(props) => props.width};
-  min-width: 80px;
+  min-width: ${(props) => props.minWidth};
   max-width: ${(props) => props.maxWidth};
   cursor: pointer;
   &:hover {
     filter: brightness(1.2);
+  }
+
+  @media screen and (max-width: 1024px) {
+    & {
+      height: 16px;
+      font-size: 13px;
+    }
   }
 `;

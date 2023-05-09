@@ -6,7 +6,7 @@ const TagButton = styled.button`
   font-family: ${({ theme }) => theme.font.family.pretendard_medium};
   border-radius: 50px;
   background-color: ${({ theme }) => theme.color.grayScale.lightGray};
-  font-size: 16px;
+  font-size: 14px;
   padding: 1em 2em;
   cursor: pointer;
   &.active {
@@ -22,9 +22,9 @@ const EmotionContainer = styled.div`
   width: 80vw;
   justify-content: space-between;
 
-  @media screen and (max-width: 1500px) {
+  @media screen and (max-width: 1024px) {
     ${TagButton} {
-      font-size: 10px;
+      font-size: 7px;
     }
   }
 `;

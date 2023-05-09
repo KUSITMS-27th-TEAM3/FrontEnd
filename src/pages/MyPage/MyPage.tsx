@@ -1,11 +1,31 @@
 import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
+import {
+  Profile,
+  MainContent,
+  Stamp
+} from './components';
+import styled from 'styled-components';
+
+const S = {
+  MyPageContainer: styled.div`
+    width : 100%;
+    // height : 100vw;
+    display : flex;
+    flex-direction : column;
+    align-items: center;    
+  `
+}
 
 const MyPage = () => {
   return (
-    <div>
+    <S.MyPageContainer>
       <Navbar />
-      <div>Mypage</div>
-    </div>
+      <Profile />
+      <MainContent />
+      <Stamp />
+      <Footer />
+    </S.MyPageContainer>
   );
 };
 

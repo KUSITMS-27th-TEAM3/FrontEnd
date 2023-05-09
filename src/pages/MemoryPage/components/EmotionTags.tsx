@@ -8,6 +8,7 @@ const TagButton = styled.button`
   background-color: ${({ theme }) => theme.color.grayScale.lightGray};
   font-size: 14px;
   padding: 1em 2em;
+  text-align: center;
   cursor: pointer;
   &.active {
     background-color: ${({ theme }) => theme.color.main.orange};

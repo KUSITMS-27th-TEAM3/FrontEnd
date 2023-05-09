@@ -12,6 +12,7 @@ const NavBarContainer = styled.nav`
   @media screen and (max-width: 1460px) {
     ${LinkContainer} {
       font-size: 10px;
+      width: 30%;
     }
   }
   display: flex;
@@ -20,8 +21,6 @@ const NavBarContainer = styled.nav`
   background-color: rgba(255, 255, 255);
   align-items: center;
   justify-content: space-around;
-
-  border-bottom: 1px solid black;
 
   img {
     cursor: pointer;

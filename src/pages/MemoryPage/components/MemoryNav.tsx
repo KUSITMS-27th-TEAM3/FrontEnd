@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { FormControl, MenuItem, Select, SelectChangeEvent, useMediaQuery } from '@mui/material';
 import { BlackLink, IconButton } from '../../../components/CommonStyle';
 import * as S from './style/MemoryNavStyle';
 
@@ -9,6 +9,7 @@ function MemoryNav() {
   const location = useLocation();
   const navigate = useNavigate();
   const [age, setAge] = useState<string | number>('');
+  const isResponsive = useMediaQuery('(max-width: 1024px)');
 
   const handleChange = (event: SelectChangeEvent<typeof age>) => {
     setAge(event.target.value);
@@ -36,47 +37,40 @@ function MemoryNav() {
 
   return (
     <S.NavBarContainer>
-      <div className="nav_title">추억앨범 서비스</div>
-      <nav className={activeNum === 1 ? 'navbox active' : 'navbox'} onClick={handleNavToOne}>
+      <div className="nav_title">추억기록 서비스</div>
+      <S.NavBox
+        className={activeNum === 1 ? 'active' : ''}
+        onClick={handleNavToOne}
+        isBorder={true}
+      >
         <BlackLink to="sharedAlbum">
           <img className="navIcon" src="/img/공유앨범.svg" alt="공유앨범" />
-          <div className="nav_pageTittle">공유 앨범</div>
+          <div className="nav_pageTitle">공유 앨범</div>
         </BlackLink>
-      </nav>
-      <nav className={activeNum === 2 ? 'navbox active' : 'navbox'} onClick={handleNavToTwo}>
+      </S.NavBox>
+      <S.NavBox
+        className={activeNum === 2 ? 'active' : ''}
+        onClick={handleNavToTwo}
+        isBorder={true}
+      >
         <BlackLink to="myAlbum">
           <img className="navIcon" src="/img/나의앨범.svg" alt="나의앨범" />
-          <div className="nav_pageTittle">나의앨범</div>
+          <div className="nav_pageTitle">나의앨범</div>
         </BlackLink>
-      </nav>
-      <nav className={activeNum === 3 ? 'navbox active' : 'navbox'} onClick={handleNavToThree}>
+      </S.NavBox>
+      <S.NavBox
+        className={activeNum === 3 ? 'active' : ''}
+        onClick={handleNavToThree}
+        isBorder={false}
+      >
         <BlackLink to="question">
           <img className="navIcon" src="/img/너의의미.svg" alt="너의의미" />
-          <div className="nav_pageTittle">너의 의미</div>
+          <div className="nav_pageTitle">너의 의미</div>
         </BlackLink>
-      </nav>
+      </S.NavBox>
       <div className="nav_form">
-        <FormControl
-          sx={{
-            m: 1,
-            width: '11vw',
-            maxWidth: 159,
-            border: 'none',
-            backgroundColor: '#F4F4F4',
-            height: 56,
-            marginRight: '16px',
-          }}
-        >
-          <Select
-            value={age}
-            onChange={handleChange}
-            sx={{
-              height: 56,
-              border: 'none',
-              fontFamily: 'Pretendard Medium',
-              textAlign: 'center',
-            }}
-          >
+        <FormControl className="nav_formControl" size={isResponsive ? 'small' : 'medium'}>
+          <Select value={age} onChange={handleChange} className="nav_select">
             <MenuItem value="정렬방식선택" sx={{ fontFamily: 'Pretendard Medium' }}>
               정렬방식선택
             </MenuItem>
@@ -96,6 +90,7 @@ function MemoryNav() {
           width="calc(8.3vw - 36px)"
           height="32px"
           maxWidth="102px"
+          minWidth="80px"
         >
           <div>앨범쓰기</div>
           <img src="/img/앨범쓰기.svg" alt="앨범쓰기" />

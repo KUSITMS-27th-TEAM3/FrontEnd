@@ -1,19 +1,23 @@
 import styled from 'styled-components';
 
 const FooterContainer = styled.footer`
-  display: flex;
   width: 100vw;
-  height: 200px;
-  justify-content: center;
-  align-items: center;
-  background-color: ${({ theme }) => theme.color.grayScale.darkGray};
   position: relative;
-  margin-top: 30px;
-  color: ${({ theme }) => theme.color.grayScale.white};
+  margin-top: 70px;
+
+  img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
 `;
 
 const Footer = () => {
-  return <FooterContainer>Footer</FooterContainer>;
+  return (
+    <FooterContainer>
+      <img src="/img/푸터.svg" />
+    </FooterContainer>
+  );
 };
 
 export default Footer;

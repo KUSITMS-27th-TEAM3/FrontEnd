@@ -1,27 +1,26 @@
 import styled from 'styled-components';
-import { WhiteLink } from '../styles/CommonStyle';
+import { WhiteLink } from './CommonStyle';
 
 const LinkContainer = styled.div`
-    display: flex;
-    width : 24%;
-    justify-content: space-around;
-    align-items: center;
-`
+  display: flex;
+  width: 24%;
+  justify-content: space-around;
+  align-items: center;
+`;
 
 const NavBarContainer = styled.nav`
-@media screen and (max-width: 1460px) {
-  ${LinkContainer} {
+  @media screen and (max-width: 1460px) {
+    ${LinkContainer} {
       font-size: 10px;
+      width: 30%;
+    }
   }
-}
   display: flex;
   width: 100vw;
   height: 70px;
   background-color: rgba(255, 255, 255);
   align-items: center;
-  justify-content : space-around;
-
-  border-bottom : 1px solid black;
+  justify-content: space-around;
 
   img {
     cursor: pointer;
@@ -32,15 +31,14 @@ const NavBarContainer = styled.nav`
     cursor: pointer;
     padding: 10px;
     color: black;
-
+    font-family: ${(props) => props.theme.font.family.pretendard_medium};
     &:hover {
-      border-bottom: 1px solid black;
+      color: ${(props) => props.theme.color.main.orange};
     }
   }
 `;
 
-const BIContainer = styled.div`
-`
+const BIContainer = styled.div``;
 
 const NavBar = () => {
   return (
@@ -51,7 +49,7 @@ const NavBar = () => {
         </WhiteLink>
       </BIContainer>
       <LinkContainer>
-        <WhiteLink to="/memory">
+        <WhiteLink to="/memory/sharedAlbum">
           <button>추억기록</button>
         </WhiteLink>
         <span> | </span>

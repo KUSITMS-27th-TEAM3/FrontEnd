@@ -6,12 +6,14 @@ declare module 'styled-components' {
       main: {
         orange: string;
         crimson: string;
+        lightOrange: string;
       };
       grayScale: {
         black: string;
         lightBlack: string;
         darkGray: string;
         gray: string;
+        lightGray: string;
         white: string;
       };
     };

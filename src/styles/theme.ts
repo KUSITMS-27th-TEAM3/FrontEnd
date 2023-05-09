@@ -5,12 +5,14 @@ const theme: DefaultTheme = {
     main: {
       orange: '#ff8a33',
       crimson: '#fc7350',
+      lightOrange: '#FFECDE',
     },
     grayScale: {
       black: '#000000',
       lightBlack: '#1c1a19',
       darkGray: '#2b2826',
       gray: '#666666',
+      lightGray: '#F4F4F4',
       white: '#ffffff',
     },
   },

@@ -29,8 +29,8 @@ type IconButtonProps = {
 
 export const IconButton = styled.button<IconButtonProps>`
   all: unset;
-  background-color: ${(props) => props.theme.color.main.orange};
   display: flex;
+  background-color: ${(props) => props.theme.color.main.orange};
   color: white;
   font-family: ${(props) => props.theme.font.family.pretendard_medium};
   border-radius: 8px;

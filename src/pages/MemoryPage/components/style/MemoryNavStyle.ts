@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 const hoverCss = css`
-  .nav_pageTittle {
+  .nav_pageTitle {
     color: ${(props) => props.theme.color.main.orange};
   }
   .navIcon {

@@ -22,8 +22,6 @@ const NavBarContainer = styled.nav`
   align-items: center;
   justify-content: space-around;
 
-  border-bottom: 1px solid black;
-
   img {
     cursor: pointer;
   }

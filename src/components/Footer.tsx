@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 
 const FooterContainer = styled.footer`
+  display: flex;
   width: 100vw;
   position: relative;
   margin-top: 70px;
+  height: 300px;
 
   img {
     max-width: 100%;
-    height: auto;
     object-fit: cover;
   }
 `;

@@ -6,7 +6,7 @@ import * as S from './style/MemoryNavStyle';
 
 function MemoryNav() {
   const [activeNum, setActiveNum] = useState(1);
-  const location = useLocation();
+  const { pathname } = useLocation();
   const navigate = useNavigate();
   const [age, setAge] = useState<string | number>('');
   const isResponsive = useMediaQuery('(max-width: 1024px)');
@@ -30,10 +30,16 @@ function MemoryNav() {
   };
 
   useEffect(() => {
-    if (location.pathname === '/memory') {
+    if (pathname === '/memory') {
       setActiveNum(0);
+    } else if (pathname === '/memory/sharedAlbum') {
+      setActiveNum(1);
+    } else if (pathname === '/memory/myAlbum') {
+      setActiveNum(2);
+    } else if (pathname === '/memory/question') {
+      setActiveNum(3);
     }
-  }, [location]);
+  }, [pathname]);
 
   return (
     <S.NavBarContainer>

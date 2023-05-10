@@ -18,7 +18,7 @@ export const NavBarContainer = styled.nav`
   background-color: ${(props) => props.theme.color.grayScale.white};
   align-items: center;
   color: black;
-  top: 700px;
+  top: 560px;
   border-bottom: 2px solid #ebebeb;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   position: absolute;

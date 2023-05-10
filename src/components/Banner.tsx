@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const BannerContainer = styled.div`
   display: flex;
   width: 100vw;
-  height: 700px;
+  height: 560px;
 
   img {
     max-width: 100%;

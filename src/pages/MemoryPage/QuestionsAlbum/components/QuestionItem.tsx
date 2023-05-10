@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import type { dayInfo } from '../QuestionAlbumPresenter';
+import { useState } from 'react';
+import QuestionWriteForm from './QuestionWriteForm';
 
-const QuestionItemContainer = styled.div`
+const QuestionItemContainer = styled.button`
+  all: unset;
   width: 80vw;
   height: 120px;
   background-color: ${({ theme }) => theme.color.main.lightOrange};
@@ -10,8 +13,9 @@ const QuestionItemContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 
-  .question_content {
+  .question_box {
     display: flex;
     align-items: center;
     margin-left: 40px;
@@ -27,8 +31,19 @@ const QuestionItemContainer = styled.div`
     align-items: center;
   }
 
+  .question_content {
+    margin-left: 24px;
+    font-family: ${({ theme }) => theme.font.family.pretendard_bold};
+  }
+
   .quesiton_arrow {
     margin-right: 40px;
+    transition: 0.5s;
+
+    &.active {
+      transform: rotate(180deg);
+      transition: 0.5s;
+    }
   }
 `;
 
@@ -37,18 +52,31 @@ type QuestionItemProps = {
 };
 
 const QusetionItem = ({ dayInfo }: QuestionItemProps) => {
+  const [canWrite, setCanWrite] = useState(false);
+
+  const handleCanWrite = () => {
+    setCanWrite(!canWrite);
+  };
+
   return (
-    <QuestionItemContainer>
-      <div className="question_content">
-        <div className="question_circle">
-          <img src="/img/heart.svg" alt="heart" />
+    <>
+      <QuestionItemContainer onClick={handleCanWrite}>
+        <div className="question_box">
+          <div className="question_circle">
+            <img src="/img/heart.svg" alt="heart" />
+          </div>
+          <div className="question_content">
+            {dayInfo.date}:{dayInfo.content}
+          </div>
         </div>
-        <div>
-          {dayInfo.date}:{dayInfo.content}
-        </div>
-      </div>
-      <img src="/img/blackArrow.svg" alt="arrow" className="quesiton_arrow" />
-    </QuestionItemContainer>
+        <img
+          src="/img/blackArrow.svg"
+          alt="arrow"
+          className={canWrite ? 'quesiton_arrow active' : 'quesiton_arrow'}
+        />
+      </QuestionItemContainer>
+      {canWrite ? <QuestionWriteForm /> : null}
+    </>
   );
 };
 

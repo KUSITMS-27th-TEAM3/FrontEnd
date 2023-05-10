@@ -3,11 +3,11 @@ import styled from 'styled-components';
 const BannerContainer = styled.div`
   display: flex;
   width: 100vw;
-  height: 560px;
+  height: 700px;
 
   img {
     max-width: 100%;
-    height: auto;
+    width: 100%;
     object-fit: cover;
   }
 `;

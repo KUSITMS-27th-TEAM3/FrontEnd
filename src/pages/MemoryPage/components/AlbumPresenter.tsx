@@ -1,4 +1,4 @@
-import { ImageList, ImageListItem } from '@mui/material';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const AlbumContainer = styled.section`
@@ -6,9 +6,28 @@ const AlbumContainer = styled.section`
   width: 80vw;
   height: 100vh;
   overflow: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 24px;
+
   img {
     object-fit: cover;
+    height: 100%;
+    width: 100%;
     border-radius: 8px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  figcaption {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .imgLink {
+    position: relative;
   }
 `;
 
@@ -86,18 +105,19 @@ const AlbumPresenter = () => {
 
   return (
     <AlbumContainer>
-      <ImageList sx={{ width: 'inherit', height: 'inherit' }} gap={24} cols={4}>
-        {itemData.map((item) => (
-          <ImageListItem key={item.img}>
+      {itemData.map((item) => (
+        <Link to="/" className="imgLink">
+          <figure>
             <img
               src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
               srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
               alt={item.title}
               loading="lazy"
             />
-          </ImageListItem>
-        ))}
-      </ImageList>
+            <figcaption>하이</figcaption>
+          </figure>
+        </Link>
+      ))}
     </AlbumContainer>
   );
 };

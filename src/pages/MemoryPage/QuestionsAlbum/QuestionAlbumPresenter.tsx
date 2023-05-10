@@ -9,18 +9,34 @@ const QuestionAlbumContainer = styled.section`
   overflow: auto;
 `;
 
-const day = ['Day1', 'Day2', 'Day3', 'Day4', 'Day5', 'Day6', 'Day7', 'Day8', 'Day9', 'Day10'];
+const day = [
+  { date: 'Day1', content: '내용1' },
+  { date: 'Day2', content: '내용2' },
+  { date: 'Day3', content: '내용3' },
+  { date: 'Day4', content: '내용4' },
+  { date: 'Day5', content: '내용5' },
+  { date: 'Day6', content: '내용6' },
+  { date: 'Day7', content: '내용7' },
+  { date: 'Day8', content: '내용8' },
+  { date: 'Day9', content: '내용9' },
+  { date: 'Day10', content: '내용10' },
+];
+
+export type dayInfo = {
+  date: string;
+  content: string;
+};
 
 const QuestionAlbumPresenter = () => {
-  const [dayList, setDayList] = useState<string[]>([]);
+  const [dayList, setDayList] = useState<dayInfo[]>([]);
 
   useEffect(() => {
     setDayList([...day]);
   }, []);
   return (
     <QuestionAlbumContainer>
-      {dayList.map((item, index) => (
-        <QuestionItem item={item} />
+      {dayList.map((dayInfo, index) => (
+        <QuestionItem dayInfo={dayInfo} />
       ))}
     </QuestionAlbumContainer>
   );

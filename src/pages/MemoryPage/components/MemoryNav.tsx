@@ -75,8 +75,17 @@ function MemoryNav() {
         </BlackLink>
       </S.NavBox>
       <div className="nav_form">
-        <FormControl className="nav_formControl" size={isResponsive ? 'small' : 'medium'}>
-          <Select value={age} onChange={handleChange} className="nav_select">
+        <FormControl
+          className="nav_formControl"
+          size={isResponsive ? 'small' : 'medium'}
+          sx={{ fontFamily: 'Pretendard Medium' }}
+        >
+          <Select
+            value={age}
+            onChange={handleChange}
+            className="nav_select"
+            sx={{ fontFamily: 'Pretendard Medium' }}
+          >
             <MenuItem value="정렬방식선택" sx={{ fontFamily: 'Pretendard Medium' }}>
               정렬방식선택
             </MenuItem>

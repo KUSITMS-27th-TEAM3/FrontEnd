@@ -6,7 +6,6 @@ const BannerContainer = styled.div`
   height: 560px;
 
   img {
-    max-width: 100%;
     width: 100%;
     object-fit: cover;
   }

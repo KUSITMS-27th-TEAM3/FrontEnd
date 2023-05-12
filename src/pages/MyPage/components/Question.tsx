@@ -1,20 +1,21 @@
 import styled from "styled-components";
-import QuestionToggle from "./QuestionToggle";
 
-const S = {
-    QuestionWrapper: styled.div`
+const QuestionWrapper = styled.div`
     width: 100%;
-    height : 300px;
-    border : 1px solid black;
+    // border : 1px solid black;
+
+    img {
+        width : 100%;
+        height : auto;
+        object-fit : cover;
+    }
     `
-}
 
 const Question = () => {
     return (
-        <S.QuestionWrapper>
-            <QuestionToggle />
-            <QuestionToggle />
-        </S.QuestionWrapper>
+        <QuestionWrapper>
+            <img src="/img/Question.svg" />
+        </QuestionWrapper>
     )
 }
 export default Question;

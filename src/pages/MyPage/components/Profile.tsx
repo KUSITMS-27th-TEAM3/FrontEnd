@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 const ContentWrapper = styled.div`
 width : 100%;
-height : 776px;
+height : 45vw;
 border : 1px solid black;
 position : relative;
 display : flex;
@@ -35,38 +35,38 @@ const ProfileWrapper = styled.div`
     gap : 5vw;
 `
 const ProfileInfo = styled.div`
-    right : 30%;
     z-index : 2;
     bottom: 0;
     color: white;
     display : flex;
     flex-direction : column;
     justify-content : center;
+    position : relative;
+    top : 1vw;
     font-family: ${(props) => props.theme.font.family.pretendard_medium};
 
 
     div.MyPet {
-        margin-bottom: 15px;
+        margin-bottom: 1.5vw;
         font-size : 1vw;
         font-family: ${(props) => props.theme.font.family.gmarketSans_bold};
     }
     div.petName {
-        margin-bottom: 10px;
+        margin-bottom: 1.5vw;
         font-size : 2vw;
         color : ${(props) => props.theme.color.main.orange};
         font-family: ${(props) => props.theme.font.family.pretendard_bold};
     }
     div.petSubTitle {
-        margin-bottom: 20px;
+        margin-bottom: 1.5vw;
     }
     div.info {
         display: flex;
         text-align : center;
         line-height : 44px;
         margin-left : -10px;
-        margin-bottom: 35px;
+        margin-bottom: 1.5vw;
         font-size : 0.8vw;
-
     }
     div.subInfo {
         border: 1px solid white;
@@ -74,8 +74,8 @@ const ProfileInfo = styled.div`
         background-color : rgb(255,255,255,0.12);
         margin : 10px;
         font-size : 0.8vw;
-        padding-left : 10px;
-        padding-right : 10px;
+        padding-left : 1vw;
+        padding-right : 1vw;
     }
     button {
         border: 1px solid white;
@@ -102,13 +102,13 @@ img {
 const ProfileImg = styled.div`
 position :relative;
 top : 30px;
-width : 600px;
-height : 600px;
+width : 28vw;
+height : 28vw;
 border-radius : 50%;
 img {
     border-radius : 50%;
-    width : 600px;
-    height : 600px;
+    width : 100%;
+    height : 100%;
 }
 `
 

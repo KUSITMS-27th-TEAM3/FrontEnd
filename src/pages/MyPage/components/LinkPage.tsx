@@ -4,39 +4,42 @@ import { useLocation, useNavigate } from 'react-router-dom';
 const ContentWrapper = styled.div`
     margin-top : 35px;
     margin-bottom : 5%;
-    // border : 1px solid black;
     display : flex;
     justify-content : center;
     width : 80%;
 
     div.banner {
-        margin-right : 10px;
+        padding : 10px;
         position : relative;
+        width : 100%;
 
         img {
             width : 100%;
             height : auto;
-            object-fit : contain;
+            object-fit : cover;
         }
     }
 
     div.bannerBtn {
         position : absolute;
         z-index: 1;
-        top : 15vh;
-        left : 5%;
-    }
-
-    button {
-        border : none;
-        cursor: pointer;
-        border-radius : 8px;
+        top : 35%;
+        left : 6%;
+        width: 10vw; /* adjust to desired width */
+        height: auto; /* adjust to desired height */
 
         img {
             width : 100%;
             height : auto;
-            object-fit : contain;
+            object-fit : cover;
         }
+
+        button {
+            all: unset;
+            border : none;
+            cursor: pointer;
+            border-radius : 8px;
+        }s
     }
 `
 const LinkPage = () => {

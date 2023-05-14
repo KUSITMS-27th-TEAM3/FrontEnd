@@ -17,15 +17,18 @@ const MyPageContainer = styled.div`
     justify-content : center;  
   `
 const MainContentWrapper = styled.div`
+// border : 1px solid black;
     display : flex;
-    justify-content : center;  
+    // justify-content : space-between;  
     margin-top : 35px;
     width : 80%;
+    gap : 10px;
   `
 const RightWrapper = styled.div`
   display : flex;
   flex-direction : column;
-  margin-left : 10px;
+  // align-items : flex-end;
+  // justify-content : center;
 `
 const MyPage = () => {
   return (

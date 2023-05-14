@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '../../components/MainPageNavbar';
+import Footer from '../../components/Footer'
 import styled from 'styled-components';
 import {
   Intro,
@@ -29,6 +30,7 @@ const Main = () => {
       <Service1 />
       <Service2 />
       <Service3 />
+      <Footer />
     </ MainContainer>
   )
 }

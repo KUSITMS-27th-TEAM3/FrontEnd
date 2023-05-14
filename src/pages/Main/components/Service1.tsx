@@ -66,7 +66,7 @@ const Service1 = () => {
                 <img src="/img/Service1Text.svg" alt="service1Text"></img>
             </S.Text>
             <S.Button {...animatedItem[1]}>
-                <Link to="/memory">
+                <Link to="/memory/sharedAlbum">
                     <button>
                         <img src="/img/Service1Btn.svg" alt="service1Button"></img>
                     </button>

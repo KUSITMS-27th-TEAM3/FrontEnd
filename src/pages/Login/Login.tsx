@@ -1,10 +1,16 @@
-import Navbar from '../../components/Navbar';
+import Navbar from '../../components/MainPageNavbar';
+import Footer from '../../components/Footer';
+import {
+  LoginPage
+} from './components';
+import styled from 'styled-components';
 
 const Login = () => {
   return (
     <div>
       <Navbar />
-      <div>login</div>
+      <LoginPage />
+      <Footer />
     </div>
   );
 };

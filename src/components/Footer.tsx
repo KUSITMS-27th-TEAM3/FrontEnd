@@ -5,11 +5,13 @@ const FooterContainer = styled.footer`
   width: 100vw;
   position: relative;
   margin-top: 70px;
-  height: 300px;
+
+  // height: 300px;
 
   img {
-    max-width: 100%;
-    object-fit: cover;
+    width : 100%;
+    height : auto;
+    object-fit : contain;
   }
 `;
 

@@ -3,6 +3,6 @@ import Memory from './Memory';
 
 const MemoryPage = () => {
   return <LayoutContainer children={<Memory />} />;
-};
+}
 
 export default MemoryPage;

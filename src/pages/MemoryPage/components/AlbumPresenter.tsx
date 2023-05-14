@@ -1,4 +1,4 @@
-import { ImageList, ImageListItem } from '@mui/material';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const AlbumContainer = styled.section`
@@ -6,9 +6,86 @@ const AlbumContainer = styled.section`
   width: 80vw;
   height: 100vh;
   overflow: auto;
-  img {
-    object-fit: cover;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 24px;
+
+  figure {
+    width: 100%;
+    height: 100%;
     border-radius: 8px;
+  }
+
+  img {
+    border-radius: 8px;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+
+  figcaption {
+    position: absolute;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    opacity: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    border-radius: 8px;
+    width: 90%;
+    height: 90%;
+    border: 1px solid ${({ theme }) => theme.color.grayScale.white};
+    box-sizing: content-box;
+  }
+
+  .figBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+  }
+
+  .figItemBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .figItemImg {
+    margin-bottom: 15px;
+  }
+
+  .imgLink {
+    position: relative;
+    color: ${({ theme }) => theme.color.grayScale.white};
+    font-family: ${({ theme }) => theme.font.family.gmarketSans_medium};
+    font-size: 20px;
+    aspect-ratio: 1;
+
+    &:hover {
+      cursor: pointer;
+
+      .figBox {
+        background-color: rgba(255, 138, 51, 0.6);
+      }
+
+      figcaption {
+        opacity: 1;
+      }
+    }
+
+    @media screen and (max-width: 1024px) {
+      &.imgLink {
+        font-size: 10px;
+      }
+
+      &.figItemImg {
+        margin-bottom: 10px;
+      }
+    }
   }
 `;
 
@@ -86,18 +163,25 @@ const AlbumPresenter = () => {
 
   return (
     <AlbumContainer>
-      <ImageList sx={{ width: 'inherit', height: 'inherit' }} gap={24} cols={4}>
-        {itemData.map((item) => (
-          <ImageListItem key={item.img}>
-            <img
-              src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
-              srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-              alt={item.title}
-              loading="lazy"
-            />
-          </ImageListItem>
-        ))}
-      </ImageList>
+      {itemData.map((item) => (
+        <Link to="/" className="imgLink">
+          <figure>
+            <img src={item.img} alt={item.title} loading="lazy" />
+            <div className="figBox">
+              <figcaption>
+                <div className="figItemBox">
+                  <img src="/img/HeartDog.svg" alt="HeartDog" className="figItemImg" />
+                  <div>1234</div>
+                </div>
+                <div className="figItemBox">
+                  <img src="/img/Comment.svg" alt="Comment" className="figItemImg" />
+                  <div>1234</div>
+                </div>
+              </figcaption>
+            </div>
+          </figure>
+        </Link>
+      ))}
     </AlbumContainer>
   );
 };

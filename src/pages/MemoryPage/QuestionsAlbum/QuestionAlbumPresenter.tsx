@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import QuestionItem from './components/QuestionItem';
+import * as API from '../../../api/API';
+import Spinner from '../../../components/Spinner';
 
 const QuestionAlbumContainer = styled.section`
   margin: 100px 10vw 5vw 10vw;
@@ -27,16 +29,49 @@ export type dayInfo = {
   content: string;
 };
 
+export type QuestionContent = {
+  questionId: number;
+  questionTitle: string;
+  answerDescription?: string;
+};
+
+export type Question = {
+  content: QuestionContent;
+  pageNumber: number;
+  pageSize: number;
+  totalElements: number;
+  totalPages: number;
+  last: boolean;
+};
+
 const QuestionAlbumPresenter = () => {
-  const [dayList, setDayList] = useState<dayInfo[]>([]);
+  // const [dayList, setDayList] = useState<dayInfo[]>([]);
+  const [isLoading, setLoading] = useState<boolean>(true);
+  const [questionList, setQuestionList] = useState<QuestionContent[]>([]);
+
+  // useEffect(() => {
+  //   setDayList([...day]);
+  // }, []);
+
+  const getQuestion = async () => {
+    const data = await API.get('/question?page=0&size=10');
+    console.log(data);
+    setQuestionList(data.content);
+    setLoading(false);
+  };
 
   useEffect(() => {
-    setDayList([...day]);
+    getQuestion();
   }, []);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   return (
     <QuestionAlbumContainer>
-      {dayList.map((dayInfo, index) => (
-        <QuestionItem dayInfo={dayInfo} />
+      {questionList.map((question, idx) => (
+        <QuestionItem question={question} />
       ))}
     </QuestionAlbumContainer>
   );

@@ -53,7 +53,11 @@ const FormButton = styled.button`
   justify-content: space-around;
 `;
 
-const QuestionWriteForm = () => {
+type QuestionWriteFormProps = {
+  answerDescription?: string;
+};
+
+const QuestionWriteForm = ({ answerDescription }: QuestionWriteFormProps) => {
   const [textValue, setTextValue] = useState<string>('내용을 입력하세요.');
   const [canRevise, setCanRevise] = useState<boolean>(false);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
@@ -75,6 +79,11 @@ const QuestionWriteForm = () => {
     setCanRevise(false);
     alert('입력되었습니다!');
   };
+
+  useEffect(() => {
+    if (!answerDescription) return;
+    setTextValue(answerDescription);
+  }, [answerDescription]);
 
   useEffect(() => {
     if (canRevise) {

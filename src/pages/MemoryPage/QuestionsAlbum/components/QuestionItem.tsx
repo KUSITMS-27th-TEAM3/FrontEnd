@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import type { dayInfo } from '../QuestionAlbumPresenter';
+import type { QuestionContent } from '../QuestionAlbumPresenter';
 import { useState } from 'react';
 import QuestionWriteForm from './QuestionWriteForm';
 
@@ -48,10 +48,10 @@ const QuestionItemContainer = styled.button`
 `;
 
 type QuestionItemProps = {
-  dayInfo: dayInfo;
+  question: QuestionContent;
 };
 
-const QusetionItem = ({ dayInfo }: QuestionItemProps) => {
+const QusetionItem = ({ question }: QuestionItemProps) => {
   const [canWrite, setCanWrite] = useState(false);
 
   const handleCanWrite = () => {
@@ -65,9 +65,7 @@ const QusetionItem = ({ dayInfo }: QuestionItemProps) => {
           <div className="question_circle">
             <img src="/img/heart.svg" alt="heart" />
           </div>
-          <div className="question_content">
-            {dayInfo.date}:{dayInfo.content}
-          </div>
+          <div className="question_content">{question.questionTitle}</div>
         </div>
         <img
           src="/img/blackArrow.svg"
@@ -75,7 +73,7 @@ const QusetionItem = ({ dayInfo }: QuestionItemProps) => {
           className={canWrite ? 'quesiton_arrow active' : 'quesiton_arrow'}
         />
       </QuestionItemContainer>
-      {canWrite ? <QuestionWriteForm /> : null}
+      {canWrite ? <QuestionWriteForm answerDescription={question.answerDescription} /> : null}
     </>
   );
 };

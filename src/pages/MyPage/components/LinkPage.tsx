@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 const ContentWrapper = styled.div`
     margin-top : 35px;
-    margin-bottom : 5%;
+    margin-bottom : 2vw;
     display : flex;
     justify-content : center;
     width : 80%;

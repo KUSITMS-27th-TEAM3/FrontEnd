@@ -4,15 +4,17 @@ import styled from 'styled-components';
 const TagButton = styled.button`
   all: unset;
   font-family: ${({ theme }) => theme.font.family.pretendard_medium};
+  color: ${({ theme }) => theme.color.grayScale.gray};
   border-radius: 50px;
-  background-color: ${({ theme }) => theme.color.grayScale.lightGray};
+  border: 1px solid #9d9d9d;
+  background-color: ${({ theme }) => theme.color.grayScale.white};
   font-size: 14px;
   padding: 1em 2em;
   text-align: center;
   cursor: pointer;
   &.active {
-    background-color: ${({ theme }) => theme.color.main.orange};
-    color: ${({ theme }) => theme.color.grayScale.white}};
+    background-color: ${({ theme }) => theme.color.grayScale.black};
+    color: ${({ theme }) => theme.color.grayScale.white};
   }
 `;
 
@@ -28,6 +30,12 @@ const EmotionContainer = styled.div`
       font-size: 7px;
     }
   }
+
+  @media screen and (min-width: 1300px) {
+    ${TagButton} {
+      font-size: 16px;
+    }
+  }
 `;
 
 type Tag = {
@@ -36,16 +44,16 @@ type Tag = {
 };
 
 const temp = [
-  { name: '감정태그', isActive: false },
-  { name: '감정태그', isActive: false },
-  { name: '감정태그', isActive: false },
-  { name: '감정태그', isActive: false },
-  { name: '감정태그', isActive: false },
-  { name: '감정태그', isActive: false },
-  { name: '감정태그', isActive: false },
-  { name: '감정태그', isActive: false },
-  { name: '감정태그', isActive: false },
-  { name: '감정태그', isActive: false },
+  { name: ' 아늑함', isActive: false },
+  { name: '행복함', isActive: false },
+  { name: '즐거움', isActive: false },
+  { name: '그리움', isActive: false },
+  { name: '감동적', isActive: false },
+  { name: '편안함', isActive: false },
+  { name: '유쾌함', isActive: false },
+  { name: '자랑스러움', isActive: false },
+  { name: '외로움', isActive: false },
+  { name: '사랑스러움', isActive: false },
 ];
 
 const EmotionTags = () => {

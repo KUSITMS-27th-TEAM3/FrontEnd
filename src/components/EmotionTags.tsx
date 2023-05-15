@@ -8,7 +8,7 @@ const TagButton = styled.button`
   border-radius: 50px;
   border: 1px solid #9d9d9d;
   background-color: ${({ theme }) => theme.color.grayScale.white};
-  font-size: 14px;
+  font-size: 16px;
   padding: 1em 2em;
   text-align: center;
   cursor: pointer;
@@ -25,15 +25,15 @@ const EmotionContainer = styled.div`
   width: 80vw;
   justify-content: space-between;
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1420px) and (min-width: 1024px) {
     ${TagButton} {
-      font-size: 7px;
+      font-size: 12px;
     }
   }
 
-  @media screen and (min-width: 1300px) {
+  @media screen and (max-width: 1024px) {
     ${TagButton} {
-      font-size: 16px;
+      font-size: 7px;
     }
   }
 `;
@@ -66,7 +66,7 @@ const EmotionTags = () => {
       current.map(({ name, isActive }, idx) => {
         if (targetIdx === idx) {
           return { name, isActive: !isActive };
-        } else return { name, isActive: false };
+        } else return { name, isActive };
       }),
     );
   };

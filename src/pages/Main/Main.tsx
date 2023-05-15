@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/MainPageNavbar';
 import Footer from '../../components/Footer'
 import styled from 'styled-components';
@@ -20,6 +20,16 @@ const MainContainer = styled.section`
 `
 
 const Main = () => {
+
+  let AuthorizationCode = new URL(window.location.href).searchParams.get('Authorization');
+  let RefreshTokenCode = new URL(window.location.href).searchParams.get('RefreshToken');
+
+  console.log("Authorization:", AuthorizationCode);
+  console.log("RefreshToken:", RefreshTokenCode);
+
+  localStorage.setItem("Authorization", AuthorizationCode || "");
+  localStorage.setItem("RefreshToken", RefreshTokenCode || "");
+
   return (
     <MainContainer>
       <Navbar />

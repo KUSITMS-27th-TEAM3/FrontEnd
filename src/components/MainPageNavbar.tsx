@@ -48,10 +48,19 @@ const NavBarContainer = styled.nav`
 const BIContainer = styled.div``;
 
 const MainPageNavbar = () => {
+
+  let Authorization = localStorage.getItem("Authorization");
+  let RefreshToken = localStorage.getItem("RefreshToken");
+
+  let toValue = "/";
+  if (Authorization && RefreshToken) {
+    toValue = `/main?Authorization=${Authorization}&RefreshToken=${RefreshToken}`
+  }
+
   return (
     <NavBarContainer>
       <BIContainer>
-        <WhiteLink to="/">
+        <WhiteLink to={toValue}>
           <img src="/img/BI.svg" alt="logo" />
         </WhiteLink>
       </BIContainer>

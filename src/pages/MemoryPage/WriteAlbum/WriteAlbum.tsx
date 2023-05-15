@@ -1,12 +1,12 @@
 import Footer from '../../../components/Footer';
 import NavBar from '../../../components/MainPageNavbar';
-import ImageUpload from './components/ImageUpload';
+import WriteUpload from './WriteUpload ';
 
 const WriteAlbum = () => {
   return (
     <>
       <NavBar />
-      <ImageUpload />
+      <WriteUpload />
       <Footer />
     </>
   );

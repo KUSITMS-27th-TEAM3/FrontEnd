@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import styled from "styled-components";
+import { IconButton } from '../../../../components/CommonStyle';
 
 const TextFormContainer = styled.div`
     margin-top : 2vw;   
     // border : 1px solid red;
     width : 80vw;
     font-family : ${(props) => props.theme.font.family.pretendard_bold};
-    
+    font-size : 1vw;
+
     div.border { 
         width : 100%;
         border : 1px solid ${(props) => props.theme.color.grayScale.brightGray};
@@ -18,27 +20,75 @@ const Form = styled.form`
     gap : 2.5vw;
 `
 const FormWrapper = styled.label`
+    position : relative;
     display : flex;
     justify-content : space-between;
     align-items : center;
     height : 3vw;
-    input {
-        width : 80%;
+    input.textInput {
+        width : 87%;
         height : 100%;
         border-radius : 10px;
         background-color : ${(props) => props.theme.color.grayScale.lightGray};
         border : none;
     }
+    input.imgInput {
+        width : 87%;
+        height : 100%;
+        border-radius : 10px;
+        background-color : ${(props) => props.theme.color.grayScale.lightGray};
+        border : none;
+    }
+    button {
+        position : absolute;
+        right : 0;
+        height : 100%;
+        color : white;
+        background-color : black;
+        border-radius : 6px;
+        padding-left : 1.5vw;
+        padding-right : 1.5vw;
+        font-size : 0.8vw;
+        font-family : ${(props) => props.theme.font.family.pretendard_bold};
+        cursor: pointer;
+
+    }
 `
 const BtnWrapper = styled.div`
     display : flex;
     justify-content : center;
-    gap : 2vw;
+    gap : 1vw;
+    font-size : 1vw;
     position: relative;
+
+    button.backBtn {
+        border : none;
+        padding: 12px 18px;
+        border-radius : 8px;
+        font-size : 1vw;
+        background-color : ${(props) => props.theme.color.grayScale.lightGray};
+        color: ${(props) => props.theme.color.grayScale.gray};
+        font-family: ${(props) => props.theme.font.family.pretendard_medium};
+        cursor: pointer;
+        &:hover {
+            filter: brightness(1.2);
+          }
+        
+    }
 `
 const DeleteBtn = styled.div`
     position: absolute;
     right: 0;
+    button {
+        border : none;
+        cursor: pointer;
+        background-color : white;
+    }
+    img {
+        width : 80%;
+        height : auto;
+        over-fit : cover;
+    }
 `
 
 const TextForm = () => {
@@ -82,7 +132,7 @@ const TextForm = () => {
                 {TextInfo.map((items, idx) =>
                     <FormWrapper key={idx}>
                         <div>{items.name}</div>
-                        <input
+                        <input className='textInput'
                             type="text"
                             value={items.state[0]}
                             placeholder={items.placeholder}
@@ -93,7 +143,7 @@ const TextForm = () => {
                 {ImgInfo.map((items, idx) =>
                     <FormWrapper key={idx}>
                         <div>{items.name}</div>
-                        <input
+                        <input className='imgInput'
                             type="text"
                             value={items.state[0]}
                             placeholder={items.placeholder}
@@ -102,10 +152,17 @@ const TextForm = () => {
                     </FormWrapper>
                 )}
                 <BtnWrapper>
-                    <button>취소</button>
-                    <button type='submit'>회원 정보 수정</button>
+                    <button className="backBtn">취소</button>
+                    <IconButton
+                        width="calc(3vw - 36px)"
+                        height="1.5vw"
+                        maxWidth="100vw"
+                        minWidth="6vw"
+                    >
+                        회원 정보 수정
+                    </IconButton>
                     <DeleteBtn>
-                        <button>회원 탈퇴</button>
+                        <button><img src="/img/회원탈퇴.svg" /></button>
                     </DeleteBtn>
                 </BtnWrapper>
             </Form>

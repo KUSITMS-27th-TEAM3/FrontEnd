@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { FlexContainer, IconButton } from '../../../components/CommonStyle';
-import ImageUpload from './components/ImageUpload';
 import { useState } from 'react';
-import WriteForm from './components/WriteForm';
+import { WriteBox } from './components/style/WriteFormStyle';
+import { ContentForm, EmotionForm, RadioForm, TitleForm, ImageUpload } from './components';
 
 const WriteUploadContainer = styled(FlexContainer)``;
 
@@ -21,12 +21,12 @@ const WriteUpload = () => {
   return (
     <WriteUploadContainer>
       <ImageUpload />
-      <WriteForm
-        title={title}
-        content={content}
-        handleTitleChange={handleTitleChange}
-        handleContentChange={handleContentChange}
-      />
+      <WriteBox>
+        <TitleForm title={title} handleTitleChange={handleTitleChange} />
+        <ContentForm content={content} handleContentChange={handleContentChange} />
+        <EmotionForm />
+        <RadioForm />
+      </WriteBox>
       <IconButton width="5vw" height="30px" maxWidth="74px" minWidth="50px">
         업로드
       </IconButton>

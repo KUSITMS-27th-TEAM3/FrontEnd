@@ -31,7 +31,7 @@ const FormContainer = styled.div`
 const TextForm = styled.textarea`
   all: unset;
   width: 75vw;
-  margin-top: 10px;
+  margin-top: 30px;
   height: 130px;
   padding: 20px;
   border-radius: 16px;

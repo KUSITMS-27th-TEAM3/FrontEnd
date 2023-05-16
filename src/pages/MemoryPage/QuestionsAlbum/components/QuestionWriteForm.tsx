@@ -37,6 +37,7 @@ const TextForm = styled.textarea`
   border-radius: 16px;
   font-family: ${({ theme }) => theme.font.family.pretendard_medium};
   border-bottom: 1px solid #ffd3bf;
+  box-sizing: border-box;
   &:focus {
     border: 1px solid #ffd3bf;
     padding: 20px;

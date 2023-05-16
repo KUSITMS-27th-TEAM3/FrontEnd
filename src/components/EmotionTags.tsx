@@ -1,14 +1,18 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-const TagButton = styled.button`
+type TagButtonProps = {
+  fontSize: number;
+};
+
+const TagButton = styled.button<TagButtonProps>`
   all: unset;
   font-family: ${({ theme }) => theme.font.family.pretendard_medium};
   color: ${({ theme }) => theme.color.grayScale.gray};
   border-radius: 50px;
   border: 1px solid #9d9d9d;
   background-color: ${({ theme }) => theme.color.grayScale.white};
-  font-size: 16px;
+  font-size: ${(props) => props.fontSize}px;
   padding: 1em 2em;
   text-align: center;
   cursor: pointer;
@@ -18,11 +22,16 @@ const TagButton = styled.button`
   }
 `;
 
-const EmotionContainer = styled.div`
+type EmotionContainerProps = {
+  width: string;
+  isMargin?: boolean;
+};
+
+const EmotionContainer = styled.div<EmotionContainerProps>`
   display: flex;
   align-items: center;
-  margin-top: max(8vw, 100px);
-  width: 80vw;
+  margin-top: ${(props) => (props.isMargin ? 'max(8vw, 100px)' : '0')};
+  width: ${(props) => props.width};
   justify-content: space-between;
 
   @media screen and (max-width: 1420px) and (min-width: 1024px) {
@@ -56,7 +65,13 @@ const temp = [
   { name: '사랑스러움', isActive: false },
 ];
 
-const EmotionTags = () => {
+type EmotionTagsProps = {
+  width: string;
+  isMargin?: boolean;
+  fontSize: number;
+};
+
+const EmotionTags = ({ width, isMargin, fontSize }: EmotionTagsProps) => {
   const [tags, setTags] = useState<Tag[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -77,7 +92,7 @@ const EmotionTags = () => {
   }, []);
 
   return (
-    <EmotionContainer>
+    <EmotionContainer width={width} isMargin={isMargin}>
       {loading ? (
         <></>
       ) : (
@@ -87,6 +102,7 @@ const EmotionTags = () => {
             key={`${name}${idx}`}
             id={idx.toString()}
             onClick={handleTagActive}
+            fontSize={fontSize}
           >
             {name}
           </TagButton>

@@ -20,7 +20,9 @@ const Memory = () => {
         <Banner url={'/img/의미배너.svg'} />
       )}
       <MemoryNav />
-      {currentPath !== '/memory/question' && <EmotionTags />}
+      {currentPath !== '/memory/question' && (
+        <EmotionTags width="80vw" isMargin={true} fontSize={16} />
+      )}
       <Outlet />
     </>
   );

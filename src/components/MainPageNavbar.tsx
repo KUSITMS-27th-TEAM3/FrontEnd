@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { WhiteLink } from './CommonStyle';
+import { useRecoilValue } from 'recoil';
+import { isUploadAtom } from '../atom/atom';
 
 const LinkContainer = styled.div`
   display: flex;
@@ -8,7 +10,11 @@ const LinkContainer = styled.div`
   align-items: center;
 `;
 
-const NavBarContainer = styled.nav`
+type NavBarProps = {
+  isUpload?: boolean;
+};
+
+const NavBarContainer = styled.nav<NavBarProps>`
   @media screen and (max-width: 1460px) {
     ${LinkContainer} {
       font-size: 10px;
@@ -26,8 +32,9 @@ const NavBarContainer = styled.nav`
   position: absolute;
   z-index: 2;
 
-  background-color: rgba(255, 255, 255, 0);
-  top: 0.6vw;
+  background-color: ${(props) =>
+    props.isUpload ? 'rgba(255, 255, 255, 0.06)' : 'rgba(255, 255, 255, 0)'};
+  top: ${(props) => (props.isUpload ? '0' : '0.6vw')};
 
   img {
     cursor: pointer;
@@ -48,8 +55,10 @@ const NavBarContainer = styled.nav`
 const BIContainer = styled.div``;
 
 const MainPageNavbar = () => {
+  const isUpload = useRecoilValue(isUploadAtom);
+
   return (
-    <NavBarContainer>
+    <NavBarContainer isUpload={isUpload}>
       <BIContainer>
         <WhiteLink to="/">
           <img src="/img/BI.svg" alt="logo" />

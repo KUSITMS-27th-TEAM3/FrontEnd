@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import { FlexContainer, IconButton } from '../../../components/CommonStyle';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { WriteBox } from './components/style/WriteFormStyle';
 import { ContentForm, EmotionForm, RadioForm, TitleForm, ImageUpload } from './components';
+import { isUploadAtom } from '../../../atom/atom';
+import { useSetRecoilState } from 'recoil';
 
 const WriteUploadContainer = styled(FlexContainer)``;
 
@@ -10,7 +12,8 @@ const WriteUpload = () => {
   const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
   const [IsOpen, setIsOpen] = useState<boolean>(true);
-  const [profileimg, setProfileImg] = useState<File>();
+  const [albumImg, setAlbumImg] = useState<string>('');
+  const setIsUpload = useSetRecoilState(isUploadAtom);
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value);
@@ -24,11 +27,13 @@ const WriteUpload = () => {
     e.target.value === 'open' ? setIsOpen(true) : setIsOpen(false);
   };
 
-  console.log(IsOpen);
+  useEffect(() => {
+    return () => setIsUpload(false);
+  }, []);
 
   return (
     <WriteUploadContainer>
-      <ImageUpload profileImg={profileimg} setProfileImg={setProfileImg} />
+      <ImageUpload albumImg={albumImg} setAlbumImg={setAlbumImg} />
       <WriteBox>
         <TitleForm title={title} handleTitleChange={handleTitleChange} />
         <ContentForm content={content} handleContentChange={handleContentChange} />

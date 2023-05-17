@@ -3,14 +3,17 @@ import Router from './Router';
 import './styles/fonts/font.css';
 import { ThemeProvider } from 'styled-components';
 import theme from './styles/theme';
+import { RecoilRoot } from 'recoil';
 
 function App() {
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Router />
-      </ThemeProvider>
+      <RecoilRoot>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <Router />
+        </ThemeProvider>
+      </RecoilRoot>
     </>
   );
 }

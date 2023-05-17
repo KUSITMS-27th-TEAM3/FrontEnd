@@ -24,6 +24,12 @@ const Main = () => {
   let AuthorizationCode = new URL(window.location.href).searchParams.get('Authorization');
   let RefreshTokenCode = new URL(window.location.href).searchParams.get('RefreshToken');
 
+  if (AuthorizationCode && AuthorizationCode.includes("Bearer")) {
+  } else {
+    // "Bearer"를 포함하지 않는 경우 or null인 경우
+    AuthorizationCode = "Bearer " + new URL(window.location.href).searchParams.get('Authorization');
+  }
+
   console.log("Authorization:", AuthorizationCode);
   console.log("RefreshToken:", RefreshTokenCode);
 

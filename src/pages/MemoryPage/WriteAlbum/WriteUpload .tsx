@@ -10,6 +10,7 @@ const WriteUpload = () => {
   const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
   const [IsOpen, setIsOpen] = useState<boolean>(true);
+  const [profileimg, setProfileImg] = useState<File>();
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value);
@@ -27,7 +28,7 @@ const WriteUpload = () => {
 
   return (
     <WriteUploadContainer>
-      <ImageUpload />
+      <ImageUpload profileImg={profileimg} setProfileImg={setProfileImg} />
       <WriteBox>
         <TitleForm title={title} handleTitleChange={handleTitleChange} />
         <ContentForm content={content} handleContentChange={handleContentChange} />

@@ -9,13 +9,14 @@ export const ImageContainer = styled.div`
   }
 `;
 
-export const ImageUploadBox = styled.div`
+export const ImageUploadBox = styled.button`
+  all: unset;
   position: absolute;
   top: 50%;
   left: 50%;
   width: 30%;
   cursor: pointer;
-  aspect-ratio: 1;
+  aspect-ratio: 1;                    
 
   transform: translate(-50%, -50%);
   background-color: rgba(255, 255, 255, 0.12);

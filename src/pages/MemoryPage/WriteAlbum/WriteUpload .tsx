@@ -7,8 +7,8 @@ import { ContentForm, EmotionForm, RadioForm, TitleForm, ImageUpload } from './c
 const WriteUploadContainer = styled(FlexContainer)``;
 
 const WriteUpload = () => {
-  const [title, setTitle] = useState<string>('제목을 입력해주세요.');
-  const [content, setContent] = useState<string>('내용을 입력해주세요.');
+  const [title, setTitle] = useState<string>('');
+  const [content, setContent] = useState<string>('');
   const [IsOpen, setIsOpen] = useState<boolean>(true);
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {

@@ -10,16 +10,10 @@ const AlbumContainer = styled.section`
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 24px;
 
-  figure {
-    width: 100%;
-    height: 100%;
-    border-radius: 8px;
-  }
-
   img {
     border-radius: 8px;
     object-fit: cover;
-    height: 100%;
+    aspect-ratio: 1;
     width: 100%;
   }
 
@@ -34,7 +28,7 @@ const AlbumContainer = styled.section`
     transform: translate3d(-50%, -50%, 0);
     border-radius: 8px;
     width: 90%;
-    height: 90%;
+    aspect-ratio: 1;
     border: 1px solid ${({ theme }) => theme.color.grayScale.white};
     box-sizing: content-box;
   }
@@ -45,7 +39,7 @@ const AlbumContainer = styled.section`
     left: 0;
     border-radius: 8px;
     width: 100%;
-    height: 100%;
+    aspect-ratio: 1;
   }
 
   .figItemBox {

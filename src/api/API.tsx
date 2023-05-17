@@ -5,7 +5,6 @@ const instance = axios.create();
 instance.defaults.withCredentials = true;
 instance.defaults.headers['Content-Type'] = 'application/json';
 instance.defaults.headers.common['Authorization'] =
-  'Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODQwNjE1MzQsImV4cCI6MTY4NDA2NTEzNCwic3ViIjoic3Jmc3JmMDEwM0BnbWFpbC5jb20iLCJUT0tFTl9UWVBFIjoiQUNDRVNTX1RPS0VOIn0.tu9WG5v0pv_RUF9_qBffBK8AYXfTLdNCj6K2sQeQnh6F1ggSjouelZzZQOkJO0nE1wVMk4Hn4_hIOj9l9gRONQ';
 instance.defaults.baseURL = 'http://52.78.181.46';
 
 const errCheck = (err: unknown) => {

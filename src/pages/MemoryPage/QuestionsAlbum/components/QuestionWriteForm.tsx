@@ -31,12 +31,13 @@ const FormContainer = styled.div`
 const TextForm = styled.textarea`
   all: unset;
   width: 75vw;
-  margin-top: 10px;
+  margin-top: 30px;
   height: 130px;
   padding: 20px;
   border-radius: 16px;
   font-family: ${({ theme }) => theme.font.family.pretendard_medium};
   border-bottom: 1px solid #ffd3bf;
+  box-sizing: border-box;
   &:focus {
     border: 1px solid #ffd3bf;
     padding: 20px;

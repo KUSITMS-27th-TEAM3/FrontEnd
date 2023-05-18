@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
-import AlbumIcon from '../../../../components/Icons/AlbumIcon';
+import AlbumIcon from '../../../components/Icons/AlbumIcon';
 import * as S from './style/ImageUploadStyle';
-import { isUploadAtom } from '../../../../atom/atom';
+import { isUploadAtom } from '../../../atom/atom';
 import { useRecoilState } from 'recoil';
 
 type ImageUploadProps = {

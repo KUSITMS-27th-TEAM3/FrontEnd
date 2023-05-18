@@ -3,8 +3,8 @@ import { ImageContainer } from '../WriteAlbum/components/style/ImageUploadStyle'
 import { isUploadAtom } from '../../atom/atom';
 import { useRecoilState } from 'recoil';
 import { useEffect } from 'react';
-
-const MemoryDetailWrapper = styled(ImageContainer)``;
+import DeleteModal from '../../components/DeleteModal';
+import { FlexContainer } from '../../components/CommonStyle';
 
 const ImageBox = styled.div`
   position: absolute;
@@ -21,6 +21,14 @@ const ImageBox = styled.div`
   }
 `;
 
+const DetailWrapper = styled(FlexContainer)`
+  justify-content: center;
+  width: 80vw;
+  height: 100vh;
+  margin: 100px 10vw 5vw 10vw;
+  border: 1px solid black;
+`;
+
 const MemoryDetailContainer = () => {
   const [isUpload, setIsUpload] = useRecoilState(isUploadAtom);
 
@@ -31,13 +39,18 @@ const MemoryDetailContainer = () => {
   }, []);
 
   return (
-    <MemoryDetailWrapper>
-      <span className="img_filter" />
-      <img src={'/img/강아지사진.jpg'} alt="AlbumImg" />
-      <ImageBox>
+    <>
+      <ImageContainer>
+        <span className="img_filter" />
         <img src={'/img/강아지사진.jpg'} alt="AlbumImg" />
-      </ImageBox>
-    </MemoryDetailWrapper>
+        <ImageBox>
+          <img src={'/img/강아지사진.jpg'} alt="AlbumImg" />
+        </ImageBox>
+      </ImageContainer>
+      <DetailWrapper>
+        <DeleteModal />
+      </DetailWrapper>
+    </>
   );
 };
 

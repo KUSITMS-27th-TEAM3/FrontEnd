@@ -6,9 +6,9 @@ import DiaryPage from './pages/DiaryPage/DiaryPage';
 import MemoryPage from './pages/MemoryPage/MemoryPage';
 import MyPage from './pages/MyPage/MyPage';
 import FuneralPage from './pages/FuneralPage/FuneralPage';
-import MyAlbum from './pages/MemoryPage/MyAlbum/MyAlbum';
-import QuestionAlbum from './pages/MemoryPage/QuestionsAlbum/QuestionAlbum';
-import SharedAlbum from './pages/MemoryPage/SharedAlbum/SharedAlbum';
+import MyAlbumContainer from './pages/MemoryPage/MyAlbum/MyAlbumContainer';
+import QuestionAlbumContainer from './pages/MemoryPage/QuestionsAlbum/QuestionAlbumContainer';
+import SharedAlbumContainer from './pages/MemoryPage/SharedAlbum/SharedAlbumContainer';
 import WriteAlbum from './pages/WriteAlbum/WriteAlbum';
 
 const Router = () => {
@@ -19,9 +19,9 @@ const Router = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/diary" element={<DiaryPage />} />
         <Route path="/memory" element={<MemoryPage />}>
-          <Route path="myAlbum" element={<MyAlbum />} />
-          <Route path="question" element={<QuestionAlbum />} />
-          <Route path="sharedAlbum" element={<SharedAlbum />} />
+          <Route path="myAlbum" element={<MyAlbumContainer />} />
+          <Route path="question" element={<QuestionAlbumContainer />} />
+          <Route path="sharedAlbum" element={<SharedAlbumContainer />} />
         </Route>
         <Route path="/writeAlbum" element={<WriteAlbum />} />
         <Route path="/mypage" element={<MyPage />} />

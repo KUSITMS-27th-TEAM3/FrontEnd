@@ -1,8 +1,8 @@
 import LayoutContainer from '../../components/LayoutContainer';
-import WriteUpload from './WriteUpload ';
+import WriteAlbumContainer from './WriteAlbumContainer';
 
 const WriteAlbum = () => {
-  return <LayoutContainer children={<WriteUpload />} isMain={true} />;
+  return <LayoutContainer children={<WriteAlbumContainer />} isMain={true} />;
 };
 
 export default WriteAlbum;

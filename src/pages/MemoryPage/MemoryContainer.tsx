@@ -4,13 +4,13 @@ import { useEffect, useState } from 'react';
 import Banner from '../../components/Banner';
 import styled from 'styled-components';
 
-const MemoryContainer = styled.section`
+const MemoryWrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const Memory = () => {
+const MemoryContainer = () => {
   const [currentPath, setCurrentPath] = useState<string>('');
   const location = useLocation();
   const { pathname } = location;
@@ -20,7 +20,7 @@ const Memory = () => {
   }, [location]);
 
   return (
-    <MemoryContainer>
+    <MemoryWrapper>
       {currentPath !== '/memory/question' ? (
         <Banner url={'/img/앨범배너.svg'} />
       ) : (
@@ -31,8 +31,8 @@ const Memory = () => {
         <EmotionTags width="80vw" isMargin={true} fontSize={16} />
       )}
       <Outlet />
-    </MemoryContainer>
+    </MemoryWrapper>
   );
 };
 
-export default Memory;
+export default MemoryContainer;

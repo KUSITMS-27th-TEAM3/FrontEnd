@@ -116,7 +116,7 @@ const Profile = () => {
 
     const navigate = useNavigate();
     const handleToRevise = (e: React.MouseEvent) => {
-        navigate('/writeAlbum');
+        navigate('/ReviseInfo');
     };
 
     const petInfo = ['강아지 품종', '강아지 별명', '강아지 나이']

@@ -5,7 +5,6 @@ const FooterContainer = styled.footer`
   width: 100vw;
   position: relative;
   margin-top: 70px;
-  height: 400px;
 
   img {
     width: 100%;

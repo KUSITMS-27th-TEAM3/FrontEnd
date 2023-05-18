@@ -1,40 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '../../components/MainPageNavbar';
-import Footer from '../../components/Footer'
+import Footer from '../../components/Footer';
 import styled from 'styled-components';
-import {
-  Intro,
-  Vision,
-  PetLose,
-  Function,
-  Service1,
-  Service2,
-  Service3,
-} from './components';
+import { Intro, Vision, PetLose, Function, Service1, Service2, Service3 } from './components';
 
 const MainContainer = styled.section`
-  display : flex;
-  flex-direction : column;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  position : relative;
-`
+  position: relative;
+`;
+
+type NullableString = string | null;
+
+const setToken = (key: string, token: NullableString) => {
+  if (token) {
+    sessionStorage.setItem(key, token);
+  }
+};
 
 const Main = () => {
+  useEffect(() => {
+    const AuthorizationCode = new URL(window.location.href).searchParams.get('Authorization'); //url에서 AuthorizationCode를 가져옴
+    const RefreshTokenCode = new URL(window.location.href).searchParams.get('RefreshToken');
 
-  let AuthorizationCode = new URL(window.location.href).searchParams.get('Authorization');
-  let RefreshTokenCode = new URL(window.location.href).searchParams.get('RefreshToken');
+    console.log('Authorization:', AuthorizationCode);
+    console.log('RefreshToken:', RefreshTokenCode);
 
-  if (AuthorizationCode && AuthorizationCode.includes("Bearer")) {
-  } else {
-    // "Bearer"를 포함하지 않는 경우 or null인 경우
-    AuthorizationCode = "Bearer " + new URL(window.location.href).searchParams.get('Authorization');
-  }
-
-  console.log("Authorization:", AuthorizationCode);
-  console.log("RefreshToken:", RefreshTokenCode);
-
-  localStorage.setItem("Authorization", AuthorizationCode || "");
-  localStorage.setItem("RefreshToken", RefreshTokenCode || "");
+    setToken('Authorization', AuthorizationCode);
+    setToken('RefreshToken', RefreshTokenCode);
+  }, []);
 
   return (
     <MainContainer>
@@ -47,8 +42,8 @@ const Main = () => {
       <Service2 />
       <Service3 />
       <Footer />
-    </ MainContainer>
-  )
-}
+    </MainContainer>
+  );
+};
 
 export default Main;

@@ -8,16 +8,20 @@ instance.defaults.withCredentials = true;
 instance.defaults.baseURL = 'http://52.78.181.46';
 
 const getAccessToken = () => {
-  return localStorage.getItem('Authorization');
+  return sessionStorage.getItem('Authorization');
 };
 
 const getRefreshToken = () => {
-  return localStorage.getItem('RefreshToken');
+  return sessionStorage.getItem('RefreshToken');
 };
 
 instance.interceptors.request.use(
   (config) => {
     const accessToken = getAccessToken();
+
+    if (!accessToken) {
+      throw new Error('no access token');
+    }
 
     config.headers['Content-Type'] = 'application/json';
     config.headers['Authorization'] = `Bearer ${accessToken}`;

@@ -1,15 +1,8 @@
-import Footer from '../../components/Footer';
-import NavBar from '../../components/MainPageNavbar';
-import WriteUpload from './WriteUpload ';
+import LayoutContainer from '../../components/LayoutContainer';
+import WriteAlbumContainer from './WriteAlbumContainer';
 
 const WriteAlbum = () => {
-  return (
-    <>
-      <NavBar />
-      <WriteUpload />
-      <Footer />
-    </>
-  );
+  return <LayoutContainer children={<WriteAlbumContainer />} isMain={true} />;
 };
 
 export default WriteAlbum;

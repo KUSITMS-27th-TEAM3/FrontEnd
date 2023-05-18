@@ -4,7 +4,7 @@ const instance = axios.create();
 
 instance.defaults.withCredentials = true;
 instance.defaults.headers['Content-Type'] = 'application/json';
-instance.defaults.headers.common['Authorization'] =
+instance.defaults.headers.common['Authorization'] = localStorage.getItem('Authorization')
 instance.defaults.baseURL = 'http://52.78.181.46';
 
 const errCheck = (err: unknown) => {

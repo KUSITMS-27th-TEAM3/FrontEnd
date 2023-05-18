@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const AlbumContainer = styled.section`
@@ -53,6 +54,7 @@ const AlbumContainer = styled.section`
   }
 
   .imgLink {
+    all: unset;
     position: relative;
     color: ${({ theme }) => theme.color.grayScale.white};
     font-family: ${({ theme }) => theme.font.family.gmarketSans_medium};
@@ -84,6 +86,14 @@ const AlbumContainer = styled.section`
 `;
 
 const AlbumPresenter = () => {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  const handleToDetail = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const { id } = e.currentTarget;
+    navigate(`${pathname}/1`);
+  };
+
   const itemData = [
     {
       img: 'https://images.unsplash.com/photo-1549388604-817d15aa0110',
@@ -158,7 +168,7 @@ const AlbumPresenter = () => {
   return (
     <AlbumContainer>
       {itemData.map((item) => (
-        <Link to="/" className="imgLink">
+        <button className="imgLink" onClick={handleToDetail}>
           <figure>
             <img src={item.img} alt={item.title} loading="lazy" />
             <div className="figBox">
@@ -174,7 +184,7 @@ const AlbumPresenter = () => {
               </figcaption>
             </div>
           </figure>
-        </Link>
+        </button>
       ))}
     </AlbumContainer>
   );

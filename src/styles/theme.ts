@@ -6,6 +6,7 @@ const theme: DefaultTheme = {
       orange: '#ff8a33',
       crimson: '#fc7350',
       lightOrange: '#FFECDE',
+      brightOrange: '#FFF6F2'
     },
     grayScale: {
       black: '#000000',
@@ -14,6 +15,7 @@ const theme: DefaultTheme = {
       gray: '#666666',
       lightGray: '#F4F4F4',
       brightGray: '#EFEFEF',
+      brightLightGray: '#F8F8FA',
       white: '#ffffff',
     },
   },

@@ -1,4 +1,4 @@
-import { EmotionTags } from '../../components';
+import EmotionTags from '../../../components/EmotionTags';
 
 const EmotionForm = () => {
   return (

@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { FlexContainer, IconButton } from '../../../components/CommonStyle';
+import { FlexContainer, IconButton } from '../../components/CommonStyle';
 import { useEffect, useState } from 'react';
 import { WriteBox } from './components/style/WriteFormStyle';
 import { ContentForm, EmotionForm, RadioForm, TitleForm, ImageUpload } from './components';
-import { isUploadAtom } from '../../../atom/atom';
+import { isUploadAtom } from '../../atom/atom';
 import { useSetRecoilState } from 'recoil';
 
 const WriteUploadContainer = styled(FlexContainer)``;

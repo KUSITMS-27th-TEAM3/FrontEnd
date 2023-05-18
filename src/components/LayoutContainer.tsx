@@ -3,12 +3,8 @@ import NavBar from './Navbar';
 import Footer from './Footer';
 import MainPageNavbar from './MainPageNavbar';
 
-const PageContainer = styled.section`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+const PageContainer = styled.section``;
+
 type LayoutProps = {
   children: React.ReactElement;
   isMain?: boolean;

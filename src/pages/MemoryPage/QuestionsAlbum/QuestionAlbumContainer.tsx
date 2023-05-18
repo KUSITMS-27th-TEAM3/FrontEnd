@@ -1,7 +1,7 @@
 import AlbumButton from '../components/AlbumButton';
 import QuestionAlbumPresenter from './QuestionAlbumPresenter';
 
-const QuestionAlbum = () => {
+const QuestionAlbumContainer = () => {
   return (
     <>
       <QuestionAlbumPresenter />
@@ -10,4 +10,4 @@ const QuestionAlbum = () => {
   );
 };
 
-export default QuestionAlbum;
+export default QuestionAlbumContainer;

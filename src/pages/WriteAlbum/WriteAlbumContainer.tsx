@@ -6,9 +6,9 @@ import { ContentForm, EmotionForm, RadioForm, TitleForm, ImageUpload } from './c
 import { isUploadAtom } from '../../atom/atom';
 import { useSetRecoilState } from 'recoil';
 
-const WriteUploadContainer = styled(FlexContainer)``;
+const WriteAlbumWrapper = styled(FlexContainer)``;
 
-const WriteUpload = () => {
+const WriteAlbumContainer = () => {
   const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
   const [IsOpen, setIsOpen] = useState<boolean>(true);
@@ -32,7 +32,7 @@ const WriteUpload = () => {
   }, []);
 
   return (
-    <WriteUploadContainer>
+    <WriteAlbumWrapper>
       <ImageUpload albumImg={albumImg} setAlbumImg={setAlbumImg} />
       <WriteBox>
         <TitleForm title={title} handleTitleChange={handleTitleChange} />
@@ -43,8 +43,8 @@ const WriteUpload = () => {
       <IconButton width="5vw" height="30px" maxWidth="74px" minWidth="50px">
         업로드
       </IconButton>
-    </WriteUploadContainer>
+    </WriteAlbumWrapper>
   );
 };
 
-export default WriteUpload;
+export default WriteAlbumContainer;

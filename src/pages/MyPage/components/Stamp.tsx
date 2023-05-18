@@ -1,5 +1,72 @@
 import styled from "styled-components";
 import React, { useRef } from 'react';
+import * as API from '../../../api/API';
+import { useEffect, useState } from 'react';
+import Spinner from "../../../components/Spinner";
+
+const Stamp = () => {
+
+    const getStamp = async () => {
+        const data = await API.get('/grid/stamp');
+        // console.log(data);
+    }
+
+    useEffect(() => {
+        getStamp();
+    }, []);
+
+    const horizontalScrollRef = useRef<HTMLDivElement>(null);
+
+    const handleNextButtonClick = (nextType: 'prev' | 'next') => {
+        if (!horizontalScrollRef.current) return;
+        if (nextType === 'prev') {
+            horizontalScrollRef.current.scrollTo({
+                left: horizontalScrollRef.current.scrollLeft - horizontalScrollRef.current.offsetWidth,
+                behavior: 'smooth',
+            });
+        } else {
+            horizontalScrollRef.current.scrollTo({
+                left: horizontalScrollRef.current.scrollLeft + horizontalScrollRef.current.offsetWidth,
+                behavior: 'smooth',
+            });
+        }
+    };
+
+    const handlePrevButton = () => handleNextButtonClick('prev');
+    const handleNextButton = () => handleNextButtonClick('next');
+
+    const VISIBLE_STAMP = "/img/visibleStamp.svg";
+    const NONVISIBLE_STAMP = "/img/nonVisibleStamp.svg";
+
+    return (
+        <StampWrapper>
+            <img src="/img/StampBg.svg" />
+            <ContentWrapper>
+                <BtnStamp>
+                    <button onClick={handlePrevButton}>
+                        <img src="/img/CircleLeft.svg"></img>
+                    </button>
+                    <ContentStamp ref={horizontalScrollRef}>
+                        <img src={VISIBLE_STAMP} />
+                        <img src={VISIBLE_STAMP} />
+                        <img src={VISIBLE_STAMP} />
+                        <img src={NONVISIBLE_STAMP} />
+                        <img src={NONVISIBLE_STAMP} />
+                        <img src={NONVISIBLE_STAMP} />
+                        <img src={NONVISIBLE_STAMP} />
+                        <img src={NONVISIBLE_STAMP} />
+                        <img src={NONVISIBLE_STAMP} />
+                        <img src={NONVISIBLE_STAMP} />
+                    </ContentStamp>
+                    <button onClick={handleNextButton}>
+                        <img src="/img/CircleRight.svg"></img>
+                    </button>
+                </BtnStamp>
+            </ContentWrapper>
+        </StampWrapper>
+    )
+}
+export default Stamp;
 
 const StampWrapper = styled.div`
     width : 100%;
@@ -53,57 +120,3 @@ const ContentStamp = styled.div`
         flex-shrink: 0;
     }
 `;
-
-const Stamp = () => {
-    const horizontalScrollRef = useRef<HTMLDivElement>(null);
-
-    const handleNextButtonClick = (nextType: 'prev' | 'next') => {
-        if (!horizontalScrollRef.current) return;
-        if (nextType === 'prev') {
-            horizontalScrollRef.current.scrollTo({
-                left: horizontalScrollRef.current.scrollLeft - horizontalScrollRef.current.offsetWidth,
-                behavior: 'smooth',
-            });
-        } else {
-            horizontalScrollRef.current.scrollTo({
-                left: horizontalScrollRef.current.scrollLeft + horizontalScrollRef.current.offsetWidth,
-                behavior: 'smooth',
-            });
-        }
-    };
-
-    const handlePrevButton = () => handleNextButtonClick('prev');
-    const handleNextButton = () => handleNextButtonClick('next');
-
-    const VISIBLE_STAMP = "/img/visibleStamp.svg";
-    const NONVISIBLE_STAMP = "/img/nonVisibleStamp.svg";
-
-    return (
-        <StampWrapper>
-            <img src="/img/StampBg.svg" />
-            <ContentWrapper>
-                <BtnStamp>
-                    <button onClick={handlePrevButton}>
-                        <img src="/img/CircleLeft.svg"></img>
-                    </button>
-                    <ContentStamp ref={horizontalScrollRef}>
-                        <img src={VISIBLE_STAMP} />
-                        <img src={VISIBLE_STAMP} />
-                        <img src={VISIBLE_STAMP} />
-                        <img src={NONVISIBLE_STAMP} />
-                        <img src={NONVISIBLE_STAMP} />
-                        <img src={NONVISIBLE_STAMP} />
-                        <img src={NONVISIBLE_STAMP} />
-                        <img src={NONVISIBLE_STAMP} />
-                        <img src={NONVISIBLE_STAMP} />
-                        <img src={NONVISIBLE_STAMP} />
-                    </ContentStamp>
-                    <button onClick={handleNextButton}>
-                        <img src="/img/CircleRight.svg"></img>
-                    </button>
-                </BtnStamp>
-            </ContentWrapper>
-        </StampWrapper>
-    )
-}
-export default Stamp;

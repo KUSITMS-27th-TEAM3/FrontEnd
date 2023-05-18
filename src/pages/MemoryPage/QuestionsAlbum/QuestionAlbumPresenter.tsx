@@ -12,21 +12,22 @@ const QuestionAlbumContainer = styled.section`
 `;
 
 const day = [
-  { date: 'Day1', content: '내용1' },
-  { date: 'Day2', content: '내용2' },
-  { date: 'Day3', content: '내용3' },
-  { date: 'Day4', content: '내용4' },
-  { date: 'Day5', content: '내용5' },
-  { date: 'Day6', content: '내용6' },
-  { date: 'Day7', content: '내용7' },
-  { date: 'Day8', content: '내용8' },
-  { date: 'Day9', content: '내용9' },
-  { date: 'Day10', content: '내용10' },
+  { questionId: 1, questionTitle: '내용1' },
+  { questionId: 1, questionTitle: '내용2' },
+  { questionId: 1, questionTitle: '내용3' },
+  { questionId: 1, questionTitle: '내용4' },
+  { questionId: 1, questionTitle: '내용5' },
+  { questionId: 1, questionTitle: '내용6' },
+  { questionId: 1, questionTitle: '내용7' },
+  { questionId: 1, questionTitle: '내용8' },
+  { questionId: 1, questionTitle: '내용9' },
+  { questionId: 1, questionTitle: '내용10' },
 ];
 
 export type dayInfo = {
-  date: string;
-  content: string;
+  questionId: number;
+  questionTitle: string;
+  answerDescription?: string;
 };
 
 export type QuestionContent = {
@@ -36,7 +37,7 @@ export type QuestionContent = {
 };
 
 export type Question = {
-  content: QuestionContent;
+  questionTitle: QuestionContent;
   pageNumber: number;
   pageSize: number;
   totalElements: number;
@@ -45,32 +46,32 @@ export type Question = {
 };
 
 const QuestionAlbumPresenter = () => {
-  // const [dayList, setDayList] = useState<dayInfo[]>([]);
+  const [dayList, setDayList] = useState<dayInfo[]>([]);
   const [isLoading, setLoading] = useState<boolean>(true);
   const [questionList, setQuestionList] = useState<QuestionContent[]>([]);
 
-  // useEffect(() => {
-  //   setDayList([...day]);
-  // }, []);
+  useEffect(() => {
+    setDayList([...day]);
+  }, []);
 
   const getQuestion = async () => {
     const data = await API.get('/question?page=0&size=10');
     console.log(data);
-    setQuestionList(data.content);
+    setQuestionList(data.questionTitle);
     setLoading(false);
   };
 
-  useEffect(() => {
-    getQuestion();
-  }, []);
+  // useEffect(() => {
+  //   getQuestion();
+  // }, []);
 
-  if (isLoading) {
-    return <Spinner />;
-  }
+  // if (isLoading) {
+  //   return <Spinner />;
+  // }
 
   return (
     <QuestionAlbumContainer>
-      {questionList.map((question, idx) => (
+      {dayList.map((question, idx) => (
         <QuestionItem question={question} />
       ))}
     </QuestionAlbumContainer>

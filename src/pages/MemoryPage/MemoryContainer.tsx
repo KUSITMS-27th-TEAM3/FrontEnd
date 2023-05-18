@@ -19,6 +19,19 @@ const MemoryContainer = () => {
     setCurrentPath(pathname);
   }, [location]);
 
+  const temp = [
+    { name: ' 아늑함', isActive: false },
+    { name: '행복함', isActive: false },
+    { name: '즐거움', isActive: false },
+    { name: '그리움', isActive: false },
+    { name: '감동적', isActive: false },
+    { name: '편안함', isActive: false },
+    { name: '유쾌함', isActive: false },
+    { name: '자랑스러움', isActive: false },
+    { name: '외로움', isActive: false },
+    { name: '사랑스러움', isActive: false },
+  ];
+
   return (
     <MemoryWrapper>
       {currentPath !== '/memory/question' ? (
@@ -28,7 +41,7 @@ const MemoryContainer = () => {
       )}
       <MemoryNav />
       {currentPath !== '/memory/question' && (
-        <EmotionTags width="80vw" isMargin={true} fontSize={16} />
+        <EmotionTags width="80vw" isMargin={true} fontSize={16} temp={temp} />
       )}
       <Outlet />
     </MemoryWrapper>

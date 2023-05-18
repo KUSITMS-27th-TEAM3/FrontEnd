@@ -11,7 +11,7 @@ import QuestionAlbumContainer from './pages/MemoryPage/QuestionsAlbum/QuestionAl
 import SharedAlbumContainer from './pages/MemoryPage/SharedAlbum/SharedAlbumContainer';
 import WriteAlbum from './pages/WriteAlbum/WriteAlbum';
 import MemoryDetail from './pages/MemoryDetail/MemoryDetail';
-
+import UnAuthorized from './pages/Unauthorized/Unauthorized';
 
 const Router = () => {
   return (
@@ -32,6 +32,7 @@ const Router = () => {
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/ReviseInfo" element={<ReviseInfo />} />
         <Route path="/funeral" element={<FuneralPage />} />
+        <Route path="/unauthorized" element={<UnAuthorized />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

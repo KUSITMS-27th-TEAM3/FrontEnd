@@ -7,6 +7,7 @@ declare module 'styled-components' {
         orange: string;
         crimson: string;
         lightOrange: string;
+        brightOrange: string;
       };
       grayScale: {
         black: string;
@@ -15,7 +16,9 @@ declare module 'styled-components' {
         gray: string;
         lightGray: string;
         brightGray: string;
+        brightLightGray: string;
         white: string;
+        mediumGray: string;
       };
     };
 

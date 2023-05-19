@@ -69,9 +69,10 @@ type EmotionTagsProps = {
   width: string;
   isMargin?: boolean;
   fontSize: number;
+  temp: Tag[];
 };
 
-const EmotionTags = ({ width, isMargin, fontSize }: EmotionTagsProps) => {
+const EmotionTags = ({ width, isMargin, fontSize, temp }: EmotionTagsProps) => {
   const [tags, setTags] = useState<Tag[]>([]);
   const [loading, setLoading] = useState(true);
 

@@ -2,9 +2,13 @@ import styled from 'styled-components';
 import { ImageContainer } from '../WriteAlbum/components/style/ImageUploadStyle';
 import { isUploadAtom } from '../../atom/atom';
 import { useRecoilState } from 'recoil';
-import { useEffect } from 'react';
-import DeleteModal from '../../components/DeleteModal';
+import { useEffect, useState } from 'react';
+import Modal from '../../components/Modal';
 import { FlexContainer } from '../../components/CommonStyle';
+
+const DetailBox = styled.div`
+  position: relative;
+`;
 
 const ImageBox = styled.div`
   position: absolute;
@@ -29,8 +33,15 @@ const DetailWrapper = styled(FlexContainer)`
   border: 1px solid black;
 `;
 
+const ModalText = {
+  text: '삭제하시겠습니까?',
+  btnText1: '취소',
+  btnText2: '삭제',
+};
+
 const MemoryDetailContainer = () => {
   const [isUpload, setIsUpload] = useRecoilState(isUploadAtom);
+  const [isModal, setModal] = useState<boolean>(true);
 
   useEffect(() => {
     setIsUpload(true);
@@ -38,8 +49,22 @@ const MemoryDetailContainer = () => {
     return () => setIsUpload(false);
   }, []);
 
+  const firstBtnHandler = () => {
+    setModal(false);
+  };
+
+  const secondBtnHandler = () => {
+    console.log('second');
+  };
+
   return (
-    <>
+    <DetailBox>
+      <Modal
+        ModalText={ModalText}
+        isModal={isModal}
+        firstBtnHandler={firstBtnHandler}
+        SecondBtnHandler={secondBtnHandler}
+      />
       <ImageContainer>
         <span className="img_filter" />
         <img src={'/img/강아지사진.jpg'} alt="AlbumImg" />
@@ -47,10 +72,8 @@ const MemoryDetailContainer = () => {
           <img src={'/img/강아지사진.jpg'} alt="AlbumImg" />
         </ImageBox>
       </ImageContainer>
-      <DetailWrapper>
-        <DeleteModal />
-      </DetailWrapper>
-    </>
+      <DetailWrapper></DetailWrapper>
+    </DetailBox>
   );
 };
 

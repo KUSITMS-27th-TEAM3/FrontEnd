@@ -33,7 +33,7 @@ const QNAPresenter = () => {
 export default QNAPresenter;
 
 const QNAContainer = styled.div`
-    margin: 100px 10vw 5vw 10vw;
+    margin: 0 10vw 5vw 10vw;
     width: 80vw;
     min-height: 100vh;
     overflow: auto;
@@ -45,5 +45,6 @@ const QNAContainer = styled.div`
     div.title {
         font-family : ${({ theme }) => theme.font.family.pretendard_bold};
         font-size : 28px;
+        padding-bottom : 2vw;
     }
 `

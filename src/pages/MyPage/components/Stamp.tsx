@@ -35,7 +35,7 @@ const Stamp = () => {
     const handlePrevButton = () => handleNextButtonClick('prev');
     const handleNextButton = () => handleNextButtonClick('next');
 
-    const VISIBLE_STAMP = "/img/visibleStamp.svg";
+    const VISIBLE_STAMP = "/img/마이페이지배경.jpg";
     const NONVISIBLE_STAMP = "/img/nonVisibleStamp.svg";
 
     return (
@@ -104,6 +104,9 @@ const ContentWrapper = styled.div`
 const BtnStamp = styled.div`
     display : flex;
     justify-content : space-between;
+    align-items: center;
+    width : 100%;
+    height : 80%;
 `
 const ContentStamp = styled.div`
     width: 80%;   
@@ -112,11 +115,15 @@ const ContentStamp = styled.div`
     justify-content: space-between;
     align-items: center;
     overflow-x: auto;
-    gap : 15px;
+    gap : 20px;
     img {
         width: 21%;
-        height: auto;
-        object-fit: contain;
+        height: 95%;
+        object-fit: cover;
         flex-shrink: 0;
+        border-radius : 50%;
+        border : 3px solid orange;
+        position : relative;
+        z-index : 100;
     }
 `;

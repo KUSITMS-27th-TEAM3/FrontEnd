@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { IconButton } from "../../../components/CommonStyle";
 import SiteCard from "./SiteCard";
+import * as API from '../../../api/API';
+import { useEffect, useState } from 'react';
+import Spinner from "../../../components/Spinner";
 
 const cardData = [
     {

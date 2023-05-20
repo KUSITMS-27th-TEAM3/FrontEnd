@@ -17,7 +17,8 @@ const getRefreshToken = () => {
 
 instance.interceptors.request.use(
   (config) => {
-    const accessToken = getAccessToken();
+    // const accessToken = getAccessToken();
+    const accessToken = "eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODQ1OTMzMTYsImV4cCI6MTY4NTE5ODExNiwic3ViIjoic3Jmc3JmMDEwM0BnbWFpbC5jb20iLCJUT0tFTl9UWVBFIjoiQUNDRVNTX1RPS0VOIn0.qkH5hJUk7YukvxZ3O3EXRDiU0XVifgYqPX5v6urjVXDkgRWRVnqaYgxYd3aQ1Om4QvU2N6MfnzjLcpNFVQ06tA"
 
     if (!accessToken) {
       throw new Error('no access token');
@@ -95,7 +96,10 @@ const post = async (url: string, post: {}, config: 'imgPost' | null = null) => {
   try {
     if (config === 'imgPost') {
       const result = await instance.post(url, post, {
-        headers: { 'Content-Type': `multipart/form-data` },
+        headers: { 'Content-Type': 'multipart/form-data' },
+        transformRequest: (data, headers) => {
+          return data;
+        },
       });
       return result.data;
     }

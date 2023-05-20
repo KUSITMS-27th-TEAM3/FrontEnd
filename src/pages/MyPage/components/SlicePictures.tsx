@@ -152,5 +152,5 @@ const GridContainer = styled.div`
     }
     div.grid-item-no {
         border: 3px solid white;
-        background-color : rgb(0,0,0,0.5);
+        background-color : rgb(0,0,0,0.7);
 `

@@ -53,3 +53,13 @@ export const IconButton = styled.button<IconButtonProps>`
     }
   }
 `;
+
+export const FormButton = styled.button`
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  width: 70px;
+  height: 24px;
+  align-items: center;
+  justify-content: space-around;
+`;

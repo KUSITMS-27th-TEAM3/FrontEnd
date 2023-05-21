@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import DeleteIcon from '../../../../components/Icons/DeleteIcon';
+import ReviseIcon from '../../../../components/Icons/ReviseIcon';
 
 const FormContainer = styled.div`
   width: 80vw;
@@ -104,11 +106,11 @@ const QuestionWriteForm = ({ answerDescription }: QuestionWriteFormProps) => {
         <div className="buttonbox">
           <FormButton onClick={handleRevise}>
             <div>수정</div>
-            <img src="/img/revise.svg" alt="revise" />
+            <ReviseIcon />
           </FormButton>
           <FormButton onClick={handleDelete}>
             <div>삭제</div>
-            <img src="/img/delete.svg" alt="delete" />
+            <DeleteIcon />
           </FormButton>
         </div>
         <FormButton onClick={handleWrite}>

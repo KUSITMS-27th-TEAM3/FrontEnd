@@ -18,11 +18,15 @@ const TextForm = () => {
         useRef<HTMLInputElement | null>(null)
     ];
 
-    const handleFileChange = useCallback((e: React.ChangeEvent<HTMLInputElement>, setState: React.Dispatch<React.SetStateAction<File | null>>) => {
+    const [selectedFileName1, setSelectedFileName1] = useState('');
+    const [selectedFileName2, setSelectedFileName2] = useState('');
+
+    const handleFileChange = useCallback((e: React.ChangeEvent<HTMLInputElement>, setState: React.Dispatch<React.SetStateAction<File | null>>, setNameState: React.Dispatch<React.SetStateAction<string>>) => {
         if (!e.target.files) {
             return;
         }
         const uploadImg = e.target.files[0];
+        setNameState(uploadImg.name);
         setState(uploadImg);
     }, []);
 
@@ -34,6 +38,8 @@ const TextForm = () => {
         setNickname('');
         setProfileImage(null);
         setPetImage(null);
+        setSelectedFileName1('');
+        setSelectedFileName2('');
 
         fileInputRefs.forEach((ref) => {
             if (ref.current) {
@@ -52,22 +58,13 @@ const TextForm = () => {
         e.preventDefault();
 
         if (submitButtonClicked) {
-            console.log('닉네임', id);
-            console.log('마이펫 한 줄 설명', subInfo);
-            console.log('품종', breed);
-            console.log('나이', age);
-            console.log('별명', nickname);
-            console.log('프로필 사진', profileImage);
-            console.log('마이펫 사진', petImage);
-            console.log(petImage)
-            console.log(profileImage)
             const formData = new FormData();
 
-            formData.append('petName', id);
+            formData.append('petName', nickname);
             formData.append('description', subInfo);
             formData.append('petAge', age);
             formData.append('petType', breed);
-            formData.append('userNickname', nickname);
+            formData.append('userNickname', id);
             if (petImage) {
                 formData.append('petImage', petImage);
             }
@@ -77,7 +74,7 @@ const TextForm = () => {
 
             const response = await API.post("/user/mypet", formData, 'imgPost');
             console.log(response);
-
+            alert('수정되었습니다!');
             handleCancel();
         } else {
             handleCancel();
@@ -96,9 +93,9 @@ const TextForm = () => {
         { name: "나이", state: [age, setAge], placeholder: "나이를 입력해주세요." },
     ]
 
-    const ImgInfo: { name: string; state: [File | null, React.Dispatch<React.SetStateAction<File | null>>]; placeholder: string; }[] = [
-        { name: "프로필 사진", state: [profileImage, setProfileImage], placeholder: "프로필 사진을 첨부하세요." },
-        { name: "마이펫 사진", state: [petImage, setPetImage], placeholder: "마이펫 사진을 첨부하세요." }
+    const ImgInfo: { name: string; state: [File | null, React.Dispatch<React.SetStateAction<File | null>>]; stateName: [string, React.Dispatch<React.SetStateAction<string>>]; placeholder: string; }[] = [
+        { name: "프로필 사진", state: [profileImage, setProfileImage], stateName: [selectedFileName1, setSelectedFileName1], placeholder: "프로필 사진을 첨부하세요." },
+        { name: "마이펫 사진", state: [petImage, setPetImage], stateName: [selectedFileName2, setSelectedFileName2], placeholder: "마이펫 사진을 첨부하세요." }
     ]
 
     return (
@@ -106,7 +103,7 @@ const TextForm = () => {
             <Form onSubmit={handleFormSubmit}>
                 {TextInfo.map((items, idx) =>
                     <FormWrapper key={idx}>
-                        <div>{items.name}</div>
+                        <div className="title">{items.name}</div>
                         <input className='textInput'
                             type="text"
                             value={items.state[0]}
@@ -119,18 +116,26 @@ const TextForm = () => {
 
                 {ImgInfo.map((items, idx) =>
                     <FormWrapper key={idx}>
-                        <div>{items.name}</div>
+                        <div className="title">{items.name}</div>
                         <input className='imgInput'
                             type="file"
                             accept="image/*"
                             // value={items.state[0]}
-                            placeholder={items.placeholder}
                             ref={fileInputRefs[idx]}
+                            style={{ display: 'none' }}
                             onChange={(e) => {
-                                // items.state[1](e.target.value);
-                                handleFileChange(e, items.state[1]);
+                                handleFileChange(e, items.state[1], items.stateName[1]);
                             }} />
-                        {/* <button onClick={handleClick}>사진 첨부</button> */}
+                        <label className="fileInputLabel">
+                            <input
+                                type="text"
+                                className="fileInputText"
+                                readOnly
+                                value={items.stateName[0]}
+                                placeholder={items.placeholder}
+                            />
+                            <button onClick={() => fileInputRefs[idx].current?.click()}>사진 첨부</button>
+                        </label>
                     </FormWrapper>
                 )}
                 <BtnWrapper>
@@ -177,8 +182,11 @@ const FormWrapper = styled.label`
     justify-content : space-between;
     align-items : center;
     height : 3vw;
+    div.title { 
+        width : 12vw;
+    }
     input.textInput {
-        width : 87%;
+        width : 100%;
         height : 100%;
         border-radius : 10px;
         background-color : ${(props) => props.theme.color.grayScale.lightGray};
@@ -186,6 +194,22 @@ const FormWrapper = styled.label`
     }
     input.imgInput {
         width : 87%;
+        height : 100%;
+        border-radius : 10px;
+        background-color : ${(props) => props.theme.color.grayScale.lightGray};
+        border : none;
+    }
+
+    label.fileInputLabel {
+        display : flex;
+        justify-content : center;
+        position: relative;
+        width: 100%;
+        height : 100%;
+        // display: inline-block;
+    }
+    input.fileInputText{
+        width : 100%;
         height : 100%;
         border-radius : 10px;
         background-color : ${(props) => props.theme.color.grayScale.lightGray};

@@ -17,7 +17,9 @@ const getRefreshToken = () => {
 
 instance.interceptors.request.use(
   (config) => {
-    const accessToken = getAccessToken();
+    // const accessToken = getAccessToken();
+    const accessToken =
+      'eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODQ2NjY4ODMsImV4cCI6MTY4NDY3MDQ4Mywic3ViIjoic3Jmc3JmMDEwM0BnbWFpbC5jb20iLCJUT0tFTl9UWVBFIjoiQUNDRVNTX1RPS0VOIn0.c_I8trF7kUr9jMPyipU7rL4s0X1-rsbSshRia0tBIND5XIOqHTDhjFR2-1DTRAK4ftHZFq-NRatS1ELK328W6A';
 
     if (!accessToken) {
       throw new Error('no access token');

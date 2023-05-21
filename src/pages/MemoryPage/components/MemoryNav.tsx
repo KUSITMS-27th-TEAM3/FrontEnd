@@ -84,19 +84,22 @@ function MemoryNav() {
             value={age}
             onChange={handleChange}
             className="nav_select"
-            sx={{ fontFamily: 'Pretendard Medium' }}
+            sx={{
+              fontFamily: 'Pretendard Medium',
+              textAlign: 'center',
+              backgroundColor: '#F4F4F4',
+              border: 0,
+            }}
+            displayEmpty
           >
-            <MenuItem value="정렬방식선택" sx={{ fontFamily: 'Pretendard Medium' }}>
+            <MenuItem value="" sx={{ fontFamily: 'Pretendard Medium' }}>
               정렬방식선택
             </MenuItem>
             <MenuItem value={10} sx={{ fontFamily: 'Pretendard Medium' }}>
-              Ten
+              최신순
             </MenuItem>
             <MenuItem value={20} sx={{ fontFamily: 'Pretendard Medium' }}>
-              Twenty
-            </MenuItem>
-            <MenuItem value={30} sx={{ fontFamily: 'Pretendard Medium' }}>
-              Thirty
+              공감순
             </MenuItem>
           </Select>
         </FormControl>

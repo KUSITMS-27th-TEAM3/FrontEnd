@@ -107,9 +107,9 @@ const post = async (url: string, post: {}, config: 'imgPost' | null = null) => {
   }
 };
 
-const patch = async (url: string, patch: {}) => {
+const put = async (url: string, put: {}) => {
   try {
-    const { data } = await instance.patch(url, patch);
+    const { data } = await instance.put(url, put);
     return data;
   } catch (error) {
     if (error instanceof Error)
@@ -117,4 +117,4 @@ const patch = async (url: string, patch: {}) => {
   }
 };
 
-export { get, del as delete, post, patch };
+export { get, del as delete, post, put };

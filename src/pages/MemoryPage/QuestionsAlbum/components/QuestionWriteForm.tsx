@@ -1,67 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
-import DeleteIcon from '../../../../components/Icons/DeleteIcon';
-import ReviseIcon from '../../../../components/Icons/ReviseIcon';
-
-const FormContainer = styled.div`
-  width: 80vw;
-  height: 240px;
-  border-radius: 16px;
-  background-color: #fff6f2;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 18px;
-
-  .Form_buttons {
-    width: 75vw;
-    font-family: ${({ theme }) => theme.font.family.pretendard_medium};
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 15px;
-  }
-
-  .buttonbox {
-    display: flex;
-    flex-direction: row;
-    width: 150px;
-    justify-content: space-between;
-  }
-`;
-
-const TextForm = styled.textarea`
-  all: unset;
-  width: 75vw;
-  margin-top: 30px;
-  height: 130px;
-  padding: 20px;
-  font-family: ${({ theme }) => theme.font.family.pretendard_medium};
-  border-bottom: 1px solid #ffd3bf;
-  box-sizing: border-box;
-  &:focus {
-    padding: 20px;
-  }
-`;
-
-const FormButton = styled.button`
-  all: unset;
-  cursor: pointer;
-  display: flex;
-  width: 70px;
-  height: 24px;
-  align-items: center;
-  justify-content: space-around;
-`;
+import { postAnswer, putAnswer } from '../QuestionAlbumApi';
+import * as S from './style/QuestionWriteFormStyle';
+import { DeleteIcon, ReviseIcon } from '../../../../components/Icons/Index';
+import { refetchQuestionsAtom } from '../../../../atom/atom';
+import { useRecoilState } from 'recoil';
 
 type QuestionWriteFormProps = {
   answerDescription?: string;
+  questionId: number;
 };
 
-const QuestionWriteForm = ({ answerDescription }: QuestionWriteFormProps) => {
+const QuestionWriteForm = ({ answerDescription, questionId }: QuestionWriteFormProps) => {
   const [textValue, setTextValue] = useState<string>('');
   const [canRevise, setCanRevise] = useState<boolean>(false);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const [refetch, setRefetch] = useRecoilState<boolean>(refetchQuestionsAtom);
 
   const handleRevise = () => {
     setCanRevise(true);
@@ -73,12 +26,17 @@ const QuestionWriteForm = ({ answerDescription }: QuestionWriteFormProps) => {
   };
 
   const handleDelete = () => {
-    setTextValue('내용을 입력하세요.');
+    setTextValue('');
   };
 
   const handleWrite = () => {
+    const answer = { answerDescription: textValue };
     setCanRevise(false);
-    alert('입력되었습니다!');
+    if (answerDescription || answerDescription === '') putAnswer(answer, questionId);
+    else {
+      postAnswer(answer, questionId);
+      setRefetch(true);
+    }
   };
 
   useEffect(() => {
@@ -93,8 +51,8 @@ const QuestionWriteForm = ({ answerDescription }: QuestionWriteFormProps) => {
   }, [canRevise]);
 
   return (
-    <FormContainer>
-      <TextForm
+    <S.FormContainer>
+      <S.TextForm
         value={textValue}
         disabled={!canRevise}
         onChange={handleTextChange}
@@ -103,21 +61,21 @@ const QuestionWriteForm = ({ answerDescription }: QuestionWriteFormProps) => {
       />
       <div className="Form_buttons">
         <div className="buttonbox">
-          <FormButton onClick={handleRevise}>
+          <S.FormButton onClick={handleRevise}>
             <div>수정</div>
             <ReviseIcon />
-          </FormButton>
-          <FormButton onClick={handleDelete}>
+          </S.FormButton>
+          <S.FormButton onClick={handleDelete}>
             <div>삭제</div>
             <DeleteIcon />
-          </FormButton>
+          </S.FormButton>
         </div>
-        <FormButton onClick={handleWrite}>
+        <S.FormButton onClick={handleWrite}>
           <div>입력</div>
           <img src="/img/write.svg" alt="write" />
-        </FormButton>
+        </S.FormButton>
       </div>
-    </FormContainer>
+    </S.FormContainer>
   );
 };
 

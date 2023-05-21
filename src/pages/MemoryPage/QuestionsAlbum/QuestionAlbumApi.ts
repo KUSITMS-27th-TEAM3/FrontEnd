@@ -4,7 +4,8 @@ type Answer = {
   answerDescription: string;
 };
 
-export const getQuestion = async () => await API.get('/question');
+export const getQuestion = async (page = 0, size = 10) =>
+  await API.get(`/question?page=${page}&size=${size}`);
 
 export const putAnswer = async (answer: Answer, questionId: number) => {
   const status = await API.put(`/question/${questionId}`, answer);

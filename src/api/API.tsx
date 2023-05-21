@@ -19,7 +19,7 @@ instance.interceptors.request.use(
   (config) => {
     // const accessToken = getAccessToken();
     const accessToken =
-      'eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODQ2NjY4ODMsImV4cCI6MTY4NDY3MDQ4Mywic3ViIjoic3Jmc3JmMDEwM0BnbWFpbC5jb20iLCJUT0tFTl9UWVBFIjoiQUNDRVNTX1RPS0VOIn0.c_I8trF7kUr9jMPyipU7rL4s0X1-rsbSshRia0tBIND5XIOqHTDhjFR2-1DTRAK4ftHZFq-NRatS1ELK328W6A';
+      'eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODQ2NzA2NDYsImV4cCI6MTY4NDY3NDI0Niwic3ViIjoic3Jmc3JmMDEwM0BnbWFpbC5jb20iLCJUT0tFTl9UWVBFIjoiQUNDRVNTX1RPS0VOIn0.w_CaDds0AmLqrsUrMug2Ijj4_IJR-g9mBOJLGFTwvxtVcKbiDIo_OQANZEk1d_CLF5braPldjS1xjvjYpL_VKQ';
 
     if (!accessToken) {
       throw new Error('no access token');
@@ -109,9 +109,9 @@ const post = async (url: string, post: {}, config: 'imgPost' | null = null) => {
   }
 };
 
-const patch = async (url: string, patch: {}) => {
+const put = async (url: string, put: {}) => {
   try {
-    const { data } = await instance.patch(url, patch);
+    const { data } = await instance.put(url, put);
     return data;
   } catch (error) {
     if (error instanceof Error)
@@ -119,4 +119,4 @@ const patch = async (url: string, patch: {}) => {
   }
 };
 
-export { get, del as delete, post, patch };
+export { get, del as delete, post, put };

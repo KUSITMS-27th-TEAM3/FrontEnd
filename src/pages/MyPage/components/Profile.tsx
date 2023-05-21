@@ -7,7 +7,7 @@ import Spinner from "../../../components/Spinner";
 export type ProfileInfo = {
     petName: string;
     userNickname: string;
-    petImageUrl: string;
+    profileImageUrl: string;
     description: string;
     petAge: number;
     petType: string;
@@ -48,16 +48,21 @@ const Profile = () => {
                 <img src="img/BlurRectangle.svg" />
             </Blur>
             <ProfileBackImg>
-                <img src={`${profile.petImageUrl}`} alt="배경사진" />
+                <img src={`${profile.profileImageUrl}`} alt="배경사진" />
             </ProfileBackImg>
             <ProfileWrapper>
                 <ProfileImg>
-                    <img src={`${profile.petImageUrl}`} alt="프로필사진" />
+                    <img src={`${profile.profileImageUrl}`} alt="프로필사진" />
                 </ProfileImg>
 
                 <ProfileInfo>
                     <div className='MyPet'>My Pet</div>
-                    <div className='petName'>{`${profile.userNickname}의 ${profile.petName}`}</div>
+                    {/* <div className='petName'>{`${profile.userNickname}의 ${profile.petName}`}</div> */}
+                    <div className='petName'>
+                        <span className="front">{profile.userNickname}의 </span>
+                        <span className='back'>{profile.petName}</span>
+                    </div>
+
                     <div className='petSubTitle'>{profile.description}</div>
                     <div className='info'>
                         <div className='subInfo'>{profile.petType}</div>
@@ -128,6 +133,10 @@ const ProfileInfo = styled.div`
         font-size : 2vw;
         color : ${(props) => props.theme.color.main.orange};
         font-family: ${(props) => props.theme.font.family.pretendard_bold};
+
+        span.front { 
+            color: white;
+        }
     }
     div.petSubTitle {
         margin-bottom: 1.5vw;

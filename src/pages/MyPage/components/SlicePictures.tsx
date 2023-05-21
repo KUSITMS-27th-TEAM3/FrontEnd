@@ -9,13 +9,14 @@ interface GridItem {
 }
 
 const SlicePictures = () => {
-    const imageSrc = "/img/마이페이지배경.jpg";
-
+    // const imageSrc = "/img/마이페이지배경.jpg";
+    const [imgUrl, setImgUrl] = useState('');
     const [checkList, setCheckList] = useState<GridItem[]>([]);
     const [isloading, setLoading] = useState(true);
 
     const getTF = async () => {
         const data = await API.get('/grid');
+        setImgUrl(data.gridImageUrl);
         const checkListData = data.gridCheckList || [];
         setCheckList(checkListData);
         setLoading(false);
@@ -25,16 +26,16 @@ const SlicePictures = () => {
         getTF();
     }, []);
 
-    // if (isloading) {
-    //     return <Spinner />;
-    // }
+    if (isloading) {
+        return <Spinner />;
+    }
 
     return (
         <ContentWrapper>
-            <img src={imageSrc} alt="sliceImage" />
+            <img src={imgUrl} alt="sliceImage" />
             <GridContainer>
 
-                {/* {checkList.map((item) => (
+                {checkList.map((item) => (
                     <div
                         key={item.gridNum}
                         className={`grid-item-${item.check ? 'yes' : 'no'}`}
@@ -42,18 +43,18 @@ const SlicePictures = () => {
                     ></div>
 
                 ))}
-                <div className="grid-item-no"></div> */}
+                <div className="grid-item-no"></div>
+
+                {/* <div className="grid-item-yes" />
+                <div className="grid-item-yes" />
+                <div className="grid-item-yes" />
+                <div className="grid-item-yes" />
+                <div className="grid-item-yes" />
 
                 <div className="grid-item-yes" />
                 <div className="grid-item-yes" />
                 <div className="grid-item-yes" />
                 <div className="grid-item-yes" />
-                <div className="grid-item-yes" />
-
-                <div className="grid-item-yes" />
-                <div className="grid-item-yes" />
-                <div className="grid-item-yes" />
-                <div className="grid-item-yes" />
                 <div className="grid-item-no" />
 
                 <div className="grid-item-no" />
@@ -114,7 +115,7 @@ const SlicePictures = () => {
                 <div className="grid-item-no" />
                 <div className="grid-item-no" />
                 <div className="grid-item-no" />
-                <div className="grid-item-no" />
+                <div className="grid-item-no" /> */}
 
             </GridContainer>
         </ContentWrapper>

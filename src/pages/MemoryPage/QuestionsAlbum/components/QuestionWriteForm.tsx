@@ -36,12 +36,10 @@ const TextForm = styled.textarea`
   margin-top: 30px;
   height: 130px;
   padding: 20px;
-  border-radius: 16px;
   font-family: ${({ theme }) => theme.font.family.pretendard_medium};
   border-bottom: 1px solid #ffd3bf;
   box-sizing: border-box;
   &:focus {
-    border: 1px solid #ffd3bf;
     padding: 20px;
   }
 `;
@@ -61,7 +59,7 @@ type QuestionWriteFormProps = {
 };
 
 const QuestionWriteForm = ({ answerDescription }: QuestionWriteFormProps) => {
-  const [textValue, setTextValue] = useState<string>('내용을 입력하세요.');
+  const [textValue, setTextValue] = useState<string>('');
   const [canRevise, setCanRevise] = useState<boolean>(false);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -101,6 +99,7 @@ const QuestionWriteForm = ({ answerDescription }: QuestionWriteFormProps) => {
         disabled={!canRevise}
         onChange={handleTextChange}
         ref={textAreaRef}
+        placeholder="내용을 입력하세요."
       />
       <div className="Form_buttons">
         <div className="buttonbox">

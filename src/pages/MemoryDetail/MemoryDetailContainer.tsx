@@ -1,37 +1,7 @@
-import styled from 'styled-components';
-import { ImageContainer } from '../WriteAlbum/components/style/ImageUploadStyle';
-import { isUploadAtom } from '../../atom/atom';
-import { useRecoilState } from 'recoil';
 import { useEffect, useState } from 'react';
 import Modal from '../../components/Modal';
-import { FlexContainer } from '../../components/CommonStyle';
-
-const DetailBox = styled.div`
-  position: relative;
-`;
-
-const ImageBox = styled.div`
-  position: absolute;
-  top: 70px;
-  left: 50%;
-  width: 765px;
-  aspect-ratio: 1;
-  transform: translate(-50%, 0);
-
-  .img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-`;
-
-const DetailWrapper = styled(FlexContainer)`
-  justify-content: center;
-  width: 80vw;
-  height: 100vh;
-  margin: 100px 10vw 5vw 10vw;
-  border: 1px solid black;
-`;
+import * as S from './components/style/MemoryDetailStyle';
+import { CommentList, ImageContent, InputForm, TextContent } from './components';
 
 const ModalText = {
   text: '삭제하시겠습니까?',
@@ -39,15 +9,16 @@ const ModalText = {
   btnText2: '삭제',
 };
 
+const tempContent = {
+  name: '오태석',
+  content:
+    '강아지랑 여행가는 거 너무 좋죠.. 저도 더 많이 같이 갈 걸 후회되기도 하더라구요 그래서 그런지 가끔 갔던 여행에서 찍은 사진 보면 저도 정말 행복해집니당 ㅎ 반려동물 키우는 친구가 주변에 많은데 여행 많이 많이 가보라고 얘기해주고 있어요 같이 여행가는 것도 좋은데 거기서 같이 물놀이까지 하면 강아지도 좋아하고 더 재밌게 놀 수 있는 것 같아요 강릉에 함께할 수 있는 좋은 펜션 많은데 혹시 지금 키우고 계신 분들이 있다면 꼭 가보세용',
+};
+
+const tempArr = [tempContent, tempContent, tempContent, tempContent, tempContent];
+
 const MemoryDetailContainer = () => {
-  const [isUpload, setIsUpload] = useRecoilState(isUploadAtom);
-  const [isModal, setModal] = useState<boolean>(true);
-
-  useEffect(() => {
-    setIsUpload(true);
-
-    return () => setIsUpload(false);
-  }, []);
+  const [isModal, setModal] = useState<boolean>(false);
 
   const firstBtnHandler = () => {
     setModal(false);
@@ -58,22 +29,24 @@ const MemoryDetailContainer = () => {
   };
 
   return (
-    <DetailBox>
+    <S.DetailBox>
       <Modal
         ModalText={ModalText}
         isModal={isModal}
         firstBtnHandler={firstBtnHandler}
         SecondBtnHandler={secondBtnHandler}
       />
-      <ImageContainer>
-        <span className="img_filter" />
-        <img src={'/img/강아지사진.jpg'} alt="AlbumImg" />
-        <ImageBox>
-          <img src={'/img/강아지사진.jpg'} alt="AlbumImg" />
-        </ImageBox>
-      </ImageContainer>
-      <DetailWrapper></DetailWrapper>
-    </DetailBox>
+      <ImageContent />
+      <S.DetailWrapper>
+        <TextContent />
+        <InputForm />
+        <S.CommentBox>
+          {tempArr.map(({ name, content }) => (
+            <CommentList name={name} content={content} />
+          ))}
+        </S.CommentBox>
+      </S.DetailWrapper>
+    </S.DetailBox>
   );
 };
 

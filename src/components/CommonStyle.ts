@@ -21,8 +21,8 @@ export const BlackLink = styled(Link)`
 `;
 
 type IconButtonProps = {
-  width: string;
-  height: string;
+  width?: string;
+  height?: string;
   maxWidth?: string;
   minWidth?: string;
 };

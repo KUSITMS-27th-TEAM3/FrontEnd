@@ -14,9 +14,7 @@ const QuestionAlbumContainer = () => {
   const [hasNext, setHasNext] = useState<boolean>(false);
   const [refetch, setRefetch] = useRecoilState<boolean>(refetchQuestionsAtom);
 
-  type handleClickType = (hasNext: boolean, handleFetchData: () => void) => void;
-
-  const handleClick: handleClickType = (hasNext, handleFetchData) => {
+  const handleClick = () => {
     if (!hasNext) {
       alert('더 이상 질문이 없습니다.');
       return;
@@ -59,10 +57,7 @@ const QuestionAlbumContainer = () => {
   return (
     <>
       <QuestionAlbumPresenter questionList={questionList} />
-      <AlbumButton
-        text="너의 의미 더보기"
-        handleClick={() => handleClick(hasNext, () => fetchQuestion(page))}
-      />
+      <AlbumButton text="너의 의미 더보기" handleClick={handleClick} />
     </>
   );
 };

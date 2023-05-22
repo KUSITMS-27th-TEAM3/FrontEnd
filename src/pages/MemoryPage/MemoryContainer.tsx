@@ -20,16 +20,16 @@ const MemoryContainer = () => {
   }, [location]);
 
   const temp = [
-    { name: ' 아늑함', isActive: false },
-    { name: '행복함', isActive: false },
-    { name: '즐거움', isActive: false },
-    { name: '그리움', isActive: false },
-    { name: '감동적', isActive: false },
-    { name: '편안함', isActive: false },
-    { name: '유쾌함', isActive: false },
-    { name: '자랑스러움', isActive: false },
-    { name: '외로움', isActive: false },
-    { name: '사랑스러움', isActive: false },
+    { name: ' 아늑함', isActive: false, tagId: 'COZY' },
+    { name: '행복함', isActive: false, tagId: 'HAPPY' },
+    { name: '즐거움', isActive: false, tagId: 'JOY' },
+    { name: '그리움', isActive: false, tagId: 'MISS' },
+    { name: '감동적', isActive: false, tagId: 'TOUCHING' },
+    { name: '편안함', isActive: false, tagId: 'COMFORTABLE' },
+    { name: '유쾌함', isActive: false, tagId: 'CHEERFUL' },
+    { name: '자랑스러움', isActive: false, tagId: 'PROUD' },
+    { name: '외로움', isActive: false, tagId: 'LONELY' },
+    { name: '사랑스러움', isActive: false, tagId: 'LOVELY' },
   ];
 
   return (

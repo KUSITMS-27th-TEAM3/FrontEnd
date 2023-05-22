@@ -5,7 +5,7 @@ import AlbumButton from '../components/AlbumButton';
 const MyAlbumContainer = () => {
   return (
     <FlexContainer>
-      <AlbumPresenter />
+      {/* <AlbumPresenter /> */}
       <AlbumButton text="나의 앨범 더보기" />
     </FlexContainer>
   );

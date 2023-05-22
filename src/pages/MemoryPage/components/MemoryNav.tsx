@@ -103,7 +103,7 @@ function MemoryNav() {
             displayEmpty
           >
             {sortOptionList.map(({ value, name }) => (
-              <MenuItem value={value} sx={{ fontFamily: 'Pretendard Medium' }}>
+              <MenuItem value={value} sx={{ fontFamily: 'Pretendard Medium' }} key={value}>
                 {name}
               </MenuItem>
             ))}

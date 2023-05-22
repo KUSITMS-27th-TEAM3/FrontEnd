@@ -31,7 +31,7 @@ const AlbumPresenter = ({ albumData }: AlbumPresenterProps) => {
               <figcaption>
                 <div className="figItemBox">
                   <img src="/img/HeartDog.svg" alt="HeartDog" className="figItemImg" />
-                  <div>{item.commentCount}</div>
+                  <div>{item.empathyCount}</div>
                 </div>
                 <div className="figItemBox">
                   <img src="/img/Comment.svg" alt="Comment" className="figItemImg" />

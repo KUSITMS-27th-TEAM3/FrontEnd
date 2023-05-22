@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { activeTagAtom } from '../atom/atom';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 
 type TagButtonProps = {
   fontSize: number;
@@ -64,7 +64,7 @@ type EmotionTagsProps = {
 
 const EmotionTags = ({ width, isMargin, fontSize, temp }: EmotionTagsProps) => {
   const [tags, setTags] = useState<Tag[]>([]);
-  const [activeTags, setActiveTags] = useRecoilState(activeTagAtom);
+  const setActiveTags = useSetRecoilState(activeTagAtom);
 
   const handleTagActive = (e: React.MouseEvent<HTMLButtonElement>) => {
     const targetIdx = Number(e.currentTarget.id);
@@ -84,8 +84,6 @@ const EmotionTags = ({ width, isMargin, fontSize, temp }: EmotionTagsProps) => {
   useEffect(() => {
     setActiveTags(tags.filter((tag) => tag.isActive).map((tag) => tag.tagId));
   }, [tags]);
-
-  console.log(activeTags);
 
   return (
     <EmotionContainer width={width} isMargin={isMargin}>

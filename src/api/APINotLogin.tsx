@@ -2,28 +2,26 @@ import axios from 'axios';
 const instance = axios.create();
 
 instance.defaults.withCredentials = true;
-// instance.defaults.headers['Content-Type'] = 'application/json';
-// instance.defaults.headers.common['Authorization'] = localStorage.getItem('Authorization');
 instance.defaults.baseURL = 'http://52.78.181.46';
 
-const getAccessToken = () => {
-  return sessionStorage.getItem('Authorization');
-};
+// const getAccessToken = () => {
+//   return sessionStorage.getItem('Authorization');
+// };
 
-const getRefreshToken = () => {
-  return sessionStorage.getItem('RefreshToken');
-};
+// const getRefreshToken = () => {
+//   return sessionStorage.getItem('RefreshToken');
+// };
 
 instance.interceptors.request.use(
   (config) => {
-    const accessToken = getAccessToken();
+    // const accessToken = getAccessToken();
 
-    if (!accessToken) {
-      window.location.href = '/unauthorized';
-    }
+    // if (!accessToken) {
+    //   window.location.href = '/unauthorized';
+    // }
 
     config.headers['Content-Type'] = 'application/json';
-    config.headers['Authorization'] = `Bearer ${accessToken}`;
+    // config.headers['Authorization'] = `Bearer ${accessToken}`;
 
     return config;
   },

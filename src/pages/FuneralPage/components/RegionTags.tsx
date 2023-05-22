@@ -1,24 +1,24 @@
 import styled from 'styled-components';
-import EmotionTags from '../../../components/EmotionTags';
+import RegionTag from '../../../components/RegionTag';
 
 const temp = [
-  { name: '전체', isActive: false, tagId: 'ALL' },
-  { name: '서울', isActive: false, tagId: 'ALL' },
-  { name: '경기', isActive: false, tagId: 'ALL' },
-  { name: '경남', isActive: false, tagId: 'ALL' },
-  { name: '경북', isActive: false, tagId: 'ALL' },
-  { name: '울산', isActive: false, tagId: 'ALL' },
-  { name: '충남', isActive: false, tagId: 'ALL' },
-  { name: '충북', isActive: false, tagId: 'ALL' },
-  { name: '인천', isActive: false, tagId: 'ALL' },
-  { name: '강릉', isActive: false, tagId: 'ALL' },
+  { name: '전체', isActive: true, tagId: '전체' },
+  { name: '서울', isActive: false, tagId: '서울' },
+  { name: '경기', isActive: false, tagId: '경기' },
+  { name: '경남', isActive: false, tagId: '경남' },
+  { name: '경북', isActive: false, tagId: '경북' },
+  { name: '울산', isActive: false, tagId: '울산' },
+  { name: '충남', isActive: false, tagId: '충남' },
+  { name: '충북', isActive: false, tagId: '충북' },
+  { name: '인천', isActive: false, tagId: '인천' },
+  { name: '강릉', isActive: false, tagId: '강릉' },
 ];
 
 const RegionTags = () => {
   return (
     <TagsContainer>
       <div className="RegionTagsTitle">장례 정보 알아보기</div>
-      <EmotionTags width="50vw" fontSize={15} temp={temp} />
+      <RegionTag width="50vw" fontSize={15} temp={temp} />
     </TagsContainer>
   );
 };

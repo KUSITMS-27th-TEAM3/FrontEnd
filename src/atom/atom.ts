@@ -19,3 +19,8 @@ export const activeTagAtom = atom<string[]>({
   key: 'emotionTag',
   default: [],
 });
+
+export const activeRegionTagAtom = atom<string[]>({
+  key: 'regionTag',
+  default: ['전체'],
+});

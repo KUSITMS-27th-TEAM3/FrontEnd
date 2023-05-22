@@ -9,7 +9,7 @@ import { activeRegionTagAtom } from '../../../atom/atom';
 import { useRecoilValue } from 'recoil';
 
 export type CardInfo = {
-    imgUrl: string;
+    imgurl: string;
     runtype: string;
     openTime: string;
     closingTime: string;

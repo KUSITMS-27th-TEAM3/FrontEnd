@@ -39,7 +39,7 @@ const SiteCard = ({ card }: SiteCardItems) => {
         <SiteCardContainer>
             <a href={card.url}>
                 <ImgWrapper>
-                    <img src={card.imgUrl} />
+                    <img src={card.imgurl} />
                 </ImgWrapper>
                 <TextWrapper>
                     <div className="content1">

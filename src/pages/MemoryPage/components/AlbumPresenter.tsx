@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AlbumContainer } from './style/AlbumPresenterStyle';
-import type { getAlbumContentType } from '../SharedAlbum/SharedAlbumContainer';
+import { getAlbumContentType } from '../../../type/AlbumType';
 
 type AlbumPresenterProps = {
   albumData: getAlbumContentType[];

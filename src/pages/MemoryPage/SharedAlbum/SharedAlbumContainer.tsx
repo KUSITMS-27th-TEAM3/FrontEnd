@@ -6,14 +6,7 @@ import Spinner from '../../../components/Spinner';
 import { activeTagAtom, sortOptionAtom } from '../../../atom/atom';
 import { useRecoilValue } from 'recoil';
 import { getSharedAlbum } from './SharedAlbumApi';
-
-export type getAlbumContentType = {
-  albumId: number;
-  imageUrl: string;
-  commentCount: number;
-  empathyCount: number;
-  title: string;
-};
+import type { getAlbumContentType } from '../../../type/AlbumType';
 
 const SharedAlbumContainer = () => {
   const [isLoading, setLoading] = useState(true);

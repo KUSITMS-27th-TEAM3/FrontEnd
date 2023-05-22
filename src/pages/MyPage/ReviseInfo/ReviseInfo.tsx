@@ -3,7 +3,6 @@ import Footer from '../../../components/Footer';
 import {
     Title,
     TextForm,
-    ImgForm
 } from './components';
 import styled from 'styled-components';
 

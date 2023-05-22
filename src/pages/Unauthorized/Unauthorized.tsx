@@ -1,6 +1,5 @@
-import { Button } from '@mui/material';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { IconButton, WhiteLink } from '../../components/CommonStyle';
 
 const UnAuthorizedContainer = styled.section`
   display: flex;
@@ -8,6 +7,7 @@ const UnAuthorizedContainer = styled.section`
   height: 100vh;
   justify-content: center;
   align-items: center;
+  font-family: ${({ theme }) => theme.font.family.pretendard_bold};
 `;
 const Header = styled.header`
   font-size: 50px;
@@ -17,12 +17,10 @@ const Header = styled.header`
 const UnAuthorized = () => {
   return (
     <UnAuthorizedContainer>
-      <Header>401 권한이 없습니다</Header>
-      <Button variant="outlined" color="error">
-        <Link to="/" style={{ textDecoration: 'none' }}>
-          Main으로 돌아가기
-        </Link>
-      </Button>
+      <Header>권한이 없습니다 401</Header>
+      <IconButton>
+        <WhiteLink to="/login">로그인 하러 가기</WhiteLink>
+      </IconButton>
     </UnAuthorizedContainer>
   );
 };

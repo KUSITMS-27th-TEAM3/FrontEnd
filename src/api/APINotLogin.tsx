@@ -2,29 +2,26 @@ import axios from 'axios';
 const instance = axios.create();
 
 instance.defaults.withCredentials = true;
-// instance.defaults.headers['Content-Type'] = 'application/json';
-// instance.defaults.headers.common['Authorization'] = localStorage.getItem('Authorization');
 instance.defaults.baseURL = 'http://52.78.181.46';
 
-const getAccessToken = () => {
-  return sessionStorage.getItem('Authorization');
-};
+// const getAccessToken = () => {
+//   return sessionStorage.getItem('Authorization');
+// };
 
-const getRefreshToken = () => {
-  return sessionStorage.getItem('RefreshToken');
-};
+// const getRefreshToken = () => {
+//   return sessionStorage.getItem('RefreshToken');
+// };
 
 instance.interceptors.request.use(
   (config) => {
     // const accessToken = getAccessToken();
-    const accessToken = "eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODQ2NzA2NDYsImV4cCI6MTY4NDY3NDI0Niwic3ViIjoic3Jmc3JmMDEwM0BnbWFpbC5jb20iLCJUT0tFTl9UWVBFIjoiQUNDRVNTX1RPS0VOIn0.w_CaDds0AmLqrsUrMug2Ijj4_IJR-g9mBOJLGFTwvxtVcKbiDIo_OQANZEk1d_CLF5braPldjS1xjvjYpL_VKQ"
 
-    if (!accessToken) {
-      window.location.href = '/unauthorized';
-    }
+    // if (!accessToken) {
+    //   window.location.href = '/unauthorized';
+    // }
 
     config.headers['Content-Type'] = 'application/json';
-    config.headers['Authorization'] = `Bearer ${accessToken}`;
+    // config.headers['Authorization'] = `Bearer ${accessToken}`;
 
     return config;
   },
@@ -95,10 +92,7 @@ const post = async (url: string, post: {}, config: 'imgPost' | null = null) => {
   try {
     if (config === 'imgPost') {
       const result = await instance.post(url, post, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-        transformRequest: (data, headers) => {
-          return data;
-        },
+        headers: { 'Content-Type': `multipart/form-data` },
       });
       return result.data;
     }

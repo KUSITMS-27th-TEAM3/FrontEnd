@@ -4,3 +4,18 @@ export const isUploadAtom = atom<boolean>({
   key: 'isUpload',
   default: false,
 });
+
+export const refetchQuestionsAtom = atom<boolean>({
+  key: 'refetchQuestions',
+  default: false,
+});
+
+export const sortOptionAtom = atom<string>({
+  key: 'sortOption',
+  default: 'DEFAULT',
+});
+
+export const activeTagAtom = atom<string[]>({
+  key: 'emotionTag',
+  default: [],
+});

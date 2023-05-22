@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { IconButton, WhiteLink } from '../../components/CommonStyle';
+import { IconButton, WhiteLink } from '../../../../components/CommonStyle';
 
-const NotFoundContainer = styled.section`
+const NoAlbumContainer = styled.section`
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -14,15 +14,15 @@ const Header = styled.header`
   margin-bottom: 50px;
 `;
 
-const NotFound = () => {
+const NoAlbum = () => {
   return (
-    <NotFoundContainer>
-      <Header>Page Not Found 404</Header>
+    <NoAlbumContainer>
+      <Header>앨범이 없습니다</Header>
       <IconButton>
-        <WhiteLink to="/">메인으로 돌아가기 </WhiteLink>
+        <WhiteLink to="/writeAlbum">앨범쓰러 가기</WhiteLink>
       </IconButton>
-    </NotFoundContainer>
+    </NoAlbumContainer>
   );
 };
 
-export default NotFound;
+export default NoAlbum;

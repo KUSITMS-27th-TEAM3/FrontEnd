@@ -3,16 +3,25 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { FormControl, MenuItem, Select, SelectChangeEvent, useMediaQuery } from '@mui/material';
 import { BlackLink, IconButton } from '../../../components/CommonStyle';
 import * as S from './style/MemoryNavStyle';
+import { useRecoilState } from 'recoil';
+import { sortOptionAtom } from '../../../atom/atom';
+
+const sortOptionData = [
+  { value: 'DEFAULT', name: '정렬방식선택' },
+  { value: 'EMPATHY', name: '공감순' },
+  { value: 'COMMENT', name: '댓글순' },
+];
 
 function MemoryNav() {
   const [activeNum, setActiveNum] = useState(1);
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const [age, setAge] = useState<string | number>('');
+  const [sortOption, setSortOption] = useRecoilState(sortOptionAtom);
   const isResponsive = useMediaQuery('(max-width: 1024px)');
+  const [sortOptionList, setSortOptionList] = useState(sortOptionData);
 
-  const handleChange = (event: SelectChangeEvent<typeof age>) => {
-    setAge(event.target.value);
+  const handleChange = (e: SelectChangeEvent) => {
+    setSortOption(e.target.value);
   };
 
   const handleToWrite = (e: React.MouseEvent) => {
@@ -30,14 +39,15 @@ function MemoryNav() {
   };
 
   useEffect(() => {
-    if (pathname === '/memory') {
-      setActiveNum(0);
-    } else if (pathname === '/memory/sharedAlbum') {
+    if (pathname === '/memory/sharedAlbum') {
       setActiveNum(1);
+      setSortOptionList(sortOptionData);
     } else if (pathname === '/memory/myAlbum') {
       setActiveNum(2);
+      setSortOptionList(sortOptionData);
     } else if (pathname === '/memory/question') {
       setActiveNum(3);
+      setSortOptionList(sortOptionData.slice(0, 1));
     }
   }, [pathname]);
 
@@ -81,23 +91,22 @@ function MemoryNav() {
           sx={{ fontFamily: 'Pretendard Medium' }}
         >
           <Select
-            value={age}
+            value={sortOption}
             onChange={handleChange}
             className="nav_select"
-            sx={{ fontFamily: 'Pretendard Medium' }}
+            sx={{
+              fontFamily: 'Pretendard Medium',
+              textAlign: 'center',
+              backgroundColor: '#F4F4F4',
+              border: 0,
+            }}
+            displayEmpty
           >
-            <MenuItem value="정렬방식선택" sx={{ fontFamily: 'Pretendard Medium' }}>
-              정렬방식선택
-            </MenuItem>
-            <MenuItem value={10} sx={{ fontFamily: 'Pretendard Medium' }}>
-              Ten
-            </MenuItem>
-            <MenuItem value={20} sx={{ fontFamily: 'Pretendard Medium' }}>
-              Twenty
-            </MenuItem>
-            <MenuItem value={30} sx={{ fontFamily: 'Pretendard Medium' }}>
-              Thirty
-            </MenuItem>
+            {sortOptionList.map(({ value, name }) => (
+              <MenuItem value={value} sx={{ fontFamily: 'Pretendard Medium' }} key={value}>
+                {name}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
         <IconButton

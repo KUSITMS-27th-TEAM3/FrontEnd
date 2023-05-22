@@ -8,6 +8,7 @@ const UnAuthorizedContainer = styled.section`
   height: 100vh;
   justify-content: center;
   align-items: center;
+  font-family: ${({ theme }) => theme.font.family.pretendard_bold};
 `;
 const Header = styled.header`
   font-size: 50px;
@@ -19,8 +20,8 @@ const UnAuthorized = () => {
     <UnAuthorizedContainer>
       <Header>401 권한이 없습니다</Header>
       <Button variant="outlined" color="error">
-        <Link to="/" style={{ textDecoration: 'none' }}>
-          Main으로 돌아가기
+        <Link to="/login" style={{ textDecoration: 'none', fontFamily: 'Pretendard Bold' }}>
+          Login 하러가기
         </Link>
       </Button>
     </UnAuthorizedContainer>

@@ -8,6 +8,7 @@ const NotFoundContainer = styled.section`
   height: 100vh;
   justify-content: center;
   align-items: center;
+  font-family: ${({ theme }) => theme.font.family.pretendard_bold};
 `;
 const Header = styled.header`
   font-size: 50px;
@@ -19,7 +20,7 @@ const NotFound = () => {
     <NotFoundContainer>
       <Header>Page Not Found 404</Header>
       <Button variant="outlined" color="error">
-        <Link to="/" style={{ textDecoration: 'none' }}>
+        <Link to="/" style={{ textDecoration: 'none', fontFamily: 'Pretendard Bold' }}>
           Main으로 돌아가기
         </Link>
       </Button>

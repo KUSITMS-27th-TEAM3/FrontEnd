@@ -20,7 +20,6 @@ const ReviseInfo = () => {
             <Navbar />
             <Title />
             <TextForm />
-            {/* <ImgForm /> */}
             <Footer />
         </RevisePageContainer>
     )

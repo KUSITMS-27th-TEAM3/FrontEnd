@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { activeTagAtom } from '../atom/atom';
+import { useRecoilState } from 'recoil';
 
 type TagButtonProps = {
   fontSize: number;
@@ -50,20 +52,8 @@ const EmotionContainer = styled.div<EmotionContainerProps>`
 type Tag = {
   name: string;
   isActive: boolean;
+  tagId: string;
 };
-
-const temp = [
-  { name: ' 아늑함', isActive: false },
-  { name: '행복함', isActive: false },
-  { name: '즐거움', isActive: false },
-  { name: '그리움', isActive: false },
-  { name: '감동적', isActive: false },
-  { name: '편안함', isActive: false },
-  { name: '유쾌함', isActive: false },
-  { name: '자랑스러움', isActive: false },
-  { name: '외로움', isActive: false },
-  { name: '사랑스러움', isActive: false },
-];
 
 type EmotionTagsProps = {
   width: string;
@@ -74,41 +64,42 @@ type EmotionTagsProps = {
 
 const EmotionTags = ({ width, isMargin, fontSize, temp }: EmotionTagsProps) => {
   const [tags, setTags] = useState<Tag[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [activeTags, setActiveTags] = useRecoilState(activeTagAtom);
 
   const handleTagActive = (e: React.MouseEvent<HTMLButtonElement>) => {
     const targetIdx = Number(e.currentTarget.id);
     setTags((current) =>
-      current.map(({ name, isActive }, idx) => {
+      current.map(({ name, isActive, tagId }, idx) => {
         if (targetIdx === idx) {
-          return { name, isActive: !isActive };
-        } else return { name, isActive };
+          return { name, isActive: !isActive, tagId };
+        } else return { name, isActive, tagId };
       }),
     );
   };
 
   useEffect(() => {
     setTags([...temp]);
-    setLoading(false);
   }, []);
+
+  useEffect(() => {
+    setActiveTags(tags.filter((tag) => tag.isActive).map((tag) => tag.tagId));
+  }, [tags]);
+
+  console.log(activeTags);
 
   return (
     <EmotionContainer width={width} isMargin={isMargin}>
-      {loading ? (
-        <></>
-      ) : (
-        tags.map(({ name, isActive }, idx) => (
-          <TagButton
-            className={isActive ? 'active' : ''}
-            key={`${name}${idx}`}
-            id={idx.toString()}
-            onClick={handleTagActive}
-            fontSize={fontSize}
-          >
-            {name}
-          </TagButton>
-        ))
-      )}
+      {tags.map(({ name, isActive }, idx) => (
+        <TagButton
+          className={isActive ? 'active' : ''}
+          key={`${name}${idx}`}
+          id={idx.toString()}
+          onClick={handleTagActive}
+          fontSize={fontSize}
+        >
+          {name}
+        </TagButton>
+      ))}
     </EmotionContainer>
   );
 };

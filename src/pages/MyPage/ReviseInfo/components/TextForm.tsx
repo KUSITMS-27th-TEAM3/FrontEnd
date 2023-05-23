@@ -41,11 +41,11 @@ const TextForm = () => {
         setSelectedFileName1('');
         setSelectedFileName2('');
 
-        fileInputRefs.forEach((ref) => {
-            if (ref.current) {
-                ref.current.value = ''; // Reset the file input value
-            }
-        });
+        //     fileInputRefs.forEach((ref) => {
+        //         if (ref.current) {
+        //             ref.current.value = ''; // Reset the file input value
+        //         }
+        // });
     }
 
     const [submitButtonClicked, setSubmitButtonClicked] = useState(false);
@@ -75,8 +75,6 @@ const TextForm = () => {
             const response = await API.post("/user/mypet", formData, 'imgPost');
             console.log(response);
             alert('수정되었습니다!');
-            handleCancel();
-        } else {
             handleCancel();
         }
     }

@@ -41,39 +41,68 @@ const NavBarContainer = styled.nav`
 const BIContainer = styled.div``;
 
 const NavBar = () => {
-  let Authorization = localStorage.getItem("Authorization");
-  let RefreshToken = localStorage.getItem("RefreshToken");
+  // let Authorization = sessionStorage.getItem("Authorization");
+  // let RefreshToken = sessionStorage.getItem("RefreshToken");
 
-  let toValue = "/";
-  if (Authorization && RefreshToken) {
-    toValue = `/main?Authorization=${Authorization}&RefreshToken=${RefreshToken}`
+  // let toValue = "/";
+  // if (Authorization && RefreshToken) {
+  //   toValue = `/main?Authorization=${Authorization}&RefreshToken=${RefreshToken}`
+  // }
+
+  const accessToken = sessionStorage.getItem('Authorization');
+
+  if (accessToken) {
+    return (
+      <NavBarContainer>
+        <BIContainer>
+          <WhiteLink to='/'>
+            <img src="/img/BI2.svg" alt="logo" />
+          </WhiteLink>
+        </BIContainer>
+        <LinkContainer>
+          <WhiteLink to="/memory/sharedAlbum">
+            <button>추억기록</button>
+          </WhiteLink>
+          <span> | </span>
+          <WhiteLink to="/funeral">
+            <button>장례정보</button>
+          </WhiteLink>
+          <span> | </span>
+          <WhiteLink to="/mypage">
+            <button>마이페이지</button>
+          </WhiteLink>
+        </LinkContainer>
+      </NavBarContainer>
+    );
+  } else {
+    return (
+      <NavBarContainer>
+        <BIContainer>
+          <WhiteLink to='/'>
+            <img src="/img/BI2.svg" alt="logo" />
+          </WhiteLink>
+        </BIContainer>
+        <LinkContainer>
+          <WhiteLink to="/memory/sharedAlbum">
+            <button>추억기록</button>
+          </WhiteLink>
+          <span> | </span>
+          <WhiteLink to="/funeral">
+            <button>장례정보</button>
+          </WhiteLink>
+          <span> | </span>
+          <WhiteLink to="/login">
+            <button>로그인</button>
+          </WhiteLink>
+          <span> | </span>
+          <WhiteLink to="/mypage">
+            <button>마이페이지</button>
+          </WhiteLink>
+        </LinkContainer>
+      </NavBarContainer>
+    );
   }
-  return (
-    <NavBarContainer>
-      <BIContainer>
-        <WhiteLink to={toValue}>
-          <img src="/img/BI2.svg" alt="logo" />
-        </WhiteLink>
-      </BIContainer>
-      <LinkContainer>
-        <WhiteLink to="/memory/sharedAlbum">
-          <button>추억기록</button>
-        </WhiteLink>
-        <span> | </span>
-        <WhiteLink to="/funeral">
-          <button>장례정보</button>
-        </WhiteLink>
-        <span> | </span>
-        <WhiteLink to="/login">
-          <button>로그인</button>
-        </WhiteLink>
-        <span> | </span>
-        <WhiteLink to="/mypage">
-          <button>마이페이지</button>
-        </WhiteLink>
-      </LinkContainer>
-    </NavBarContainer>
-  );
+
 };
 
 export default NavBar;

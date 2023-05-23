@@ -20,7 +20,13 @@ const TextContent = ({ handleRevise, handleDelete, detailInfo }: TextContentProp
   return (
     <>
       <S.FlexBox>
-        <img src={detailInfo.writerProfileImageUrl} alt="AlbumImg" className="profileImg" />
+        <img
+          src={
+            detailInfo.writerProfileImageUrl ? detailInfo.writerProfileImageUrl : '/img/default.png'
+          }
+          alt="AlbumImg"
+          className="profileImg"
+        />
         <div>
           <div className="userName">{detailInfo.writer}</div>
           <div className="subName">{detailInfo.petName}</div>

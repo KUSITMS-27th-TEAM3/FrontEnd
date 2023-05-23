@@ -84,10 +84,20 @@ const MemoryDetailContainer = () => {
           handleDelete={handleDelete}
           detailInfo={detailInfo}
         />
-        <InputForm />
+        <InputForm
+          albumId={albumId}
+          accessUserProfileImageUrl={detailInfo.accessUserProfileImageUrl}
+        />
         <S.CommentBox>
           {commentList.length !== 0 ? (
-            commentList.map((comment) => <CommentList comment={comment} key={comment.commentId} />)
+            commentList.map((comment) => (
+              <CommentList
+                comment={comment}
+                key={comment.commentId}
+                albumId={albumId}
+                accessUserProfileImageUrl={detailInfo.accessUserProfileImageUrl}
+              />
+            ))
           ) : (
             <div className="nocontent">댓글이 없습니다</div>
           )}

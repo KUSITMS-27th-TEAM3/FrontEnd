@@ -14,6 +14,7 @@ export const DetailBox = styled.div`
   .nocontent {
     font-family: ${({ theme }) => theme.font.family.gmarketSans_medium};
     font-size: 20px;
+    margin-top: 20px;
   }
 `;
 

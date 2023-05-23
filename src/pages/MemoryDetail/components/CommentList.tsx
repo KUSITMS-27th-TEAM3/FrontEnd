@@ -37,17 +37,11 @@ const ReplyCommentWrapper = styled.div``;
 
 type CommentListProps = {
   comment: CommentType;
+  albumId: string | undefined;
+  accessUserProfileImageUrl: string | null;
 };
 
-const tempReply = {
-  name: '이수빈',
-  content:
-    '득근합시다득근합시다득근합시다득근합시다득근합시다득근합시다득근합시다득근합시다득근합시다득근합시다득근합시다득근합시다득근합시다득근합시다.',
-};
-
-const tempReplyArr = [tempReply, tempReply, tempReply];
-
-const CommentList = ({ comment }: CommentListProps) => {
+const CommentList = ({ comment, albumId, accessUserProfileImageUrl }: CommentListProps) => {
   const [showReply, setShowReply] = useState(false);
 
   const handleShowReply = () => {
@@ -56,7 +50,11 @@ const CommentList = ({ comment }: CommentListProps) => {
 
   return (
     <CommentWrapper>
-      <img src={comment.writerProfileImageUrl} alt="AlbumImg" className="profileImg" />
+      <img
+        src={comment.writerProfileImageUrl ? comment.writerProfileImageUrl : '/img/default.png'}
+        alt="AlbumImg"
+        className="profileImg"
+      />
       <div className="commnetBox">
         <div className="userName">{comment.writer}</div>
         <div className="contentBox_content">{comment.description}</div>
@@ -74,7 +72,11 @@ const CommentList = ({ comment }: CommentListProps) => {
               ) : (
                 <div className="nocontent">댓글이 없습니다.</div>
               )}
-              <InputForm />
+              <InputForm
+                albumId={albumId}
+                commentId={comment.commentId}
+                accessUserProfileImageUrl={accessUserProfileImageUrl}
+              />
             </ReplyCommentWrapper>
           </>
         )}

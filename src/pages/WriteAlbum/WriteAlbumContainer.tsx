@@ -6,6 +6,8 @@ import { ContentForm, EmotionForm, RadioForm, TitleForm, ImageUpload } from './c
 import { activeTagAtom, isUploadAtom } from '../../atom/atom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { postAlbum } from './WriteAlbumApi';
+import { useNavigate } from 'react-router-dom';
+import { isAlbumDetail } from '../../type/AlbumType';
 
 const WriteAlbumWrapper = styled(FlexContainer)``;
 
@@ -17,6 +19,7 @@ const WriteAlbumContainer = () => {
   const setIsUpload = useSetRecoilState(isUploadAtom);
   const [albumImages, setAlbumImages] = useState<File | null>(null);
   const emotionTagList = useRecoilValue(activeTagAtom);
+  const navigate = useNavigate();
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value);
@@ -38,7 +41,7 @@ const WriteAlbumContainer = () => {
     setAlbumImages(file);
   };
 
-  const handleUpload = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleUpload = async (e: React.MouseEvent<HTMLButtonElement>) => {
     const sendData = {
       title,
       description,
@@ -46,10 +49,12 @@ const WriteAlbumContainer = () => {
       emotionTagList,
     };
 
-    const res = postAlbum(sendData, albumImages);
+    const res = await postAlbum(sendData, albumImages);
+    console.log('res', res);
 
-    if (!res) {
+    if (isAlbumDetail(res)) {
       alert('앨범을 업로드했습니다.');
+      navigate('/memory/myAlbum');
     }
   };
 

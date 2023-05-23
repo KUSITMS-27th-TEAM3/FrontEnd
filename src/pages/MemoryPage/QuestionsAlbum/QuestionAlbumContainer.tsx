@@ -5,14 +5,14 @@ import AlbumButton from '../components/AlbumButton';
 import { getQuestion } from './QuestionAlbumApi';
 import QuestionAlbumPresenter from './QuestionAlbumPresenter';
 import { useRecoilState } from 'recoil';
-import { refetchQuestionsAtom } from '../../../atom/atom';
+import { refetchAtom } from '../../../atom/atom';
 
 const QuestionAlbumContainer = () => {
   const [isLoading, setLoading] = useState<boolean>(true);
   const [questionList, setQuestionList] = useState<QuestionContent[]>([]);
   const [page, setPage] = useState<number>(0);
   const [hasNext, setHasNext] = useState<boolean>(false);
-  const [refetch, setRefetch] = useRecoilState<boolean>(refetchQuestionsAtom);
+  const [refetch, setRefetch] = useRecoilState<boolean>(refetchAtom);
 
   const handleClick = () => {
     if (!hasNext) {

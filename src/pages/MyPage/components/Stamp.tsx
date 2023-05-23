@@ -4,17 +4,24 @@ import * as API from '../../../api/API';
 import { useEffect, useState } from 'react';
 import Spinner from "../../../components/Spinner";
 
+export type StampInfo = {
+    stampId: number;
+    imageUrl: string;
+}
+
 const Stamp = () => {
+    const [stamp, setStamp] = useState<StampInfo[]>([]);
+    const [isLoading, setLoading] = useState(true);
 
     const getStamp = async () => {
         const data = await API.get('/grid/stamp');
-        // console.log(data);
+        setStamp(data.content);
+        setLoading(false);
     }
 
     useEffect(() => {
         getStamp();
     }, []);
-
     const horizontalScrollRef = useRef<HTMLDivElement>(null);
 
     const handleNextButtonClick = (nextType: 'prev' | 'next') => {
@@ -31,11 +38,10 @@ const Stamp = () => {
             });
         }
     };
-
     const handlePrevButton = () => handleNextButtonClick('prev');
     const handleNextButton = () => handleNextButtonClick('next');
 
-    const VISIBLE_STAMP = "/img/visibleStamp.svg";
+    const VISIBLE_STAMP = "/img/마이페이지배경.jpg";
     const NONVISIBLE_STAMP = "/img/nonVisibleStamp.svg";
 
     return (
@@ -46,18 +52,17 @@ const Stamp = () => {
                     <button onClick={handlePrevButton}>
                         <img src="/img/CircleLeft.svg"></img>
                     </button>
+
                     <ContentStamp ref={horizontalScrollRef}>
-                        <img src={VISIBLE_STAMP} />
-                        <img src={VISIBLE_STAMP} />
-                        <img src={VISIBLE_STAMP} />
-                        <img src={NONVISIBLE_STAMP} />
-                        <img src={NONVISIBLE_STAMP} />
-                        <img src={NONVISIBLE_STAMP} />
-                        <img src={NONVISIBLE_STAMP} />
-                        <img src={NONVISIBLE_STAMP} />
-                        <img src={NONVISIBLE_STAMP} />
-                        <img src={NONVISIBLE_STAMP} />
+                        {stamp.map((item) => (
+                            <img src={`${item.imageUrl}`} className={`${item.stampId ? 'visible' : 'nonvisible'}`} />
+                        ))}
+                        <img src={NONVISIBLE_STAMP} className="nonvisible" />
+                        <img src={NONVISIBLE_STAMP} className="nonvisible" />
+                        <img src={NONVISIBLE_STAMP} className="nonvisible" />
+                        <img src={NONVISIBLE_STAMP} className="nonvisible" />
                     </ContentStamp>
+
                     <button onClick={handleNextButton}>
                         <img src="/img/CircleRight.svg"></img>
                     </button>
@@ -104,6 +109,9 @@ const ContentWrapper = styled.div`
 const BtnStamp = styled.div`
     display : flex;
     justify-content : space-between;
+    align-items: center;
+    width : 100%;
+    height : 80%;
 `
 const ContentStamp = styled.div`
     width: 80%;   
@@ -112,11 +120,27 @@ const ContentStamp = styled.div`
     justify-content: space-between;
     align-items: center;
     overflow-x: auto;
-    gap : 15px;
-    img {
-        width: 21%;
-        height: auto;
-        object-fit: contain;
+    gap : 20px;
+
+    img.visible {
+        width: 20%;
+        height: 90%;
+        object-fit: cover;
         flex-shrink: 0;
+        border-radius : 50%;
+        padding : 2px;
+        position : relative;
+        z-index : 100;
+        border : 3px solid ${(props) => props.theme.color.main.orange};
+    }
+    img.nonvisible {
+        width: 20%;
+        height: 90%;
+        object-fit: cover;
+        flex-shrink: 0;
+        border-radius : 50%;
+        padding : 2px;
+        position : relative;
+        z-index : 100;
     }
 `;

@@ -1,5 +1,82 @@
 import styled from 'styled-components';
 import { useLocation, useNavigate } from 'react-router-dom';
+import * as API from '../../../api/API';
+import { useEffect, useState } from 'react';
+import Spinner from "../../../components/Spinner";
+
+export type ProfileInfo = {
+    petName: string;
+    userNickname: string;
+    profileImageUrl: string;
+    description: string;
+    petAge: number;
+    petType: string;
+};
+
+const Profile = () => {
+    const [profile, setProfile] = useState<ProfileInfo | null>(null); // Change initial state to null
+    const [isLoading, setLoading] = useState(true);
+
+    const getProfile = async () => {
+        const data = await API.get('/user/mypet');
+        setProfile(data);
+        setLoading(false);
+    };
+
+    useEffect(() => {
+        getProfile();
+    }, []);
+
+    const navigate = useNavigate();
+    const handleToRevise = (e: React.MouseEvent) => {
+        navigate('/ReviseInfo');
+    };
+
+
+    if (isLoading) {
+        return <Spinner />; // Display a spinner or loading indicator while fetching data
+    }
+
+    if (!profile) {
+        return <div>No profile data found.</div>; // Display a message if profile data is empty
+    }
+
+
+    return (
+        <ContentWrapper>
+            <Blur>
+                <img src="img/BlurRectangle.svg" />
+            </Blur>
+            <ProfileBackImg>
+                <img src={`${profile.profileImageUrl}`} alt="배경사진" />
+            </ProfileBackImg>
+            <ProfileWrapper>
+                <ProfileImg>
+                    <img src={`${profile.profileImageUrl}`} alt="프로필사진" />
+                </ProfileImg>
+
+                <ProfileInfo>
+                    <div className='MyPet'>My Pet</div>
+                    {/* <div className='petName'>{`${profile.userNickname}의 ${profile.petName}`}</div> */}
+                    <div className='petName'>
+                        <span className="front">{profile.userNickname}의 </span>
+                        <span className='back'>{profile.petName}</span>
+                    </div>
+
+                    <div className='petSubTitle'>{profile.description}</div>
+                    <div className='info'>
+                        <div className='subInfo'>{profile.petType}</div>
+                        <div className='subInfo'>{`${profile.petAge} 세`}</div>
+
+                    </div>
+                    <button onClick={handleToRevise}><img src="/img/setUP.svg" alt="setUpIcon" />수정하기</button>
+                </ProfileInfo>
+
+            </ProfileWrapper>
+        </ContentWrapper>
+    )
+}
+export default Profile;
 
 const ContentWrapper = styled.div`
 width : 100%;
@@ -56,6 +133,10 @@ const ProfileInfo = styled.div`
         font-size : 2vw;
         color : ${(props) => props.theme.color.main.orange};
         font-family: ${(props) => props.theme.font.family.pretendard_bold};
+
+        span.front { 
+            color: white;
+        }
     }
     div.petSubTitle {
         margin-bottom: 1.5vw;
@@ -111,40 +192,3 @@ img {
     height : 100%;
 }
 `
-
-const Profile = () => {
-
-    const navigate = useNavigate();
-    const handleToRevise = (e: React.MouseEvent) => {
-        navigate('/ReviseInfo');
-    };
-
-    const petInfo = ['강아지 품종', '강아지 별명', '강아지 나이']
-    return (
-        <ContentWrapper>
-            <Blur>
-                <img src="img/BlurRectangle.svg" />
-            </Blur>
-            <ProfileBackImg>
-                <img src="img/마이페이지배경.jpg" alt="배경사진" />
-            </ProfileBackImg>
-            <ProfileWrapper>
-                <ProfileImg>
-                    <img src="img/마이페이지배경.jpg" alt="프로필사진" />
-                </ProfileImg>
-                <ProfileInfo>
-                    <div className='MyPet'>My Pet</div>
-                    <div className='petName'>라이카</div>
-                    <div className='petSubTitle'>라이카는 참 순하고 얌전한 아이였어요</div>
-                    <div className='info'>
-                        {petInfo.map((item, index) => (
-                            <div className='subInfo' key={index}>{item}</div>
-                        ))}
-                    </div>
-                    <button onClick={handleToRevise}><img src="/img/setUP.svg" alt="setUpIcon" />수정하기</button>
-                </ProfileInfo>
-            </ProfileWrapper>
-        </ContentWrapper>
-    )
-}
-export default Profile;

@@ -5,8 +5,8 @@ export const isUploadAtom = atom<boolean>({
   default: false,
 });
 
-export const refetchQuestionsAtom = atom<boolean>({
-  key: 'refetchQuestions',
+export const refetchAtom = atom<boolean>({
+  key: 'refetch',
   default: false,
 });
 
@@ -18,4 +18,9 @@ export const sortOptionAtom = atom<string>({
 export const activeTagAtom = atom<string[]>({
   key: 'emotionTag',
   default: [],
+});
+
+export const activeRegionTagAtom = atom<string[]>({
+  key: 'regionTag',
+  default: ['전체'],
 });

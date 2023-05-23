@@ -17,6 +17,7 @@ const getRefreshToken = () => {
 instance.interceptors.request.use(
   (config) => {
     const accessToken = getAccessToken();
+    // const accessToken = "eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODQ2NzA2NDYsImV4cCI6MTY4NDY3NDI0Niwic3ViIjoic3Jmc3JmMDEwM0BnbWFpbC5jb20iLCJUT0tFTl9UWVBFIjoiQUNDRVNTX1RPS0VOIn0.w_CaDds0AmLqrsUrMug2Ijj4_IJR-g9mBOJLGFTwvxtVcKbiDIo_OQANZEk1d_CLF5braPldjS1xjvjYpL_VKQ"
 
     if (!accessToken) {
       window.location.href = '/unauthorized';
@@ -94,13 +95,17 @@ const post = async (url: string, post: {}, config: 'imgPost' | null = null) => {
   try {
     if (config === 'imgPost') {
       const result = await instance.post(url, post, {
-        headers: { 'Content-Type': `multipart/form-data` },
+        headers: { 'Content-Type': 'multipart/form-data' },
+        transformRequest: (data, headers) => {
+          return data;
+        },
       });
       return result.data;
     }
     const result = await instance.post(url, post);
     return result.data;
   } catch (error) {
+    console.log(error);
     if (error instanceof Error)
       throw new Error(`문제가 발생하였습니다. 확인 후 다시 시도해 주세요: ${error.message}`);
   }

@@ -13,16 +13,16 @@ const SiteCard = ({ card }: SiteCardItems) => {
 
     useEffect(() => {
         const checkColor = () => {
-            if (card.region === "서울") {
+            if (card.area === "서울") {
                 setHourBg("rgb(255,175,11)");
                 setRegionBg("rgb(255,231,182)");
-            } else if (card.region === "경기") {
+            } else if (card.area === "경기") {
                 setHourBg("rgb(1,193,235)");
                 setRegionBg("rgb(202,239,247)");
-            } else if (card.region === "경남") {
+            } else if (card.area === "경남") {
                 setHourBg("rgb(52,208,74)");
                 setRegionBg("rgb(194,255,203)");
-            } else if (card.region === "경북" || "울산" || "충남" || "충북" || "인천" || "강릉") {
+            } else if (card.area === "경북" || "울산" || "충남" || "충북" || "인천" || "강릉") {
                 setHourBg("rgb(117,144,182)");
                 setRegionBg("rgb(217,225,236)");
             } else {
@@ -31,7 +31,7 @@ const SiteCard = ({ card }: SiteCardItems) => {
             }
         }
         checkColor();
-    }, [card.region]);
+    }, [card.address]);
 
 
     return (
@@ -39,21 +39,21 @@ const SiteCard = ({ card }: SiteCardItems) => {
         <SiteCardContainer>
             <a href={card.url}>
                 <ImgWrapper>
-                    <img src={card.imgUrl} />
+                    <img src={card.imgurl} />
                 </ImgWrapper>
                 <TextWrapper>
                     <div className="content1">
-                        <div className="hour" style={{ backgroundColor: hourBg }}>{card.hour}</div>
-                        <div className="region" style={{ backgroundColor: regionBg, color: hourBg }}>{card.region}</div>
+                        <div className="hour" style={{ backgroundColor: hourBg }}>{card.runtype === 'FULL_TIME' ? '24시간' : `${card.openTime} - ${card.closingTime}`}</div>
+                        <div className="region" style={{ backgroundColor: regionBg, color: hourBg }}>{card.area}</div>
                     </div>
 
                     <div className="content2">
-                        <div className="name">{card.name}</div>
+                        <div className="name">{card.shopName}</div>
                     </div>
 
                     <div className="content3">
-                        <div className="location">{card.location}</div>
-                        <div className="telephone">{card.telephone}</div>
+                        <div className="location">{card.address}</div>
+                        <div className="telephone">{card.phoneNumber}</div>
                     </div>
                 </TextWrapper>
             </a>

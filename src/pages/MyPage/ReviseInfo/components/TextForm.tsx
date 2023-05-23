@@ -1,6 +1,7 @@
-import React, { useState, useRef, ChangeEvent, useCallback } from 'react';
+import React, { useState, useEffect, useRef, ChangeEvent, useCallback } from 'react';
 import styled from "styled-components";
 import { IconButton } from '../../../../components/CommonStyle';
+import * as API from '../../../../api/API';
 
 const TextForm = () => {
     const [id, setId] = useState('');
@@ -8,47 +9,26 @@ const TextForm = () => {
     const [breed, setBreed] = useState('');
     const [age, setAge] = useState('');
     const [nickname, setNickname] = useState('');
-    const [profileImg, setProfileImg] = useState('');
-    const [mypetImg, setMypetImg] = useState('');
+    const [profileImage, setProfileImage] = useState<File | null>(null);
+    const [petImage, setPetImage] = useState<File | null>(null);
 
-    const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-    const handleFileChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const fileInputRefs = [
+        useRef<HTMLInputElement | null>(null),
+        useRef<HTMLInputElement | null>(null)
+    ];
+
+    const [selectedFileName1, setSelectedFileName1] = useState('');
+    const [selectedFileName2, setSelectedFileName2] = useState('');
+
+    const handleFileChange = useCallback((e: React.ChangeEvent<HTMLInputElement>, setState: React.Dispatch<React.SetStateAction<File | null>>, setNameState: React.Dispatch<React.SetStateAction<string>>) => {
         if (!e.target.files) {
             return;
         }
-        console.log(e.target.files[0]);
-
-        const file = e.target.files[0];
-
-        const formData = new FormData();
-        formData.append('file', file);
-        // formData 서버로 전송
-        // axios.post('/upload', formData);
-        console.log(formData);
+        const uploadImg = e.target.files[0];
+        setNameState(uploadImg.name);
+        setState(uploadImg);
     }, []);
-
-    const handleClick = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
-        if (!fileInputRef.current) {
-            return;
-        }
-        fileInputRef.current.click();
-    }, []);
-
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        console.log('아이디', id);
-        console.log('마이펫 한 줄 설명', subInfo);
-        console.log('품종', breed);
-        console.log('나이', age);
-        console.log('별명', nickname);
-        console.log('프로필 사진', profileImg);
-        console.log('마이펫 사진', mypetImg);
-
-        handleCancel();
-
-    }
 
     const handleCancel = () => {
         setId('');
@@ -56,29 +36,74 @@ const TextForm = () => {
         setBreed('');
         setAge('');
         setNickname('');
-        setProfileImg('');
-        setMypetImg('');
+        setProfileImage(null);
+        setPetImage(null);
+        setSelectedFileName1('');
+        setSelectedFileName2('');
+
+        fileInputRefs.forEach((ref) => {
+            if (ref.current) {
+                ref.current.value = ''; // Reset the file input value
+            }
+        });
     }
 
+    const [submitButtonClicked, setSubmitButtonClicked] = useState(false);
+    const handleCancelButtonClick = () => {
+        setSubmitButtonClicked(false);
+        handleCancel();
+    };
+
+    const handleFormSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (submitButtonClicked) {
+            const formData = new FormData();
+
+            formData.append('petName', nickname);
+            formData.append('description', subInfo);
+            formData.append('petAge', age);
+            formData.append('petType', breed);
+            formData.append('userNickname', id);
+            if (petImage) {
+                formData.append('petImage', petImage);
+            }
+            if (profileImage) {
+                formData.append('profileImage', profileImage);
+            }
+
+            const response = await API.post("/user/mypet", formData, 'imgPost');
+            console.log(response);
+            alert('수정되었습니다!');
+            handleCancel();
+        } else {
+            handleCancel();
+        }
+    }
+
+    const handleSubmitButtonClick = () => {
+        setSubmitButtonClicked(true);
+    };
+
     const TextInfo: { name: string; state: [string, React.Dispatch<React.SetStateAction<string>>]; placeholder: string; }[] = [
-        { name: "아이디", state: [id, setId], placeholder: "아이디를 수정해주세요." },
+        { name: "닉네임", state: [id, setId], placeholder: "아이디를 수정해주세요." },
+        { name: "마이펫 이름", state: [nickname, setNickname], placeholder: "마이펫 이름을 적어주세요.." },
         { name: "마이펫 한 줄 설명", state: [subInfo, setSubInfo], placeholder: "한 줄 설명을 적어주세요." },
         { name: "품종", state: [breed, setBreed], placeholder: "품종을 입력해주세요." },
         { name: "나이", state: [age, setAge], placeholder: "나이를 입력해주세요." },
-        { name: "별명", state: [nickname, setNickname], placeholder: "별명을 입력해주세요." }
     ]
 
-    const ImgInfo: { name: string; state: [string, React.Dispatch<React.SetStateAction<string>>]; placeholder: string; }[] = [
-        { name: "프로필 사진", state: [profileImg, setProfileImg], placeholder: "프로필 사진을 첨부하세요." },
-        { name: "마이펫 사진", state: [mypetImg, setMypetImg], placeholder: "마이펫 사진을 첨부하세요." }
+    const ImgInfo: { name: string; state: [File | null, React.Dispatch<React.SetStateAction<File | null>>]; stateName: [string, React.Dispatch<React.SetStateAction<string>>]; placeholder: string; }[] = [
+        { name: "프로필 사진", state: [profileImage, setProfileImage], stateName: [selectedFileName1, setSelectedFileName1], placeholder: "프로필 사진을 첨부하세요." },
+        { name: "마이펫 사진", state: [petImage, setPetImage], stateName: [selectedFileName2, setSelectedFileName2], placeholder: "마이펫 사진을 첨부하세요." }
     ]
 
     return (
         <TextFormContainer>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleFormSubmit}>
                 {TextInfo.map((items, idx) =>
                     <FormWrapper key={idx}>
-                        <div>{items.name}</div>
+                        <div className="title">{items.name}</div>
                         <input className='textInput'
                             type="text"
                             value={items.state[0]}
@@ -91,27 +116,36 @@ const TextForm = () => {
 
                 {ImgInfo.map((items, idx) =>
                     <FormWrapper key={idx}>
-                        <div>{items.name}</div>
+                        <div className="title">{items.name}</div>
                         <input className='imgInput'
                             type="file"
                             accept="image/*"
-                            value={items.state[0]}
-                            placeholder={items.placeholder}
-                            ref={fileInputRef}
+                            // value={items.state[0]}
+                            ref={fileInputRefs[idx]}
+                            style={{ display: 'none' }}
                             onChange={(e) => {
-                                items.state[1](e.target.value);
-                                handleFileChange(e);
+                                handleFileChange(e, items.state[1], items.stateName[1]);
                             }} />
-                        {/* <button onClick={handleClick}>사진 첨부</button> */}
+                        <label className="fileInputLabel">
+                            <input
+                                type="text"
+                                className="fileInputText"
+                                readOnly
+                                value={items.stateName[0]}
+                                placeholder={items.placeholder}
+                            />
+                            <button onClick={() => fileInputRefs[idx].current?.click()}>사진 첨부</button>
+                        </label>
                     </FormWrapper>
                 )}
                 <BtnWrapper>
-                    <button className="backBtn" onClick={handleCancel}>취소</button>
+                    <button className="backBtn" onClick={handleCancelButtonClick}>취소</button>
                     <IconButton
                         width="calc(3vw - 36px)"
                         height="1.5vw"
                         maxWidth="100vw"
                         minWidth="6vw"
+                        onClick={handleSubmitButtonClick}
                     >
                         회원 정보 수정
                     </IconButton>
@@ -148,8 +182,11 @@ const FormWrapper = styled.label`
     justify-content : space-between;
     align-items : center;
     height : 3vw;
+    div.title { 
+        width : 12vw;
+    }
     input.textInput {
-        width : 87%;
+        width : 100%;
         height : 100%;
         border-radius : 10px;
         background-color : ${(props) => props.theme.color.grayScale.lightGray};
@@ -157,6 +194,22 @@ const FormWrapper = styled.label`
     }
     input.imgInput {
         width : 87%;
+        height : 100%;
+        border-radius : 10px;
+        background-color : ${(props) => props.theme.color.grayScale.lightGray};
+        border : none;
+    }
+
+    label.fileInputLabel {
+        display : flex;
+        justify-content : center;
+        position: relative;
+        width: 100%;
+        height : 100%;
+        // display: inline-block;
+    }
+    input.fileInputText{
+        width : 100%;
         height : 100%;
         border-radius : 10px;
         background-color : ${(props) => props.theme.color.grayScale.lightGray};

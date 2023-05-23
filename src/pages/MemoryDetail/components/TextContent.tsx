@@ -3,6 +3,7 @@ import { FormButton } from '../../../components/CommonStyle';
 import { CommentIcon, DeleteIcon, DogFootIcon, ReviseIcon } from '../../../components/Icons/Index';
 import * as S from './style/MemoryDetailStyle';
 import { AlbumDetail } from '../../../type/AlbumType';
+import { mappingTag } from '../../../util/util';
 
 type TextContentProps = {
   handleRevise: () => void;
@@ -14,8 +15,9 @@ const TextContent = ({ handleRevise, handleDelete, detailInfo }: TextContentProp
   const [tags, setTags] = useState<string[]>([]);
 
   useEffect(() => {
-    setTags(detailInfo.emotionTagList);
-  }, []);
+    const newTags = mappingTag(detailInfo.emotionTagList);
+    setTags(newTags);
+  }, [detailInfo.emotionTagList]);
 
   return (
     <>

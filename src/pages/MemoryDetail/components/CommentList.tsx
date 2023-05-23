@@ -2,10 +2,15 @@ import styled from 'styled-components';
 import ReplyComment from './ReplyComment';
 import { useState } from 'react';
 import InputForm from './InputForm';
+import type { CommentType } from '../../../type/CommentType';
 
 const CommentWrapper = styled.div`
   margin-top: 32px;
   display: flex;
+
+  .commnetBox {
+    width: 100%;
+  }
 
   hr {
     margin: 16px 0px;
@@ -31,8 +36,7 @@ const ReWriteBtn = styled.button`
 const ReplyCommentWrapper = styled.div``;
 
 type CommentListProps = {
-  name: string;
-  content: string;
+  comment: CommentType;
 };
 
 const tempReply = {
@@ -43,7 +47,7 @@ const tempReply = {
 
 const tempReplyArr = [tempReply, tempReply, tempReply];
 
-const CommentList = ({ name, content }: CommentListProps) => {
+const CommentList = ({ comment }: CommentListProps) => {
   const [showReply, setShowReply] = useState(false);
 
   const handleShowReply = () => {
@@ -52,10 +56,10 @@ const CommentList = ({ name, content }: CommentListProps) => {
 
   return (
     <CommentWrapper>
-      <img src={'/img/강아지사진.jpg'} alt="AlbumImg" className="profileImg" />
-      <div>
-        <div className="userName">{name}</div>
-        <div className="contentBox_content">{content}</div>
+      <img src={comment.writerProfileImageUrl} alt="AlbumImg" className="profileImg" />
+      <div className="commnetBox">
+        <div className="userName">{comment.writer}</div>
+        <div className="contentBox_content">{comment.description}</div>
         <ReWriteBtn onClick={handleShowReply}>
           {showReply ? '대댓글 닫기' : '대댓글 보기'}
         </ReWriteBtn>
@@ -63,9 +67,13 @@ const CommentList = ({ name, content }: CommentListProps) => {
           <>
             <hr />
             <ReplyCommentWrapper>
-              {tempReplyArr.map(({ name, content }) => (
-                <ReplyComment name={name} content={content} />
-              ))}
+              {comment.child ? (
+                comment.child.map((children) => (
+                  <ReplyComment comment={children} key={children.commentId} />
+                ))
+              ) : (
+                <div className="nocontent">댓글이 없습니다.</div>
+              )}
               <InputForm />
             </ReplyCommentWrapper>
           </>

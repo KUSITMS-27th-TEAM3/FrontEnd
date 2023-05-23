@@ -32,7 +32,7 @@ type EmotionContainerProps = {
 const EmotionContainer = styled.div<EmotionContainerProps>`
   display: flex;
   align-items: center;
-  margin-top: ${(props) => (props.isMargin ? 'max(8vw, 100px)' : '0')};
+  margin-top: ${(props) => (props.isMargin ? 'min(9vw, 100px)' : '0')};
   width: ${(props) => props.width};
   justify-content: space-between;
 
@@ -44,7 +44,7 @@ const EmotionContainer = styled.div<EmotionContainerProps>`
 
   @media screen and (max-width: 1024px) {
     ${TagButton} {
-      font-size: 7px;
+      font-size: 9px;
     }
   }
 `;

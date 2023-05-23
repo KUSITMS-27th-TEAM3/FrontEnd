@@ -61,6 +61,7 @@ export const DetailWrapper = styled.div`
     display: flex;
     font-family: ${({ theme }) => theme.font.family.pretendard_medium};
     font-size: 16px;
+    margin-left: 20px;
   }
 
   .contentBox_content {

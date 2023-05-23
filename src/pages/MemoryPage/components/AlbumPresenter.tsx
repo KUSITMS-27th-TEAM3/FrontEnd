@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AlbumContainer } from './style/AlbumPresenterStyle';
 import type { AlbumContent } from '../../../type/AlbumType';

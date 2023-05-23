@@ -94,7 +94,7 @@ const WriteAlbumContainer = () => {
       <WriteBox>
         <TitleForm title={title} handleTitleChange={handleTitleChange} />
         <ContentForm description={description} handleContentChange={handleContentChange} />
-        <EmotionForm />
+        <EmotionForm emotionTagList={detailInfo?.emotionTagList} />
         <RadioForm visible={visible} handleIsOpen={handleIsOpen} />
       </WriteBox>
       <IconButton width="5vw" height="30px" maxWidth="74px" minWidth="50px" onClick={handleUpload}>

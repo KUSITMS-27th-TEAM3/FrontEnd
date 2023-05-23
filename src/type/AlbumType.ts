@@ -17,7 +17,8 @@ export type AlbumDetail = {
   title: string;
   visibility: string;
   writer: string;
-  writerProfileImageUrl: string;
+  writerProfileImageUrl: string | null;
+  accessUserProfileImageUrl: string | null;
 };
 
 export const isAlbumDetail = (arg: any): arg is AlbumDetail => {
@@ -35,5 +36,6 @@ export const initialDetail = {
   title: '',
   visibility: 'PUBLIC',
   writer: '',
-  writerProfileImageUrl: '',
+  writerProfileImageUrl: null,
+  accessUserProfileImageUrl: null,
 };

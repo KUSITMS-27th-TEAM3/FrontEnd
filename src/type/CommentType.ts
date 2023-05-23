@@ -5,3 +5,7 @@ export type CommentType = {
   writerProfileImageUrl: string;
   child?: CommentType[];
 };
+
+export const isCommentType = (arg: any): arg is CommentType => {
+  return arg.commentId !== undefined && arg.description !== undefined;
+};

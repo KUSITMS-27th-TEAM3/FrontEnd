@@ -2,6 +2,74 @@ import styled from 'styled-components';
 import { WhiteLink } from './CommonStyle';
 import { useRecoilValue } from 'recoil';
 import { isUploadAtom } from '../atom/atom';
+import { useState, useEffect } from 'react';
+
+const MainPageNavbar = () => {
+  const [accessToken, setAccessToken] = useState(sessionStorage.getItem('Authorization'))
+
+  useEffect(() => {
+    const token = sessionStorage.getItem('Authorization');
+    setAccessToken(token);
+    console.log(token);
+  }, []);
+
+  const isUpload = useRecoilValue(isUploadAtom);
+
+  if (accessToken) {
+    return (
+      <NavBarContainer isUpload={isUpload}>
+        <BIContainer>
+          <WhiteLink to='/'>
+            <img src="/img/BI.svg" alt="logo" />
+          </WhiteLink>
+        </BIContainer>
+        <LinkContainer>
+          <WhiteLink to="/memory/sharedAlbum">
+            <button>추억기록</button>
+          </WhiteLink>
+          <span> | </span>
+          <WhiteLink to="/funeral">
+            <button>장례정보</button>
+          </WhiteLink>
+          <span> | </span>
+          <WhiteLink to="/mypage">
+            <button>마이페이지</button>
+          </WhiteLink>
+        </LinkContainer>
+      </NavBarContainer>
+    );
+  } else {
+    return (
+      <NavBarContainer isUpload={isUpload}>
+        <BIContainer>
+          <WhiteLink to='/'>
+            <img src="/img/BI.svg" alt="logo" />
+          </WhiteLink>
+        </BIContainer>
+        <LinkContainer>
+          <WhiteLink to="/memory/sharedAlbum">
+            <button>추억기록</button>
+          </WhiteLink>
+          <span> | </span>
+          <WhiteLink to="/funeral">
+            <button>장례정보</button>
+          </WhiteLink>
+          <span> | </span>
+          <WhiteLink to="/login">
+            <button>로그인</button>
+          </WhiteLink>
+          <span> | </span>
+          <WhiteLink to="/mypage">
+            <button>마이페이지</button>
+          </WhiteLink>
+        </LinkContainer>
+      </NavBarContainer>
+    );
+  }
+
+};
+
+export default MainPageNavbar;
 
 const LinkContainer = styled.div`
   display: flex;
@@ -53,44 +121,3 @@ const NavBarContainer = styled.nav<NavBarProps>`
 `;
 
 const BIContainer = styled.div``;
-
-const MainPageNavbar = () => {
-
-  let Authorization = localStorage.getItem("Authorization");
-  let RefreshToken = localStorage.getItem("RefreshToken");
-
-  let toValue = "/";
-  if (Authorization && RefreshToken) {
-    toValue = `/main?Authorization=${Authorization}&RefreshToken=${RefreshToken}`
-  }
-  const isUpload = useRecoilValue(isUploadAtom);
-
-  return (
-    <NavBarContainer isUpload={isUpload}>
-      <BIContainer>
-        <WhiteLink to={toValue}>
-          <img src="/img/BI.svg" alt="logo" />
-        </WhiteLink>
-      </BIContainer>
-      <LinkContainer>
-        <WhiteLink to="/memory/sharedAlbum">
-          <button>추억기록</button>
-        </WhiteLink>
-        <span> | </span>
-        <WhiteLink to="/funeral">
-          <button>장례정보</button>
-        </WhiteLink>
-        <span> | </span>
-        <WhiteLink to="/login">
-          <button>로그인</button>
-        </WhiteLink>
-        <span> | </span>
-        <WhiteLink to="/mypage">
-          <button>마이페이지</button>
-        </WhiteLink>
-      </LinkContainer>
-    </NavBarContainer>
-  );
-};
-
-export default MainPageNavbar;

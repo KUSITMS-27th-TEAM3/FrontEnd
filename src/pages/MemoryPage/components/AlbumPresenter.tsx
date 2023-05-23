@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AlbumContainer } from './style/AlbumPresenterStyle';
-import { getAlbumContentType } from '../../../type/AlbumType';
+import type { AlbumContent } from '../../../type/AlbumType';
 
 type AlbumPresenterProps = {
-  albumData: getAlbumContentType[];
+  albumData: AlbumContent[];
 };
 
 const AlbumPresenter = ({ albumData }: AlbumPresenterProps) => {

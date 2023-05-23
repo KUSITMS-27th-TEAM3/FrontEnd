@@ -125,10 +125,10 @@ export const TextBox = styled.textarea<TextBoxProps>`
   font-family: ${({ theme }) => theme.font.family.pretendard_medium};
   color: ${({ theme }) => theme.color.grayScale.gray};
   font-size: 16px;
-  padding: 22px;
+  padding: 16px;
   height: ${(props) => props.height};
   box-sizing: border-box;
-  line-height: 16px;
+  line-height: 30px;
 
   &:focus {
     border: 1px solid #ffd3bf;

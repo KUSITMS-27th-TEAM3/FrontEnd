@@ -8,10 +8,8 @@ export type AlbumContent = {
 
 export type AlbumDetail = {
   changeable: boolean;
-  commentCount: number;
   description: string;
   emotionTagList: string[];
-  empathyCount: number;
   imageUrlList: string[] | never[];
   petName: string;
   title: string;

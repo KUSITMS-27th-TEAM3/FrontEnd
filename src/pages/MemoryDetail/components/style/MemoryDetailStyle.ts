@@ -109,6 +109,9 @@ export const ContentButton = styled.button`
   align-items: center;
   justify-content: space-around;
   width: 68px;
+  &.active {
+    background-color: ${({ theme }) => theme.color.grayScale.lightGray};
+  }
 `;
 
 export const CommentBox = styled.div`

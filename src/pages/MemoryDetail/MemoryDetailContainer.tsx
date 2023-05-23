@@ -3,7 +3,7 @@ import Modal from '../../components/Modal';
 import * as S from './components/style/MemoryDetailStyle';
 import { CommentList, ImageContent, InputForm, TextContent } from './components';
 import { useLocation, useParams } from 'react-router-dom';
-import { getDetailComments, getDetailAlbum } from './MemoryDetailApi';
+import { getDetailComments, getDetailAlbum, deleteAlbum } from './MemoryDetailApi';
 import Spinner from '../../components/Spinner';
 import { AlbumDetail, initialDetail } from '../../type/AlbumType';
 import type { CommentType } from '../../type/CommentType';
@@ -38,8 +38,15 @@ const MemoryDetailContainer = () => {
     setIsRevise(false);
   };
 
-  const secondBtnHandler = () => {
-    console.log('second');
+  const secondBtnHandler = async () => {
+    if (isRevise) {
+      // 수정
+    } else {
+      const res = await deleteAlbum(albumId);
+      if (!res) {
+        window.location.href = '/memory/myAlbum';
+      }
+    }
   };
 
   const handleRevise = () => {

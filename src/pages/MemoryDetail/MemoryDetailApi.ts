@@ -25,3 +25,7 @@ export const postCommentReply = async (
 export const postEmpathy = async (albumId: NullableString) => {
   return await API.get(`/album/${albumId}/empathy`);
 };
+
+export const deleteAlbum = async (albumId: NullableString) => {
+  return await API.delete(`/album/${albumId}`);
+};

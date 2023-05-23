@@ -39,9 +39,15 @@ type CommentListProps = {
   comment: CommentType;
   albumId: string | undefined;
   accessUserProfileImageUrl: string | null;
+  isSharedAlbum: boolean;
 };
 
-const CommentList = ({ comment, albumId, accessUserProfileImageUrl }: CommentListProps) => {
+const CommentList = ({
+  comment,
+  albumId,
+  accessUserProfileImageUrl,
+  isSharedAlbum,
+}: CommentListProps) => {
   const [showReply, setShowReply] = useState(false);
 
   const handleShowReply = () => {
@@ -72,11 +78,13 @@ const CommentList = ({ comment, albumId, accessUserProfileImageUrl }: CommentLis
               ) : (
                 <div className="nocontent">댓글이 없습니다.</div>
               )}
-              <InputForm
-                albumId={albumId}
-                commentId={comment.commentId}
-                accessUserProfileImageUrl={accessUserProfileImageUrl}
-              />
+              {isSharedAlbum ? (
+                <InputForm
+                  albumId={albumId}
+                  commentId={comment.commentId}
+                  accessUserProfileImageUrl={accessUserProfileImageUrl}
+                />
+              ) : null}
             </ReplyCommentWrapper>
           </>
         )}

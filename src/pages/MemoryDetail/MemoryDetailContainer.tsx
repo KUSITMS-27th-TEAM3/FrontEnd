@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Modal from '../../components/Modal';
 import * as S from './components/style/MemoryDetailStyle';
 import { CommentList, ImageContent, InputForm, TextContent } from './components';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { getDetailComments, getDetailAlbum } from './MemoryDetailApi';
 import Spinner from '../../components/Spinner';
 import { AlbumDetail, initialDetail } from '../../type/AlbumType';
@@ -29,7 +29,9 @@ const MemoryDetailContainer = () => {
   const [commentList, setCommentList] = useState<CommentType[]>([]);
   const [detailInfo, setDetailInfo] = useState<AlbumDetail>(initialDetail);
   const [refetch, setRefetch] = useRecoilState<boolean>(refetchAtom);
+  const [isSharedAlbum, setSharedAlbum] = useState<boolean>(false);
   const albumId = useParams().id;
+  const location = useLocation();
 
   const firstBtnHandler = () => {
     setModal(false);
@@ -63,6 +65,9 @@ const MemoryDetailContainer = () => {
   };
 
   useEffect(() => {
+    if (location.pathname.includes('/memory/sharedAlbum')) {
+      setSharedAlbum(true);
+    }
     fetchDetailAlbum();
     fetchDetailComments();
     setLoading(false);
@@ -95,10 +100,12 @@ const MemoryDetailContainer = () => {
           detailInfo={detailInfo}
           albumId={albumId}
         />
-        <InputForm
-          albumId={albumId}
-          accessUserProfileImageUrl={detailInfo.accessUserProfileImageUrl}
-        />
+        {isSharedAlbum ? (
+          <InputForm
+            albumId={albumId}
+            accessUserProfileImageUrl={detailInfo.accessUserProfileImageUrl}
+          />
+        ) : null}
         <S.CommentBox>
           {commentList.length !== 0 ? (
             commentList.map((comment) => (
@@ -107,6 +114,7 @@ const MemoryDetailContainer = () => {
                 key={comment.commentId}
                 albumId={albumId}
                 accessUserProfileImageUrl={detailInfo.accessUserProfileImageUrl}
+                isSharedAlbum={isSharedAlbum}
               />
             ))
           ) : (

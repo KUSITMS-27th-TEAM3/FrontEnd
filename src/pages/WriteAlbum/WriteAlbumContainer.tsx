@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react';
 import { WriteBox } from './components/style/WriteFormStyle';
 import { ContentForm, EmotionForm, RadioForm, TitleForm, ImageUpload } from './components';
 import { activeTagAtom, isUploadAtom } from '../../atom/atom';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { postAlbum } from './WriteAlbumApi';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { isAlbumDetail } from '../../type/AlbumType';
 
 const WriteAlbumWrapper = styled(FlexContainer)``;
@@ -18,8 +18,14 @@ const WriteAlbumContainer = () => {
   const [uploadImage, setUploadImage] = useState<string>('');
   const setIsUpload = useSetRecoilState(isUploadAtom);
   const [albumImages, setAlbumImages] = useState<File | null>(null);
-  const emotionTagList = useRecoilValue(activeTagAtom);
+  const [emotionTagList, setEmotionTagList] = useRecoilState(activeTagAtom);
   const navigate = useNavigate();
+  const location = useLocation();
+  const [isRevise, setIsRevise] = useState<boolean>(false);
+  const detailInfo = { ...location?.state?.detailInfo };
+  const albumId = useParams().id;
+
+  console.log(detailInfo);
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value);
@@ -48,17 +54,33 @@ const WriteAlbumContainer = () => {
       visible,
       emotionTagList,
     };
+    if (!isRevise) {
+      const res = await postAlbum(sendData, albumImages);
+      console.log('res', res);
 
-    const res = await postAlbum(sendData, albumImages);
-    console.log('res', res);
+      if (isAlbumDetail(res)) {
+        alert('앨범을 업로드했습니다.');
+        navigate('/memory/myAlbum');
+      }
+    } else {
+      const res = await postAlbum(sendData, albumImages, albumId);
 
-    if (isAlbumDetail(res)) {
-      alert('앨범을 업로드했습니다.');
-      navigate('/memory/myAlbum');
+      if (!res) {
+        alert('앨범을 수정했습니다.');
+        navigate('/memory/myAlbum');
+      }
     }
   };
 
   useEffect(() => {
+    if (detailInfo?.imageUrlList) {
+      setTitle(detailInfo?.title);
+      setDescription(detailInfo?.description);
+      setVisible(detailInfo?.visible === 'PUBLIC' ? true : false);
+      setUploadImage(detailInfo?.imageUrlList[0]);
+      setAlbumImages(detailInfo?.imageUrlList[0]);
+      setIsRevise(true);
+    }
     return () => setIsUpload(false);
   }, []);
 

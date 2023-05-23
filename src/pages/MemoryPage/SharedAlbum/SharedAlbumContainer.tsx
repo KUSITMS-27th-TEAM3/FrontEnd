@@ -6,11 +6,11 @@ import Spinner from '../../../components/Spinner';
 import { activeTagAtom, sortOptionAtom } from '../../../atom/atom';
 import { useRecoilValue } from 'recoil';
 import { getSharedAlbum } from './SharedAlbumApi';
-import type { getAlbumContentType } from '../../../type/AlbumType';
+import type { AlbumContent } from '../../../type/AlbumType';
 
 const SharedAlbumContainer = () => {
   const [isLoading, setLoading] = useState(true);
-  const [albumData, setAlbumData] = useState<getAlbumContentType[]>([]);
+  const [albumData, setAlbumData] = useState<AlbumContent[]>([]);
   const sortOption = useRecoilValue(sortOptionAtom);
   const activeTags = useRecoilValue(activeTagAtom);
   const [page, setPage] = useState<number>(0);

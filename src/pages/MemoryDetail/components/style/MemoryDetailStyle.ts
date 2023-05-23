@@ -10,6 +10,12 @@ export const DetailBox = styled.div`
     border-radius: 8px;
     margin-right: 18px;
   }
+
+  .nocontent {
+    font-family: ${({ theme }) => theme.font.family.gmarketSans_medium};
+    font-size: 20px;
+    margin-top: 20px;
+  }
 `;
 
 export const ImageBox = styled.div`
@@ -55,6 +61,7 @@ export const DetailWrapper = styled.div`
     display: flex;
     font-family: ${({ theme }) => theme.font.family.pretendard_medium};
     font-size: 16px;
+    margin-left: 20px;
   }
 
   .contentBox_content {
@@ -102,6 +109,13 @@ export const ContentButton = styled.button`
   align-items: center;
   justify-content: space-around;
   width: 68px;
+  &.active {
+    background-color: ${({ theme }) => theme.color.grayScale.lightGray};
+  }
+
+  &:hover {
+    background-color: ${({ theme }) => theme.color.grayScale.lightGray};
+  }
 `;
 
 export const CommentBox = styled.div`

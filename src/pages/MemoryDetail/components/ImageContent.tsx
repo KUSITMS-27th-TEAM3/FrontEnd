@@ -4,7 +4,11 @@ import { ImageBox } from './style/MemoryDetailStyle';
 import { isUploadAtom } from '../../../atom/atom';
 import { useEffect } from 'react';
 
-const ImageContent = () => {
+type ImageContentProps = {
+  imageUrl: string[];
+};
+
+const ImageContent = ({ imageUrl }: ImageContentProps) => {
   const [isUpload, setIsUpload] = useRecoilState(isUploadAtom);
 
   useEffect(() => {
@@ -16,9 +20,9 @@ const ImageContent = () => {
   return (
     <ImageContainer>
       <span className="img_filter" />
-      <img src={'/img/강아지사진.jpg'} alt="AlbumImg" />
+      <img src={imageUrl && imageUrl[0]} alt="AlbumImg" />
       <ImageBox>
-        <img src={'/img/강아지사진.jpg'} alt="AlbumImg" />
+        <img src={imageUrl && imageUrl[0]} alt="AlbumImg" />
       </ImageBox>
     </ImageContainer>
   );

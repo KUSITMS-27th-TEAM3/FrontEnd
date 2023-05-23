@@ -105,6 +105,7 @@ const post = async (url: string, post: {}, config: 'imgPost' | null = null) => {
     const result = await instance.post(url, post);
     return result.data;
   } catch (error) {
+    console.log(error);
     if (error instanceof Error)
       throw new Error(`문제가 발생하였습니다. 확인 후 다시 시도해 주세요: ${error.message}`);
   }

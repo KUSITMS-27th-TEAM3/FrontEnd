@@ -41,7 +41,7 @@ const MemoryContainer = () => {
       )}
       <MemoryNav />
       {currentPath !== '/memory/question' && (
-        <EmotionTags width="80vw" isMargin={true} fontSize={16} temp={temp} />
+        <EmotionTags width="80vw" isMargin={true} fontSize={18} temp={temp} />
       )}
       <Outlet />
     </MemoryWrapper>

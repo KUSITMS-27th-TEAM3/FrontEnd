@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import type { CommentType } from '../../../type/CommentType';
 
 const ReplyCommentBox = styled.div`
   display: flex;
@@ -6,17 +7,20 @@ const ReplyCommentBox = styled.div`
 `;
 
 type ReplyCommentProps = {
-  name: string;
-  content: string;
+  comment: CommentType;
 };
 
-const ReplyComment = ({ name, content }: ReplyCommentProps) => {
+const ReplyComment = ({ comment }: ReplyCommentProps) => {
   return (
     <ReplyCommentBox>
-      <img src={'/img/강아지사진.jpg'} alt="AlbumImg" className="profileImg" />
+      <img
+        src={comment.writerProfileImageUrl ? comment.writerProfileImageUrl : '/img/default.png'}
+        alt="AlbumImg"
+        className="profileImg"
+      />
       <div>
-        <div className="userName">{name}</div>
-        <div className="contentBox_content">{content}</div>
+        <div className="userName">{comment.writer}</div>
+        <div className="contentBox_content">{comment.description}</div>
       </div>
     </ReplyCommentBox>
   );

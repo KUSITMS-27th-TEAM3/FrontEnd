@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AlbumContainer } from './style/AlbumPresenterStyle';
-import { getAlbumContentType } from '../../../type/AlbumType';
+import type { AlbumContent } from '../../../type/AlbumType';
 
 type AlbumPresenterProps = {
-  albumData: getAlbumContentType[];
+  albumData: AlbumContent[];
 };
 
 const AlbumPresenter = ({ albumData }: AlbumPresenterProps) => {
@@ -13,7 +12,7 @@ const AlbumPresenter = ({ albumData }: AlbumPresenterProps) => {
 
   const handleToDetail = (e: React.MouseEvent<HTMLButtonElement>) => {
     const { id } = e.currentTarget;
-    navigate(`${pathname}/1`);
+    navigate(`${pathname}/${id}`);
   };
 
   return (

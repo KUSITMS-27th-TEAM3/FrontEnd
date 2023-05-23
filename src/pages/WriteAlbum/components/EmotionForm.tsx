@@ -1,4 +1,5 @@
 import EmotionTags from '../../../components/EmotionTags';
+
 const temp = [
   { name: ' 아늑함', isActive: false, tagId: 'COZY' },
   { name: '행복함', isActive: false, tagId: 'HAPPY' },
@@ -12,11 +13,21 @@ const temp = [
   { name: '사랑스러움', isActive: false, tagId: 'LOVELY' },
 ];
 
-const EmotionForm = () => {
+type EmotionFormProps = {
+  emotionTagList?: string[];
+};
+
+const EmotionForm = ({ emotionTagList }: EmotionFormProps) => {
+  const emotionTags = temp.map((tag) => {
+    if (emotionTagList?.includes(tag.tagId)) {
+      return { ...tag, isActive: true };
+    } else return tag;
+  });
+
   return (
     <div className="flexBoxEmotion">
       <div className="write_title littleMargin">감정태그</div>
-      <EmotionTags width="70vw" fontSize={15} temp={temp} />
+      <EmotionTags width="70vw" fontSize={15} temp={emotionTags} />
     </div>
   );
 };

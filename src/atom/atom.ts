@@ -5,8 +5,8 @@ export const isUploadAtom = atom<boolean>({
   default: false,
 });
 
-export const refetchQuestionsAtom = atom<boolean>({
-  key: 'refetchQuestions',
+export const refetchAtom = atom<boolean>({
+  key: 'refetch',
   default: false,
 });
 

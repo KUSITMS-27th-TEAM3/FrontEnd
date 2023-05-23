@@ -7,6 +7,8 @@ import { getDetailComments, getDetailAlbum } from './MemoryDetailApi';
 import Spinner from '../../components/Spinner';
 import { AlbumDetail, initialDetail } from '../../type/AlbumType';
 import type { CommentType } from '../../type/CommentType';
+import { refetchAtom } from '../../atom/atom';
+import { useRecoilState } from 'recoil';
 
 const deleteModalText = {
   text: '삭제하시겠습니까?',
@@ -26,6 +28,7 @@ const MemoryDetailContainer = () => {
   const [isloading, setLoading] = useState<boolean>(true);
   const [commentList, setCommentList] = useState<CommentType[]>([]);
   const [detailInfo, setDetailInfo] = useState<AlbumDetail>(initialDetail);
+  const [refetch, setRefetch] = useRecoilState<boolean>(refetchAtom);
   const albumId = useParams().id;
 
   const firstBtnHandler = () => {
@@ -64,6 +67,13 @@ const MemoryDetailContainer = () => {
     fetchDetailComments();
     setLoading(false);
   }, []);
+
+  useEffect(() => {
+    if (refetch) {
+      fetchDetailComments();
+    }
+    setRefetch(false);
+  }, [refetch]);
 
   if (isloading) {
     return <Spinner />;

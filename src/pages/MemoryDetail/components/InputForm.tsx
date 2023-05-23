@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { postComment, postCommentReply } from '../MemoryDetailApi';
 import { isCommentType } from '../../../type/CommentType';
+import { useRecoilState } from 'recoil';
+import { refetchAtom } from '../../../atom/atom';
 
 const InputBox = styled.form`
   display: flex;
@@ -27,6 +29,7 @@ type InputFormProps = {
 
 const InputForm = ({ albumId, commentId, accessUserProfileImageUrl }: InputFormProps) => {
   const [inputValue, setInputValue] = useState<string>('');
+  const [refetch, setRefetch] = useRecoilState<boolean>(refetchAtom);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -48,6 +51,7 @@ const InputForm = ({ albumId, commentId, accessUserProfileImageUrl }: InputFormP
 
     if (isCommentType(res)) {
       setInputValue('');
+      setRefetch(true);
       alert('댓글이 입력되었습니다.');
     }
   };

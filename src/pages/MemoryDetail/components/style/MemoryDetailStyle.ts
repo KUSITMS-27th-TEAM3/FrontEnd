@@ -112,6 +112,10 @@ export const ContentButton = styled.button`
   &.active {
     background-color: ${({ theme }) => theme.color.grayScale.lightGray};
   }
+
+  &:hover {
+    background-color: ${({ theme }) => theme.color.grayScale.lightGray};
+  }
 `;
 
 export const CommentBox = styled.div`

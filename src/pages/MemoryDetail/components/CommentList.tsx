@@ -3,6 +3,7 @@ import ReplyComment from './ReplyComment';
 import { useState } from 'react';
 import InputForm from './InputForm';
 import type { CommentType } from '../../../type/CommentType';
+import { ContentButton } from './style/MemoryDetailStyle';
 
 const CommentWrapper = styled.div`
   margin-top: 32px;
@@ -18,6 +19,13 @@ const CommentWrapper = styled.div`
     height: 1px;
     border: 0;
   }
+  .textAreaBox {
+    display: flex;
+    justify-content: space-between;
+  }
+  .commentBtnBox {
+    display: flex;
+  }
 `;
 
 const ReWriteBtn = styled.button`
@@ -31,6 +39,19 @@ const ReWriteBtn = styled.button`
   border-bottom: 1px solid ${({ theme }) => theme.color.grayScale.mediumBrightGray};
   cursor: pointer;
   text-align: center;
+`;
+
+const CommmetArea = styled.textarea`
+  all: unset;
+  width: 80%;
+  height: 50px;
+  border-radius: 8px;
+  padding: 10px;
+`;
+
+const CommentBtn = styled(ContentButton)`
+  height: 15px;
+  width: 50px;
 `;
 
 const ReplyCommentWrapper = styled.div``;
@@ -63,7 +84,13 @@ const CommentList = ({
       />
       <div className="commnetBox">
         <div className="userName">{comment.writer}</div>
-        <div className="contentBox_content">{comment.description}</div>
+        <div className="textAreaBox">
+          <CommmetArea>{comment.description}</CommmetArea>
+          <div className="commentBtnBox">
+            <CommentBtn style={{ marginRight: '15px' }}>수정</CommentBtn>
+            <CommentBtn>삭제</CommentBtn>
+          </div>
+        </div>
         <ReWriteBtn onClick={handleShowReply}>
           {showReply ? '대댓글 닫기' : '대댓글 보기'}
         </ReWriteBtn>

@@ -13,7 +13,7 @@ const AlbumPresenter = ({ albumData }: AlbumPresenterProps) => {
 
   const handleToDetail = (e: React.MouseEvent<HTMLButtonElement>) => {
     const { id } = e.currentTarget;
-    navigate(`${pathname}/1`);
+    navigate(`${pathname}/${id}`);
   };
 
   return (

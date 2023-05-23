@@ -10,6 +10,11 @@ export const DetailBox = styled.div`
     border-radius: 8px;
     margin-right: 18px;
   }
+
+  .nocontent {
+    font-family: ${({ theme }) => theme.font.family.gmarketSans_medium};
+    font-size: 20px;
+  }
 `;
 
 export const ImageBox = styled.div`

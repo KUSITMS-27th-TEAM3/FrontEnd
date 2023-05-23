@@ -29,3 +29,11 @@ export const postEmpathy = async (albumId: NullableString) => {
 export const deleteAlbum = async (albumId: NullableString) => {
   return await API.delete(`/album/${albumId}`);
 };
+
+export const getEmpathy = async (albumId: NullableString) => {
+  return await API.get(`/album/${albumId}/empathy/count`);
+};
+
+export const getComment = async (albumId: NullableString) => {
+  return await API.get(`/album/${albumId}/comment/count`);
+};

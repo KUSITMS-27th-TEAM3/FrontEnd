@@ -2,8 +2,14 @@ import { useEffect, useState } from 'react';
 import Modal from '../../components/Modal';
 import * as S from './components/style/MemoryDetailStyle';
 import { CommentList, ImageContent, InputForm, TextContent } from './components';
-import { useLocation, useParams } from 'react-router-dom';
-import { getDetailComments, getDetailAlbum, deleteAlbum } from './MemoryDetailApi';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import {
+  getDetailComments,
+  getDetailAlbum,
+  deleteAlbum,
+  getEmpathy,
+  getComment,
+} from './MemoryDetailApi';
 import Spinner from '../../components/Spinner';
 import { AlbumDetail, initialDetail } from '../../type/AlbumType';
 import type { CommentType } from '../../type/CommentType';
@@ -32,6 +38,10 @@ const MemoryDetailContainer = () => {
   const [isSharedAlbum, setSharedAlbum] = useState<boolean>(false);
   const albumId = useParams().id;
   const location = useLocation();
+  const navigate = useNavigate();
+  const [isCheckedEmpathy, setIsCheckedEmpathy] = useState<boolean>(false);
+  const [empathyCount, setEmpathyCount] = useState<number>(0);
+  const [commentCount, setCommentCount] = useState<number>(0);
 
   const firstBtnHandler = () => {
     setModal(false);
@@ -40,11 +50,11 @@ const MemoryDetailContainer = () => {
 
   const secondBtnHandler = async () => {
     if (isRevise) {
-      // 수정
+      navigate(`/writeAlbum/${albumId}`, { state: { detailInfo } });
     } else {
       const res = await deleteAlbum(albumId);
       if (!res) {
-        window.location.href = '/memory/myAlbum';
+        navigate('/memory/myAlbum');
       }
     }
   };
@@ -71,12 +81,27 @@ const MemoryDetailContainer = () => {
     setCommentList(data.content);
   };
 
+  const fetchEmapty = async () => {
+    const data = await getEmpathy(albumId);
+    setEmpathyCount(data.empathyCount);
+    setIsCheckedEmpathy(data.empathyExistAboutUser);
+  };
+
+  const fetchCommentCount = async () => {
+    const data = await getComment(albumId);
+    setCommentCount(data.commentCount);
+  };
+
+  console.log(empathyCount);
+
   useEffect(() => {
     if (location.pathname.includes('/memory/sharedAlbum')) {
       setSharedAlbum(true);
     }
     fetchDetailAlbum();
     fetchDetailComments();
+    fetchEmapty();
+    fetchCommentCount();
     setLoading(false);
   }, []);
 
@@ -106,6 +131,10 @@ const MemoryDetailContainer = () => {
           handleDelete={handleDelete}
           detailInfo={detailInfo}
           albumId={albumId}
+          empathy={empathyCount}
+          comment={commentCount}
+          isCheckedEmpathy={isCheckedEmpathy}
+          setIsCheckedEmpathy={setIsCheckedEmpathy}
         />
         {isSharedAlbum ? (
           <InputForm

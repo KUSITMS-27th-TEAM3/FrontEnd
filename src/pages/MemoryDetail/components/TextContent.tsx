@@ -13,20 +13,39 @@ type TextContentProps = {
   handleDelete: () => void;
   detailInfo: AlbumDetail;
   albumId: string | undefined;
+  empathy: number;
+  comment: number;
+  isCheckedEmpathy: boolean;
+  setIsCheckedEmpathy: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const TextContent = ({ handleRevise, handleDelete, detailInfo, albumId }: TextContentProps) => {
+const TextContent = ({
+  handleRevise,
+  handleDelete,
+  detailInfo,
+  albumId,
+  empathy,
+  comment,
+  isCheckedEmpathy,
+  setIsCheckedEmpathy,
+}: TextContentProps) => {
   const [tags, setTags] = useState<string[]>([]);
-  const [commentCount, setCommentCount] = useState<number>(0);
-  const [empathyCount, setEmpathyCount] = useState<number>(0);
+  const [commentCount, setCommentCount] = useState<number>(comment);
+  const [empathyCount, setEmpathyCount] = useState<number>(empathy);
   const [refetch, setRefetch] = useRecoilState<boolean>(refetchAtom);
 
   useEffect(() => {
     const newTags = mappingTag(detailInfo.emotionTagList);
     setTags(newTags);
-    setCommentCount(detailInfo.commentCount);
-    setEmpathyCount(detailInfo.empathyCount);
   }, [detailInfo]);
+
+  useEffect(() => {
+    setEmpathyCount(empathy);
+  }, [empathy]);
+
+  useEffect(() => {
+    setCommentCount(comment);
+  }, [comment]);
 
   useEffect(() => {
     if (refetch) {
@@ -39,9 +58,17 @@ const TextContent = ({ handleRevise, handleDelete, detailInfo, albumId }: TextCo
 
     console.log('res', res);
     if (!res) {
-      setEmpathyCount((prev) => prev + 1);
+      if (isCheckedEmpathy) {
+        setEmpathyCount((prev) => prev - 1);
+        setIsCheckedEmpathy(!isCheckedEmpathy);
+      } else {
+        setEmpathyCount((prev) => prev + 1);
+        setIsCheckedEmpathy(!isCheckedEmpathy);
+      }
     }
   };
+
+  console.log('empathyCount', empathyCount);
 
   return (
     <>
@@ -81,7 +108,11 @@ const TextContent = ({ handleRevise, handleDelete, detailInfo, albumId }: TextCo
       <S.ContentBox>
         <div className="contentBox_content">{detailInfo.description}</div>
         <div className="buttonBox">
-          <S.ContentButton style={{ marginRight: '15px' }} onClick={handleEmpathyClick}>
+          <S.ContentButton
+            style={{ marginRight: '15px' }}
+            onClick={handleEmpathyClick}
+            className={isCheckedEmpathy ? 'active' : ''}
+          >
             <div>{empathyCount}</div>
             <DogFootIcon />
           </S.ContentButton>

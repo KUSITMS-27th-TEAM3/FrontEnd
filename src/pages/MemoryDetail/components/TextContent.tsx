@@ -4,20 +4,44 @@ import { CommentIcon, DeleteIcon, DogFootIcon, ReviseIcon } from '../../../compo
 import * as S from './style/MemoryDetailStyle';
 import { AlbumDetail } from '../../../type/AlbumType';
 import { mappingTag } from '../../../util/util';
+import { useRecoilState } from 'recoil';
+import { refetchAtom } from '../../../atom/atom';
+import { postEmpathy } from '../MemoryDetailApi';
 
 type TextContentProps = {
   handleRevise: () => void;
   handleDelete: () => void;
   detailInfo: AlbumDetail;
+  albumId: string | undefined;
 };
 
-const TextContent = ({ handleRevise, handleDelete, detailInfo }: TextContentProps) => {
+const TextContent = ({ handleRevise, handleDelete, detailInfo, albumId }: TextContentProps) => {
   const [tags, setTags] = useState<string[]>([]);
+  const [commentCount, setCommentCount] = useState<number>(0);
+  const [empathyCount, setEmpathyCount] = useState<number>(0);
+  const [refetch, setRefetch] = useRecoilState<boolean>(refetchAtom);
 
   useEffect(() => {
     const newTags = mappingTag(detailInfo.emotionTagList);
     setTags(newTags);
-  }, [detailInfo.emotionTagList]);
+    setCommentCount(detailInfo.commentCount);
+    setEmpathyCount(detailInfo.empathyCount);
+  }, [detailInfo]);
+
+  useEffect(() => {
+    if (refetch) {
+      setCommentCount((prev) => prev + 1);
+    }
+  }, [refetch]);
+
+  const handleEmpathyClick = async () => {
+    const res = await postEmpathy(albumId);
+
+    console.log('res', res);
+    if (!res) {
+      setEmpathyCount((prev) => prev + 1);
+    }
+  };
 
   return (
     <>
@@ -36,7 +60,7 @@ const TextContent = ({ handleRevise, handleDelete, detailInfo }: TextContentProp
       </S.FlexBox>
       <S.FlexBox>
         {tags.map((tag, idx) => (
-          <S.Tag>{tag}</S.Tag>
+          <S.Tag key={tag}>{tag}</S.Tag>
         ))}
       </S.FlexBox>
       <S.TitleBox>
@@ -57,12 +81,12 @@ const TextContent = ({ handleRevise, handleDelete, detailInfo }: TextContentProp
       <S.ContentBox>
         <div className="contentBox_content">{detailInfo.description}</div>
         <div className="buttonBox">
-          <S.ContentButton style={{ marginRight: '15px' }}>
-            <div>{detailInfo.empathyCount}</div>
+          <S.ContentButton style={{ marginRight: '15px' }} onClick={handleEmpathyClick}>
+            <div>{empathyCount}</div>
             <DogFootIcon />
           </S.ContentButton>
           <S.ContentButton>
-            <div>{detailInfo.commentCount}</div>
+            <div>{commentCount}</div>
             <CommentIcon />
           </S.ContentButton>
         </div>

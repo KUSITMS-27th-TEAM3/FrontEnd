@@ -93,6 +93,7 @@ const MemoryDetailContainer = () => {
           handleRevise={handleRevise}
           handleDelete={handleDelete}
           detailInfo={detailInfo}
+          albumId={albumId}
         />
         <InputForm
           albumId={albumId}

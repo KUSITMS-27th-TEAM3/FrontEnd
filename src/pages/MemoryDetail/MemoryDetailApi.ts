@@ -21,3 +21,7 @@ export const postCommentReply = async (
 ) => {
   return await API.post(`/album/${albumId}/comment/${commentId}`, description);
 };
+
+export const postEmpathy = async (albumId: NullableString) => {
+  return await API.get(`/album/${albumId}/empathy`);
+};

@@ -10,7 +10,7 @@ import { postEmpathy } from '../MemoryDetailApi';
 
 type TextContentProps = {
   handleRevise: () => void;
-  handleDelete: () => void;
+  handleAlbumDelete: () => void;
   detailInfo: AlbumDetail;
   albumId: string | undefined;
   empathy: number;
@@ -21,7 +21,7 @@ type TextContentProps = {
 
 const TextContent = ({
   handleRevise,
-  handleDelete,
+  handleAlbumDelete,
   detailInfo,
   albumId,
   empathy,
@@ -68,8 +68,6 @@ const TextContent = ({
     }
   };
 
-  console.log('empathyCount', empathyCount);
-
   return (
     <>
       <S.FlexBox>
@@ -98,7 +96,7 @@ const TextContent = ({
               <div>수정</div>
               <ReviseIcon />
             </FormButton>
-            <FormButton onClick={handleDelete}>
+            <FormButton onClick={handleAlbumDelete}>
               <div>삭제</div>
               <DeleteIcon />
             </FormButton>

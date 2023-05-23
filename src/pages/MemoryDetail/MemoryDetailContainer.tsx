@@ -9,6 +9,7 @@ import {
   deleteAlbum,
   getEmpathy,
   getComment,
+  deleteComment,
 } from './MemoryDetailApi';
 import Spinner from '../../components/Spinner';
 import { AlbumDetail, initialDetail } from '../../type/AlbumType';
@@ -42,15 +43,21 @@ const MemoryDetailContainer = () => {
   const [isCheckedEmpathy, setIsCheckedEmpathy] = useState<boolean>(false);
   const [empathyCount, setEmpathyCount] = useState<number>(0);
   const [commentCount, setCommentCount] = useState<number>(0);
+  const [isCommentDelete, setCommentDelete] = useState<boolean>(false);
+  const [targetCommentId, setTargetCommentId] = useState<number>(0);
 
   const firstBtnHandler = () => {
     setModal(false);
     setIsRevise(false);
+    setCommentDelete(false);
   };
 
   const secondBtnHandler = async () => {
     if (isRevise) {
       navigate(`/writeAlbum/${albumId}`, { state: { detailInfo } });
+    } else if (isCommentDelete) {
+      const res = await deleteComment(albumId, targetCommentId);
+      console.log(res);
     } else {
       const res = await deleteAlbum(albumId);
       if (!res) {
@@ -64,9 +71,15 @@ const MemoryDetailContainer = () => {
     setModal(true);
   };
 
-  const handleDelete = () => {
+  const handleAlbumDelete = () => {
     setIsRevise(false);
     setModal(true);
+  };
+
+  const handleCommentDelete = (commentId: number) => {
+    setCommentDelete(true);
+    setModal(true);
+    setTargetCommentId(commentId);
   };
 
   const fetchDetailAlbum = async () => {
@@ -91,8 +104,6 @@ const MemoryDetailContainer = () => {
     const data = await getComment(albumId);
     setCommentCount(data.commentCount);
   };
-
-  console.log(empathyCount);
 
   useEffect(() => {
     if (location.pathname.includes('/memory/sharedAlbum')) {
@@ -128,7 +139,7 @@ const MemoryDetailContainer = () => {
       <S.DetailWrapper>
         <TextContent
           handleRevise={handleRevise}
-          handleDelete={handleDelete}
+          handleAlbumDelete={handleAlbumDelete}
           detailInfo={detailInfo}
           albumId={albumId}
           empathy={empathyCount}
@@ -151,6 +162,7 @@ const MemoryDetailContainer = () => {
                 albumId={albumId}
                 accessUserProfileImageUrl={detailInfo.accessUserProfileImageUrl}
                 isSharedAlbum={isSharedAlbum}
+                handleCommentDelete={handleCommentDelete}
               />
             ))
           ) : (

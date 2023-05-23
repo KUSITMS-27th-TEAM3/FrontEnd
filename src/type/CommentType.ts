@@ -3,6 +3,7 @@ export type CommentType = {
   description: string;
   writer: string;
   writerProfileImageUrl: string;
+  changeable: boolean;
   child?: CommentType[];
 };
 

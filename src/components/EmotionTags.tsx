@@ -38,13 +38,15 @@ const EmotionContainer = styled.div<EmotionContainerProps>`
 
   @media screen and (max-width: 1420px) and (min-width: 1024px) {
     ${TagButton} {
-      font-size: 12px;
+      font-size: 16px;
+      padding: 0.5em 1em;
     }
   }
 
   @media screen and (max-width: 1024px) {
     ${TagButton} {
-      font-size: 9px;
+      font-size: 14px;
+      padding: 0.5em 1em;
     }
   }
 `;

@@ -16,7 +16,9 @@ const getRefreshToken = () => {
 
 instance.interceptors.request.use(
   (config) => {
-    const accessToken = getAccessToken();
+    // const accessToken = getAccessToken();
+    const accessToken =
+      'eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODQ4MDMxOTUsImV4cCI6MTY4NTQwNzk5NSwic3ViIjoic3Jmc3JmMDEwM0BnbWFpbC5jb20iLCJUT0tFTl9UWVBFIjoiQUNDRVNTX1RPS0VOIn0.WoDOuHCG9kjJNYrMQ3n6LxCe_daUABXHqRWiSjmfmD_ObwsxnUZbJ9SCx5G9hYTNhZUlQqkXYU9DdUmOXdpmEQ';
 
     if (!accessToken) {
       window.location.href = '/unauthorized';

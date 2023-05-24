@@ -48,14 +48,14 @@ const Profile = () => {
       </Blur>
       <ProfileBackImg>
         <img
-          src={profile.profileImageUrl ? profile.profileImageUrl : '/img/default.png'}
+          src={profile.profileImageUrl ? profile.profileImageUrl : '/img/defaultPetBg.svg'}
           alt="배경사진"
         />
       </ProfileBackImg>
       <ProfileWrapper>
         <ProfileImg>
           <img
-            src={profile.profileImageUrl ? profile.profileImageUrl : '/img/default.png'}
+            src={profile.profileImageUrl ? profile.profileImageUrl : '/img/defaultPet.svg'}
             alt="프로필사진"
           />
         </ProfileImg>

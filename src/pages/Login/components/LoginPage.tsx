@@ -40,34 +40,36 @@ const ButtonWrapper = styled.div`
   }
 `;
 const LoginPage = () => {
+  const [showComponents, setShowComponents] = useState(false);
 
-    const [showComponents, setShowComponents] = useState(false);
+  useEffect(() => {
+    setShowComponents(true);
+  }, []);
 
-    useEffect(() => {
-        setShowComponents(true);
-    }, []);
-
-    return (
-        <div>
-            {showComponents && (
-                <>
-                    <ContentWrapper>
-                        {/* <img src="/img/LoginBg.svg" /> */}
-                        <Image url={'/img/LoginBg.svg'} />
-                        <LoginWrapper>
-                            <div className='title'>소셜 로그인</div>
-                            <ButtonWrapper>
-                                <button>
-                                    <img src="/img/NaverLogin.svg" />
-                                </button>
-
-                    <button><a href="http://52.78.181.46.nip.io/oauth2/authorization/google">
-                        <img src="/img/GoogleLogin.svg" /></a>
-                    </button>
-
-                </ButtonWrapper>
+  return (
+    <div>
+      {showComponents && (
+        <>
+          <ContentWrapper>
+            {/* <img src="/img/LoginBg.svg" /> */}
+            <Image url={'/img/LoginBg.svg'} />
+            <LoginWrapper>
+              <div className="title">소셜 로그인</div>
+              <ButtonWrapper>
+                <button>
+                  <img src="/img/NaverLogin.svg" />
+                </button>
+                <button>
+                  <a href="http://52.78.181.46.nip.io/oauth2/authorization/google">
+                    <img src="/img/GoogleLogin.svg" />
+                  </a>
+                </button>
+              </ButtonWrapper>
             </LoginWrapper>
-        </ContentWrapper>
-    )
-}
+          </ContentWrapper>
+        </>
+      )}
+    </div>
+  );
+};
 export default LoginPage;

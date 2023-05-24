@@ -54,6 +54,10 @@ function MemoryNav() {
     }
   }, [pathname]);
 
+  useEffect(() => {
+    return () => setSortOption('DEFAULT');
+  }, []);
+
   return (
     <S.NavBarContainer>
       <div className="nav_title">추억기록 서비스</div>

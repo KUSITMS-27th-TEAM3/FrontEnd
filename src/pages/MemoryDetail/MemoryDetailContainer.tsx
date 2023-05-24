@@ -57,13 +57,20 @@ const MemoryDetailContainer = () => {
       navigate(`/writeAlbum/${albumId}`, { state: { detailInfo } });
     } else if (isCommentDelete) {
       const res = await deleteComment(albumId, targetCommentId);
-      console.log(res);
+      console.log('RES', res);
+      if (!res) {
+        fetchDetailComments();
+      }
     } else {
       const res = await deleteAlbum(albumId);
       if (!res) {
         navigate('/memory/myAlbum');
       }
     }
+
+    setModal(false);
+    setIsRevise(false);
+    setCommentDelete(false);
   };
 
   const handleRevise = () => {
@@ -91,7 +98,7 @@ const MemoryDetailContainer = () => {
   const fetchDetailComments = async () => {
     const data = await getDetailComments(albumId);
     console.log('comment', data);
-    setCommentList(data.content);
+    setCommentList(data.content.filter((comment: CommentType) => !comment.deleted));
   };
 
   const fetchEmapty = async () => {

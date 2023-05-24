@@ -16,6 +16,33 @@ const getRefreshToken = () => {
   return sessionStorage.getItem('RefreshToken');
 };
 
+const tokenRefresh = async () => {
+  const refreshToken = getRefreshToken(); // 리프레시 토큰을 가져오기
+
+  const { data } = await instance.get('/reissue', {
+    headers: { 'Content-Type': 'application/json', RefreshToken: `Bearer ${refreshToken}` },
+  });
+
+  console.log(data.accessToken);
+  const newAccessToken = data.accessToken;
+  sessionStorage.setItem('Authorization', newAccessToken); // 세션 스토리지에 액세스 토큰 저장
+  console.log('Access token stored:', newAccessToken);
+}; // tokenRefresh() - 토큰을 갱신해주는 함수
+
+const isTokenExpired = () => {
+  const accessToken = getAccessToken();
+  if (!accessToken) {
+    return true;
+  }
+  const decodedToken = jwtDecode<JwtPayload>(accessToken);
+  const currentTime = Date.now() / 1000;
+  if (decodedToken.exp !== undefined && decodedToken.exp < currentTime) {
+    // 토큰이 만료된 경우
+    return true;
+  }
+  return false;
+}; // isTokenExpired() - 토큰 만료 여부를 확인하는 함수
+
 instance.interceptors.request.use(
   (config) => {
     const accessToken = getAccessToken();
@@ -44,66 +71,20 @@ instance.interceptors.response.use(
     return response;
   },
   async (error) => {
+    console.log('error', error);
     if (error.response && error.response?.status === 500) {
       const errorCode = error.response.data.errorCode;
       if (errorCode === 7001) {
         console.log('토큰만료');
-        // isTokenExpired() - 토큰 만료 여부를 확인하는 함수
-        const isTokenExpired = () => {
-          const accessToken = getAccessToken();
-          if (!accessToken) {
-            return true;
-          }
-
-          const decodedToken = jwtDecode<JwtPayload>(accessToken);
-          const currentTime = Date.now() / 1000;
-
-          if (decodedToken.exp !== undefined && decodedToken.exp < currentTime) {
-            // 토큰이 만료된 경우
-            return true;
-          }
-          return false;
-        };
-
-        // tokenRefresh() - 토큰을 갱신해주는 함수
-        const tokenRefresh = async () => {
-          try {
-            const refreshToken = getRefreshToken(); // 리프레시 토큰을 가져오기
-
-            const requestOptions = {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json',
-                RefreshToken: `Bearer ${refreshToken}`,
-              },
-            };
-
-            fetch('http://52.78.181.46/reissue', requestOptions)
-              .then((response) => response.json()) // JSON 형식으로 응답을 파싱
-              .then((data) => {
-                const newAccessToken = data.accessToken;
-                sessionStorage.setItem('Authorization', newAccessToken); // 세션 스토리지에 액세스 토큰 저장
-                console.log('Access token stored:', newAccessToken);
-              })
-              .catch((error) => console.log('Error:', error));
-          } catch (error) {
-            // 토큰 갱신 실패를 처리
-            console.error('토큰 갱신 실패:', error);
-          }
-        };
 
         if (isTokenExpired()) await tokenRefresh();
 
         const accessToken = getAccessToken();
 
-        error.config.headers = {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${accessToken}`,
-        };
+        error.config.headers.Authorization = `Bearer ${accessToken}`;
 
         // 중단된 요청을(에러난 요청)을 토큰 갱신 후 재요청
-        const response = await axios.request(error.config);
-        return response;
+        return instance(error.config);
       }
     }
 

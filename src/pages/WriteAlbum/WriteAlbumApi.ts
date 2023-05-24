@@ -90,10 +90,10 @@ export const putAlbum = async (
     formData.append('emotionTagList', tag);
   });
 
-  formData.append('imageUrlList', imageUrlList);
-
   if (albumImages) {
     formData.append('addImageList', albumImages);
+  } else {
+    formData.append('imageUrlList', imageUrlList);
   }
 
   return await API.post(`album/${albumId}`, formData, 'imgPost');

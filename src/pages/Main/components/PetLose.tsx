@@ -73,11 +73,6 @@ const PetLose = () => {
         {CARD_IMGS.map((item, index) => (
           <S.Card {...animatedItem[index]}><img src={item.src} key={index} /></S.Card>
         ))}
-        {/* <S.Card1><img src="/img/Petlose1.svg" alt="Card1"></img></S.Card1>
-        <S.Card2><img src="/img/Petlose2.svg" alt="Card2"></img></S.Card2>
-        <S.Card3><img src="/img/Petlose3.svg" alt="Card3"></img></S.Card3>
-        <S.Card4><img src="/img/Petlose4.svg" alt="Card4"></img></S.Card4>
-        <S.Card5><img src="/img/Petlose5.svg" alt="Card5"></img></S.Card5> */}
       </S.CardWrapper>
     </ S.Image>
   )

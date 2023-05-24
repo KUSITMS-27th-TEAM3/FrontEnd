@@ -40,29 +40,29 @@ const Main = () => {
   if (accessToken) {
     return (
       <MainContainer>
-        <LoginNavbar />
-        <Intro />
-        <Vision />
-        <PetLose />
-        <Function />
-        <Service1 />
-        <Service2 />
-        <Service3 />
-        <Footer />
+        <LoginNavbar key="first" />
+        <Intro key="second" />
+        <Vision key="third" />
+        <PetLose key="fourth" />
+        <Function key="fifth" />
+        <Service1 key="six" />
+        <Service2 key="seventh" />
+        <Service3 key="eighth" />
+        <Footer key="last" />
       </MainContainer>
     );
   } else {
     return (
       <MainContainer>
-        <Navbar />
-        <Intro />
-        <Vision />
-        <PetLose />
-        <Function />
-        <Service1 />
-        <Service2 />
-        <Service3 />
-        <Footer />
+        <Navbar key="first" />
+        <Intro key="second" />
+        <Vision key="third" />
+        <PetLose key="fourth" />
+        <Function key="fifth" />
+        <Service1 key="six" />
+        <Service2 key="seventh" />
+        <Service3 key="eighth" />
+        <Footer key="last" />
       </MainContainer>
     );
   }

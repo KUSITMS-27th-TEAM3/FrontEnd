@@ -18,7 +18,7 @@ const RegionTags = () => {
   return (
     <TagsContainer>
       <div className="RegionTagsTitle">장례 정보 알아보기</div>
-      <RegionTag width="50vw" fontSize={15} temp={temp} />
+      <RegionTag width="60vw" fontSize={15} temp={temp} />
     </TagsContainer>
   );
 };

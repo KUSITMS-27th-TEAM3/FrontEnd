@@ -5,20 +5,23 @@ import { WriteBox } from './components/style/WriteFormStyle';
 import { ContentForm, EmotionForm, RadioForm, TitleForm, ImageUpload } from './components';
 import { activeTagAtom, isUploadAtom } from '../../atom/atom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { postAlbum } from './WriteAlbumApi';
+import { postAlbum, putAlbum } from './WriteAlbumApi';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { isAlbumDetail } from '../../type/AlbumType';
 
-const WriteAlbumWrapper = styled(FlexContainer)``;
+const WriteAlbumWrapper = styled(FlexContainer)`
+  margin-bottom: 70px;
+`;
 
 const WriteAlbumContainer = () => {
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [visible, setVisible] = useState<boolean>(true);
-  const [uploadImage, setUploadImage] = useState<string>('');
+  const [uploadImage, setUploadImage] = useState<string>(''); // 업로드한 이미지(백그라운드로사용)
   const setIsUpload = useSetRecoilState(isUploadAtom);
-  const [albumImages, setAlbumImages] = useState<File | null>(null);
+  const [albumImages, setAlbumImages] = useState<File | null | string>(null); //사용자가 업로드한 이미지파일, 요청보냄
   const [emotionTagList, setEmotionTagList] = useRecoilState(activeTagAtom);
+  const [imageUrlList, setImgUrlList] = useState<string>('');
   const navigate = useNavigate();
   const location = useLocation();
   const [isRevise, setIsRevise] = useState<boolean>(false);
@@ -63,7 +66,8 @@ const WriteAlbumContainer = () => {
         navigate('/memory/myAlbum');
       }
     } else {
-      const res = await postAlbum(sendData, albumImages, albumId);
+      const res = await putAlbum(sendData, imageUrlList, albumId, albumImages);
+      console.log('수정값', res);
 
       if (!res) {
         alert('앨범을 수정했습니다.');
@@ -77,8 +81,9 @@ const WriteAlbumContainer = () => {
       setTitle(detailInfo?.title);
       setDescription(detailInfo?.description);
       setVisible(detailInfo?.visible === 'PUBLIC' ? true : false);
-      setUploadImage(detailInfo?.imageUrlList[0]);
-      setAlbumImages(detailInfo?.imageUrlList[0]);
+      setUploadImage(detailInfo?.imageUrlList[0]); // 현재 화면에 보이는 이미지
+      // setAlbumImages(detailInfo?.imageUrlList[0]); // 사용자가 올린 파일 or 수정전이미지
+      setImgUrlList(detailInfo?.imageUrlList[0]); // 수정할때 이전 이미지
       setIsRevise(true);
     }
     return () => setIsUpload(false);

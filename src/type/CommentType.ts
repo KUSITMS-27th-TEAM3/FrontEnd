@@ -4,6 +4,7 @@ export type CommentType = {
   writer: string;
   writerProfileImageUrl: string;
   changeable: boolean;
+  deleted: boolean;
   child?: CommentType[];
 };
 

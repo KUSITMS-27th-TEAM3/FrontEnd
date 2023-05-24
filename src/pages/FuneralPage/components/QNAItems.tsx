@@ -3,12 +3,17 @@ import { useState } from 'react';
 import type { QNAContent } from './QNAPresenter';
 import QNAForms from './QNAForms';
 
-const QuestionItemContainer = styled.button`
+type QuestionItemContainerProps = {
+  canRead: boolean;
+};
+
+const QuestionItemContainer = styled.button<QuestionItemContainerProps>`
   all: unset;
   width: 80vw;
   height: 120px;
   background-color: ${({ theme }) => theme.color.main.lightOrange};
-  border-radius: 16px;
+
+  border-radius: ${({ canRead }) => (canRead ? '16px 16px 0 0' : '16px')};
   margin-top: 24px;
   display: flex;
   align-items: center;
@@ -61,7 +66,7 @@ const QNAItems = ({ question }: QNAItemProps) => {
 
   return (
     <>
-      <QuestionItemContainer onClick={handleCanRead}>
+      <QuestionItemContainer canRead={canRead} onClick={handleCanRead}>
         <div className="question_box">
           <div className="question_circle">
             <img src="/img/question_icon.svg" alt="heart" />
@@ -76,6 +81,6 @@ const QNAItems = ({ question }: QNAItemProps) => {
       </QuestionItemContainer>
       {canRead ? <QNAForms answerDescription={question.answerDescription} /> : null}
     </>
-  )
-}
+  );
+};
 export default QNAItems;

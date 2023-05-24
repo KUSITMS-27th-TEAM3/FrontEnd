@@ -20,9 +20,9 @@ const FuneralPage = () => {
 export default FuneralPage;
 
 const MainContainer = styled.div`
-  display : flex;
-  flex-direction : column;
-  justify-content : cneter;
-  align-items : center;
-  width : 100vw;
-`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+`;

@@ -78,6 +78,24 @@ const TextForm = () => {
         formData.append('profileImage', profileImage);
       }
 
+      // 빈 값 및 파일 업로드 확인
+      let hasEmptyValue = false;
+      let fileUploadCount = 0;
+
+      formData.forEach((value, key) => {
+        if (value === '') {
+          hasEmptyValue = true;
+        }
+        if (value instanceof File) {
+          fileUploadCount++;
+        }
+      });
+
+      if (hasEmptyValue || fileUploadCount < 2) {
+        alert('모든 항목을 입력해주세요!');
+        return;
+      }
+
       const response = await API.post('/user/mypet', formData, 'imgPost');
       console.log(response);
       alert('수정되었습니다!');
@@ -94,20 +112,20 @@ const TextForm = () => {
     state: [string, React.Dispatch<React.SetStateAction<string>>];
     placeholder: string;
   }[] = [
-    { name: '닉네임', state: [id, setId], placeholder: '아이디를 수정해주세요.' },
-    {
-      name: '마이펫 이름',
-      state: [nickname, setNickname],
-      placeholder: '마이펫 이름을 적어주세요..',
-    },
-    {
-      name: '마이펫 한 줄 설명',
-      state: [subInfo, setSubInfo],
-      placeholder: '한 줄 설명을 적어주세요.',
-    },
-    { name: '품종', state: [breed, setBreed], placeholder: '품종을 입력해주세요.' },
-    { name: '나이', state: [age, setAge], placeholder: '나이를 입력해주세요.' },
-  ];
+      { name: '닉네임', state: [id, setId], placeholder: '아이디를 수정해주세요.' },
+      {
+        name: '마이펫 이름',
+        state: [nickname, setNickname],
+        placeholder: '마이펫 이름을 적어주세요..',
+      },
+      {
+        name: '마이펫 한 줄 설명',
+        state: [subInfo, setSubInfo],
+        placeholder: '한 줄 설명을 적어주세요.',
+      },
+      { name: '품종', state: [breed, setBreed], placeholder: '품종을 입력해주세요.' },
+      { name: '나이', state: [age, setAge], placeholder: '나이를 입력해주세요. (숫자로 기입)' },
+    ];
 
   const ImgInfo: {
     name: string;
@@ -115,19 +133,19 @@ const TextForm = () => {
     stateName: [string, React.Dispatch<React.SetStateAction<string>>];
     placeholder: string;
   }[] = [
-    {
-      name: '프로필 사진',
-      state: [profileImage, setProfileImage],
-      stateName: [selectedFileName1, setSelectedFileName1],
-      placeholder: '프로필 사진을 첨부하세요.',
-    },
-    {
-      name: '마이펫 사진',
-      state: [petImage, setPetImage],
-      stateName: [selectedFileName2, setSelectedFileName2],
-      placeholder: '마이펫 사진을 첨부하세요.',
-    },
-  ];
+      {
+        name: '프로필 사진',
+        state: [profileImage, setProfileImage],
+        stateName: [selectedFileName1, setSelectedFileName1],
+        placeholder: '프로필 사진을 첨부하세요.',
+      },
+      {
+        name: '마이펫 사진',
+        state: [petImage, setPetImage],
+        stateName: [selectedFileName2, setSelectedFileName2],
+        placeholder: '마이펫 사진을 첨부하세요.',
+      },
+    ];
 
   return (
     <TextFormContainer>
@@ -169,7 +187,7 @@ const TextForm = () => {
                 value={items.stateName[0]}
                 placeholder={items.placeholder}
               />
-              <button onClick={() => fileInputRefs[idx].current?.click()}>사진 첨부</button>
+              <button onClick={() => { fileInputRefs[idx].current?.click(); setSubmitButtonClicked(false); }}>사진 첨부</button>
             </label>
           </FormWrapper>
         ))}

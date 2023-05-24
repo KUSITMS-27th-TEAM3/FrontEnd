@@ -79,24 +79,19 @@ instance.interceptors.response.use(
             };
 
             fetch("http://52.78.181.46/reissue", requestOptions)
-              .then(response => response.text())
-              .then(result => console.log(result))
-              .catch(error => console.log('error', error));
+              .then(response => response.json()) // JSON 형식으로 응답을 파싱
+              .then(data => {
+                const newAccessToken = data.accessToken;
+                sessionStorage.setItem('Authorization', newAccessToken); // 세션 스토리지에 액세스 토큰 저장
+                console.log('Access token stored:', newAccessToken);
+              })
+              .catch(error => console.log('Error:', error));
 
-            // 새로운 액세스 토큰을 저장소에 업데이트
-            const newAccessToken = response.data.accessToken;
-
-            // 새로운 액세스 토큰을 저장소에 설정
-            localStorage.setItem('Authorization', newAccessToken);
           } catch (error) {
             // 토큰 갱신 실패를 처리
             console.error('토큰 갱신 실패:', error);
           }
         };
-
-        // if (isTokenExpired()) {
-        //   console.log('만료됨');
-        // }
 
         if (isTokenExpired()) await tokenRefresh();
 

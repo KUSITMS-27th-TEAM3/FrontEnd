@@ -5,6 +5,7 @@ export const ImageContainer = styled.div`
   width: 100%;
   height: 835px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  overflow: hidden;
 
   .img_filter {
     position: absolute;
@@ -14,8 +15,8 @@ export const ImageContainer = styled.div`
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    z-index: 1;
   }
 
   img {
@@ -30,12 +31,16 @@ type ImageUploadModalProps = {
 };
 
 export const ImageBackground = styled.div<ImageUploadModalProps>`
+  position: absolute;
+  top: -20px;
+  left: -20px;
   background-image: url(${(props) => props.backgroundUrl});
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
   height: 100%;
+  padding: 20px;
   filter: blur(16px);
   background-color: #000000;
 `;

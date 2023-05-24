@@ -9,7 +9,9 @@ import { postAlbum, putAlbum } from './WriteAlbumApi';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { isAlbumDetail } from '../../type/AlbumType';
 
-const WriteAlbumWrapper = styled(FlexContainer)``;
+const WriteAlbumWrapper = styled(FlexContainer)`
+  margin-bottom: 70px;
+`;
 
 const WriteAlbumContainer = () => {
   const [title, setTitle] = useState<string>('');

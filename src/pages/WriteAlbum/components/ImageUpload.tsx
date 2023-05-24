@@ -32,7 +32,7 @@ const ImageUpload = ({ uploadImage, setUploadImage, setImageUpload }: ImageUploa
   return (
     <S.ImageContainer>
       <span className="img_filter" />
-      <img src={uploadImage ? uploadImage : '/img/writeAlbumBg.svg'} alt="uploadImage" />
+      <S.ImageBackground backgroundUrl={uploadImage ? uploadImage : '/img/writeAlbumBg.svg'} />
       <S.ImageUploadBox onClick={handleImageUploadBtn} isUpload={isUpload}>
         <input type="file" accept="image/*" ref={inputRef} hidden onChange={handleImageUpload} />
         {isUpload ? (

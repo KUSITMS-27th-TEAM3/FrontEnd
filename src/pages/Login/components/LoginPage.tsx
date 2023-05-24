@@ -57,9 +57,6 @@ const LoginPage = () => {
                         <LoginWrapper>
                             <div className='title'>소셜 로그인</div>
                             <ButtonWrapper>
-                                <button>
-                                    <img src="/img/NaverLogin.svg" />
-                                </button>
 
                                 <button><a href="http://52.78.181.46.nip.io/oauth2/authorization/google">
                                     <img src="/img/GoogleLogin.svg" /></a>

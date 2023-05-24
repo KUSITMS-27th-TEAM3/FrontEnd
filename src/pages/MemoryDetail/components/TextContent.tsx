@@ -30,7 +30,7 @@ const TextContent = ({
   setIsCheckedEmpathy,
 }: TextContentProps) => {
   const [tags, setTags] = useState<string[]>([]);
-  const [commentCount, setCommentCount] = useState<number>(comment);
+  // const [commentCount, setCommentCount] = useState<number>(comment);
   const [empathyCount, setEmpathyCount] = useState<number>(empathy);
   const [refetch, setRefetch] = useRecoilState<boolean>(refetchAtom);
 
@@ -43,15 +43,15 @@ const TextContent = ({
     setEmpathyCount(empathy);
   }, [empathy]);
 
-  useEffect(() => {
-    setCommentCount(comment);
-  }, [comment]);
+  // useEffect(() => {
+  //   setCommentCount(comment);
+  // }, [comment]);
 
-  useEffect(() => {
-    if (refetch) {
-      setCommentCount((prev) => prev + 1);
-    }
-  }, [refetch]);
+  // useEffect(() => {
+  //   if (refetch) {
+  //     setCommentCount((prev) => prev + 1);
+  //   }
+  // }, [refetch]);
 
   const handleEmpathyClick = async () => {
     const res = await postEmpathy(albumId);
@@ -115,7 +115,7 @@ const TextContent = ({
             <DogFootIcon />
           </S.ContentButton>
           <S.ContentButton>
-            <div>{commentCount}</div>
+            <div>{comment}</div>
             <CommentIcon />
           </S.ContentButton>
         </div>

@@ -6,7 +6,7 @@ const ContentWrapper = styled.div`
   img {
     width: 100%;
     height: auto;
-    content-fit: cover;
+    object-fit: cover;
   }
 `;
 const LoginWrapper = styled.div`

@@ -1,17 +1,17 @@
 import * as S from './style/WriteFormStyle';
 
 type ContentFormProps = {
-  content: string;
+  description: string;
   handleContentChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
-const ContentForm = ({ content, handleContentChange }: ContentFormProps) => {
+const ContentForm = ({ description, handleContentChange }: ContentFormProps) => {
   return (
     <div className="flexBox">
       <div className="write_title margin">내용</div>
       <S.TextBox
         height={'385px'}
-        value={content}
+        value={description}
         onChange={handleContentChange}
         placeholder="내용을 입력해주세요"
       />

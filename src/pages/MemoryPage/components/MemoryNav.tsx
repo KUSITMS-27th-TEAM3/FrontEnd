@@ -39,7 +39,10 @@ function MemoryNav() {
   };
 
   useEffect(() => {
-    if (pathname === '/memory/sharedAlbum') {
+    if (pathname === '/memory') {
+      setActiveNum(0);
+      setSortOptionList(sortOptionData.slice(0, 1));
+    } else if (pathname === '/memory/sharedAlbum') {
       setActiveNum(1);
       setSortOptionList(sortOptionData);
     } else if (pathname === '/memory/myAlbum') {

@@ -5,11 +5,12 @@ import { isUploadAtom } from '../../../atom/atom';
 import { useRecoilState } from 'recoil';
 
 type ImageUploadProps = {
-  albumImg: string;
-  setAlbumImg: (albumImg: string) => void;
+  uploadImage: string;
+  setUploadImage: (albumImg: string) => void;
+  setImageUpload: (file: File) => void;
 };
 
-const ImageUpload = ({ albumImg, setAlbumImg }: ImageUploadProps) => {
+const ImageUpload = ({ uploadImage, setUploadImage, setImageUpload }: ImageUploadProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isUpload, setIsUpload] = useRecoilState(isUploadAtom);
   const reader = new FileReader();
@@ -21,8 +22,9 @@ const ImageUpload = ({ albumImg, setAlbumImg }: ImageUploadProps) => {
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
     reader.readAsDataURL(e.target.files[0]);
+    setImageUpload(e.target.files[0]);
     reader.onload = () => {
-      setAlbumImg(reader.result as string);
+      setUploadImage(reader.result as string);
       setIsUpload(true);
     };
   };
@@ -30,11 +32,11 @@ const ImageUpload = ({ albumImg, setAlbumImg }: ImageUploadProps) => {
   return (
     <S.ImageContainer>
       <span className="img_filter" />
-      <img src={albumImg ? albumImg : '/img/writeAlbumBg.svg'} alt="AlbumImg" />
+      <img src={uploadImage ? uploadImage : '/img/writeAlbumBg.svg'} alt="uploadImage" />
       <S.ImageUploadBox onClick={handleImageUploadBtn} isUpload={isUpload}>
         <input type="file" accept="image/*" ref={inputRef} hidden onChange={handleImageUpload} />
         {isUpload ? (
-          <img src={albumImg} alt="AlbumImg" />
+          <img src={uploadImage} alt="uploadImage" />
         ) : (
           <>
             <AlbumIcon width="30%" height="30%" />

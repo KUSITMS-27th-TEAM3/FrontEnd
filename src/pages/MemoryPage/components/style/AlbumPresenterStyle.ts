@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
 export const AlbumContainer = styled.section`
-  margin: 5vw 10vw 5vw 10vw;
+  margin: min(70px, 5vw) 10vw;
   width: 80vw;
   height: 100vh;
   overflow: auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+
   grid-gap: 24px;
 
   img {
@@ -70,15 +71,17 @@ export const AlbumContainer = styled.section`
         opacity: 1;
       }
     }
+  }
 
-    @media screen and (max-width: 1024px) {
-      &.imgLink {
-        font-size: 10px;
-      }
+  @media screen and (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
 
-      &.figItemImg {
-        margin-bottom: 10px;
-      }
+    &.imgLink {
+      font-size: 10px;
+    }
+
+    &.figItemImg {
+      margin-bottom: 10px;
     }
   }
 `;

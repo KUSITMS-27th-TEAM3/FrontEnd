@@ -2,48 +2,172 @@ import { useEffect, useState } from 'react';
 import Modal from '../../components/Modal';
 import * as S from './components/style/MemoryDetailStyle';
 import { CommentList, ImageContent, InputForm, TextContent } from './components';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import {
+  getDetailComments,
+  getDetailAlbum,
+  deleteAlbum,
+  getEmpathy,
+  getComment,
+  deleteComment,
+} from './MemoryDetailApi';
+import Spinner from '../../components/Spinner';
+import { AlbumDetail, initialDetail } from '../../type/AlbumType';
+import type { CommentType } from '../../type/CommentType';
+import { refetchAtom } from '../../atom/atom';
+import { useRecoilState } from 'recoil';
 
-const ModalText = {
+const deleteModalText = {
   text: '삭제하시겠습니까?',
   btnText1: '취소',
   btnText2: '삭제',
 };
 
-const tempContent = {
-  name: '오태석',
-  content:
-    '강아지랑 여행가는 거 너무 좋죠.. 저도 더 많이 같이 갈 걸 후회되기도 하더라구요 그래서 그런지 가끔 갔던 여행에서 찍은 사진 보면 저도 정말 행복해집니당 ㅎ 반려동물 키우는 친구가 주변에 많은데 여행 많이 많이 가보라고 얘기해주고 있어요 같이 여행가는 것도 좋은데 거기서 같이 물놀이까지 하면 강아지도 좋아하고 더 재밌게 놀 수 있는 것 같아요 강릉에 함께할 수 있는 좋은 펜션 많은데 혹시 지금 키우고 계신 분들이 있다면 꼭 가보세용',
+const reviseModalText = {
+  text: '수정하시겠습니까?',
+  btnText1: '취소',
+  btnText2: '수정',
 };
-
-const tempArr = [tempContent, tempContent, tempContent, tempContent, tempContent];
 
 const MemoryDetailContainer = () => {
   const [isModal, setModal] = useState<boolean>(false);
+  const [isRevise, setIsRevise] = useState<boolean>(false);
+  const [isloading, setLoading] = useState<boolean>(true);
+  const [commentList, setCommentList] = useState<CommentType[]>([]);
+  const [detailInfo, setDetailInfo] = useState<AlbumDetail>(initialDetail);
+  const [refetch, setRefetch] = useRecoilState<boolean>(refetchAtom);
+  const [isSharedAlbum, setSharedAlbum] = useState<boolean>(false);
+  const albumId = useParams().id;
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [isCheckedEmpathy, setIsCheckedEmpathy] = useState<boolean>(false);
+  const [empathyCount, setEmpathyCount] = useState<number>(0);
+  const [commentCount, setCommentCount] = useState<number>(0);
+  const [isCommentDelete, setCommentDelete] = useState<boolean>(false);
+  const [targetCommentId, setTargetCommentId] = useState<number>(0);
 
   const firstBtnHandler = () => {
     setModal(false);
+    setIsRevise(false);
+    setCommentDelete(false);
   };
 
-  const secondBtnHandler = () => {
-    console.log('second');
+  const secondBtnHandler = async () => {
+    if (isRevise) {
+      navigate(`/writeAlbum/${albumId}`, { state: { detailInfo } });
+    } else if (isCommentDelete) {
+      const res = await deleteComment(albumId, targetCommentId);
+      console.log(res);
+    } else {
+      const res = await deleteAlbum(albumId);
+      if (!res) {
+        navigate('/memory/myAlbum');
+      }
+    }
   };
+
+  const handleRevise = () => {
+    setIsRevise(true);
+    setModal(true);
+  };
+
+  const handleAlbumDelete = () => {
+    setIsRevise(false);
+    setModal(true);
+  };
+
+  const handleCommentDelete = (commentId: number) => {
+    setCommentDelete(true);
+    setModal(true);
+    setTargetCommentId(commentId);
+  };
+
+  const fetchDetailAlbum = async () => {
+    const data = await getDetailAlbum(albumId);
+    console.log(data);
+    setDetailInfo(data);
+  };
+
+  const fetchDetailComments = async () => {
+    const data = await getDetailComments(albumId);
+    console.log('comment', data);
+    setCommentList(data.content);
+  };
+
+  const fetchEmapty = async () => {
+    const data = await getEmpathy(albumId);
+    setEmpathyCount(data.empathyCount);
+    setIsCheckedEmpathy(data.empathyExistAboutUser);
+  };
+
+  const fetchCommentCount = async () => {
+    const data = await getComment(albumId);
+    setCommentCount(data.commentCount);
+  };
+
+  useEffect(() => {
+    if (location.pathname.includes('/memory/sharedAlbum')) {
+      setSharedAlbum(true);
+    }
+    fetchDetailAlbum();
+    fetchDetailComments();
+    fetchEmapty();
+    fetchCommentCount();
+    setLoading(false);
+  }, []);
+
+  useEffect(() => {
+    if (refetch) {
+      fetchDetailComments();
+    }
+    setRefetch(false);
+  }, [refetch]);
+
+  if (isloading) {
+    return <Spinner />;
+  }
 
   return (
     <S.DetailBox>
       <Modal
-        ModalText={ModalText}
+        ModalText={isRevise ? reviseModalText : deleteModalText}
         isModal={isModal}
         firstBtnHandler={firstBtnHandler}
         SecondBtnHandler={secondBtnHandler}
       />
-      <ImageContent />
+      <ImageContent imageUrl={detailInfo?.imageUrlList} />
       <S.DetailWrapper>
-        <TextContent />
-        <InputForm />
+        <TextContent
+          handleRevise={handleRevise}
+          handleAlbumDelete={handleAlbumDelete}
+          detailInfo={detailInfo}
+          albumId={albumId}
+          empathy={empathyCount}
+          comment={commentCount}
+          isCheckedEmpathy={isCheckedEmpathy}
+          setIsCheckedEmpathy={setIsCheckedEmpathy}
+        />
+        {isSharedAlbum ? (
+          <InputForm
+            albumId={albumId}
+            accessUserProfileImageUrl={detailInfo.accessUserProfileImageUrl}
+          />
+        ) : null}
         <S.CommentBox>
-          {tempArr.map(({ name, content }) => (
-            <CommentList name={name} content={content} />
-          ))}
+          {commentList.length !== 0 ? (
+            commentList.map((comment) => (
+              <CommentList
+                comment={comment}
+                key={comment.commentId}
+                albumId={albumId}
+                accessUserProfileImageUrl={detailInfo.accessUserProfileImageUrl}
+                isSharedAlbum={isSharedAlbum}
+                handleCommentDelete={handleCommentDelete}
+              />
+            ))
+          ) : (
+            <div className="nocontent">댓글이 없습니다</div>
+          )}
         </S.CommentBox>
       </S.DetailWrapper>
     </S.DetailBox>

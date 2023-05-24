@@ -29,6 +29,7 @@ const Router = () => {
         <Route path="/memory/myAlbum/:id" element={<MemoryDetail />} />
         <Route path="/memory/sharedAlbum/:id" element={<MemoryDetail />} />
         <Route path="/writeAlbum" element={<WriteAlbum />} />
+        <Route path="/writeAlbum/:id" element={<WriteAlbum />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/ReviseInfo" element={<ReviseInfo />} />
         <Route path="/funeral" element={<FuneralPage />} />

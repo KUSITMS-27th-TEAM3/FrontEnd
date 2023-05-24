@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { postAnswer, putAnswer } from '../QuestionAlbumApi';
 import * as S from './style/QuestionWriteFormStyle';
 import { DeleteIcon, ReviseIcon } from '../../../../components/Icons/Index';
-import { refetchQuestionsAtom } from '../../../../atom/atom';
+import { refetchAtom } from '../../../../atom/atom';
 import { useRecoilState } from 'recoil';
 
 type QuestionWriteFormProps = {
@@ -14,7 +14,7 @@ const QuestionWriteForm = ({ answerDescription, questionId }: QuestionWriteFormP
   const [textValue, setTextValue] = useState<string>('');
   const [canRevise, setCanRevise] = useState<boolean>(false);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
-  const [refetch, setRefetch] = useRecoilState<boolean>(refetchQuestionsAtom);
+  const [refetch, setRefetch] = useRecoilState<boolean>(refetchAtom);
 
   const handleRevise = () => {
     setCanRevise(true);

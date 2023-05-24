@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 import { useState } from 'react';
+import { postComment, postCommentReply } from '../MemoryDetailApi';
+import { isCommentType } from '../../../type/CommentType';
+import { useRecoilState } from 'recoil';
+import { refetchAtom } from '../../../atom/atom';
 
 const InputBox = styled.form`
   display: flex;
@@ -17,22 +21,48 @@ const CommentInput = styled.input`
   background-color: ${({ theme }) => theme.color.grayScale.lightGray};
 `;
 
-type InputFormProps = {};
+type InputFormProps = {
+  albumId: string | undefined;
+  accessUserProfileImageUrl: string | null;
+  commentId?: number;
+};
 
-const InputForm = ({}: InputFormProps) => {
+const InputForm = ({ albumId, commentId, accessUserProfileImageUrl }: InputFormProps) => {
   const [inputValue, setInputValue] = useState<string>('');
+  const [refetch, setRefetch] = useRecoilState<boolean>(refetchAtom);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!inputValue) {
+      alert('댓글을 입력해주세요.');
+      return;
+    }
+
+    let res;
+    if (!commentId) {
+      res = await postComment(albumId, inputValue);
+    } else {
+      res = await postCommentReply(albumId, commentId, inputValue);
+    }
+
+    if (isCommentType(res)) {
+      setInputValue('');
+      setRefetch(true);
+      alert('댓글이 입력되었습니다.');
+    }
   };
 
   return (
     <InputBox onSubmit={handleSubmit}>
-      <img src={'/img/강아지사진.jpg'} alt="AlbumImg" className="profileImg" />
+      <img
+        src={accessUserProfileImageUrl ? accessUserProfileImageUrl : '/img/default.png'}
+        alt="AlbumImg"
+        className="profileImg"
+      />
       <CommentInput
         placeholder="댓글을 입력해주세요."
         value={inputValue}

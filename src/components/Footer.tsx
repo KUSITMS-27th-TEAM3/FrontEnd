@@ -4,7 +4,7 @@ const FooterContainer = styled.footer`
   display: flex;
   width: 100vw;
   position: relative;
-  margin-top: 70px;
+  /* margin-top: 70px; */
 
   img {
     width: 100%;

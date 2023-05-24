@@ -15,7 +15,7 @@ const TagButton = styled.button<TagButtonProps>`
   border: 1px solid #9d9d9d;
   background-color: ${({ theme }) => theme.color.grayScale.white};
   font-size: ${(props) => props.fontSize}px;
-  padding: 1em 2em;
+  padding: 0.8vw 1.2vw;
   text-align: center;
   cursor: pointer;
   &.active {

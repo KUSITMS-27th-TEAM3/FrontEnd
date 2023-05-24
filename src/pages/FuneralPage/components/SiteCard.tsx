@@ -69,22 +69,22 @@ const SiteCardContainer = styled.div`
         color : black;
         cursor: pointer;
         text-decoration: none;
+    }
 
-        &:hover {
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-          }
+    &:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
 
     background-color: white;
     border-radius: 8px;
     text-align: center;
-    width: 23vw;
-    height: 19vw;
+    width: 100%;
+    height: 100%;
     margin: 10px;
 `
 
 const ImgWrapper = styled.div`
-    height : 60%;
+    height : 50%;
 
     img { 
         width : 100%;
@@ -93,35 +93,35 @@ const ImgWrapper = styled.div`
     }
 `
 const TextWrapper = styled.div`
-    height : 40%;
+    height : 50%;
     border : 3px solid rgb(212,212,212);
-    border-radius : 8px;
+    border-radius : 0 0 8px 8px;
 
     div.content1 {
         display : flex;
         gap : 10px;
-        margin :1vw 0 0 1vw;
-        font-size : 0.8vw;
+        margin : 3vw 0 0 1vw;
+        font-size : 15px;
         font-family: ${({ theme }) => theme.font.family.pretendard_bold};
 
         div.hour { 
             color : white;
             // background-color: rgb(255,175,11);
-            padding : 0.5vw;
+            padding : 12px;
             border-radius : 8px;
         }
         div.region {
             // background-color : rgb(255,231,182);
             // color: rgb(255,175,11);
-            padding : 0.5vw;
+            padding : 12px;
             border-radius : 8px;
         }
     }
 
     div.content2 {
         display : flex;
-        margin : 0.6vw 0 0 1vw;
-        font-size : 1.3vw;
+        margin : 15px 0 0 1vw;
+        font-size : 25px;
         font-family: ${({ theme }) => theme.font.family.pretendard_bold};
     }
 
@@ -130,9 +130,15 @@ const TextWrapper = styled.div`
         flex-direction : column;
         align-items : flex-start;
         gap : 3px;
-        margin : 0.6vw 0 0 1vw;
-        font-size : 0.7vw;
+        margin : 15px 0 0 1vw;
+        font-size : 15px;
         color : ${({ theme }) => theme.color.grayScale.gray};
         font-family: ${({ theme }) => theme.font.family.pretendard_medium};
     }
+
+    @media screen and (max-width: 1430px) {
+        div.content1{
+            margin : 5vw 0 0 1vw;    
+        }
+      }
 `

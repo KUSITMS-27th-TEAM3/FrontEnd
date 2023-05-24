@@ -77,6 +77,7 @@ const SiteLists = () => {
                     <SiteCard card={card} key={idx} />
                 ))}
             </div>
+            <div className="background" />
             <IconButton width="12vw" height="41px" minWidth="130px" maxWidth="171px"
                 id="show-more-button"
                 onClick={handleFetchCard}
@@ -99,15 +100,10 @@ const ListContainer = styled.div`
     align-items: center;
 
   .card-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-
-    width: 90vw;
-    max-height: 1000000vh;
-    overflow-y: auto;
-    padding: 10px;
+    max-width: 90vw;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 18px;
   }
 
   .background {
@@ -117,4 +113,12 @@ const ListContainer = styled.div`
   #show-more-button {
     margin-top: 20px;
   }
+
+  @media screen and (max-width: 1430px) {
+    .card-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+  }
 `;
+
+

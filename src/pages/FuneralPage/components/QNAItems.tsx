@@ -14,7 +14,7 @@ const QuestionItemContainer = styled.button`
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  font-size : 20px;
+  font-size : 1.3vw;
 
   .question_box {
     display: flex;
@@ -49,33 +49,33 @@ const QuestionItemContainer = styled.button`
 `;
 
 type QNAItemProps = {
-    question: QNAContent;
+  question: QNAContent;
 };
 
 const QNAItems = ({ question }: QNAItemProps) => {
-    const [canRead, setCanRead] = useState(false);
+  const [canRead, setCanRead] = useState(false);
 
-    const handleCanRead = () => {
-        setCanRead(!canRead);
-    };
+  const handleCanRead = () => {
+    setCanRead(!canRead);
+  };
 
-    return (
-        <>
-            <QuestionItemContainer onClick={handleCanRead}>
-                <div className="question_box">
-                    <div className="question_circle">
-                        <img src="/img/question_icon.svg" alt="heart" />
-                    </div>
-                    <div className="question_content">{question.questionTitle}</div>
-                </div>
-                <img
-                    src="/img/blackArrow.svg"
-                    alt="arrow"
-                    className={canRead ? 'quesiton_arrow active' : 'quesiton_arrow'}
-                />
-            </QuestionItemContainer>
-            {canRead ? <QNAForms answerDescription={question.answerDescription} /> : null}
-        </>
-    )
+  return (
+    <>
+      <QuestionItemContainer onClick={handleCanRead}>
+        <div className="question_box">
+          <div className="question_circle">
+            <img src="/img/question_icon.svg" alt="heart" />
+          </div>
+          <div className="question_content">{question.questionTitle}</div>
+        </div>
+        <img
+          src="/img/blackArrow.svg"
+          alt="arrow"
+          className={canRead ? 'quesiton_arrow active' : 'quesiton_arrow'}
+        />
+      </QuestionItemContainer>
+      {canRead ? <QNAForms answerDescription={question.answerDescription} /> : null}
+    </>
+  )
 }
 export default QNAItems;

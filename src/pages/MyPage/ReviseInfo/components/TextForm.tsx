@@ -200,7 +200,6 @@ export default TextForm;
 
 const TextFormContainer = styled.div`
   margin-top: 2vw;
-  // border : 1px solid red;
   width: 80vw;
   font-family: ${(props) => props.theme.font.family.pretendard_bold};
   font-size: 1vw;
@@ -228,9 +227,11 @@ const FormWrapper = styled.label`
   input.textInput {
     width: 100%;
     height: 100%;
+    padding-left: 22px;
     border-radius: 10px;
     background-color: ${(props) => props.theme.color.grayScale.lightGray};
     border: none;
+    font-family: ${(props) => props.theme.font.family.pretendard_medium};
   }
   input.imgInput {
     width: 87%;
@@ -254,6 +255,8 @@ const FormWrapper = styled.label`
     border-radius: 10px;
     background-color: ${(props) => props.theme.color.grayScale.lightGray};
     border: none;
+    padding-left: 22px;
+    font-family: ${(props) => props.theme.font.family.pretendard_medium};
   }
   button {
     position: absolute;

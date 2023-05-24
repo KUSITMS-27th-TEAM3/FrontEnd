@@ -62,7 +62,6 @@ const Profile = () => {
 
         <ProfileInfo>
           <div className="MyPet">My Pet</div>
-          {/* <div className='petName'>{`${profile.userNickname}의 ${profile.petName}`}</div> */}
           <div className="petName">
             <span className="front">{profile.userNickname}의 </span>
             <span className="back">{profile.petName}</span>

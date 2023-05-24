@@ -57,13 +57,20 @@ const MemoryDetailContainer = () => {
       navigate(`/writeAlbum/${albumId}`, { state: { detailInfo } });
     } else if (isCommentDelete) {
       const res = await deleteComment(albumId, targetCommentId);
-      console.log(res);
+      console.log('RES', res);
+      if (!res) {
+        fetchDetailComments();
+      }
     } else {
       const res = await deleteAlbum(albumId);
       if (!res) {
         navigate('/memory/myAlbum');
       }
     }
+
+    setModal(false);
+    setIsRevise(false);
+    setCommentDelete(false);
   };
 
   const handleRevise = () => {
@@ -92,17 +99,20 @@ const MemoryDetailContainer = () => {
     const data = await getDetailComments(albumId);
     console.log('comment', data);
     setCommentList(data.content);
+    setCommentCount(() => {
+      return data.content.reduce((acc: number, arr: CommentType) => {
+        if (!arr.child) return acc + 1;
+        else {
+          return acc + 1 + arr.child.length;
+        }
+      }, 0);
+    });
   };
 
   const fetchEmapty = async () => {
     const data = await getEmpathy(albumId);
     setEmpathyCount(data.empathyCount);
     setIsCheckedEmpathy(data.empathyExistAboutUser);
-  };
-
-  const fetchCommentCount = async () => {
-    const data = await getComment(albumId);
-    setCommentCount(data.commentCount);
   };
 
   useEffect(() => {
@@ -112,7 +122,6 @@ const MemoryDetailContainer = () => {
     fetchDetailAlbum();
     fetchDetailComments();
     fetchEmapty();
-    fetchCommentCount();
     setLoading(false);
   }, []);
 

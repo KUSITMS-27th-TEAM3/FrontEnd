@@ -8,6 +8,7 @@ const MemoryWrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 70px;
 `;
 
 const MemoryContainer = () => {
@@ -41,7 +42,7 @@ const MemoryContainer = () => {
       )}
       <MemoryNav />
       {currentPath !== '/memory/question' && (
-        <EmotionTags width="80vw" isMargin={true} fontSize={18} temp={temp} />
+        <EmotionTags width="80vw" isMargin={true} fontSize={16} temp={temp} />
       )}
       <Outlet />
     </MemoryWrapper>

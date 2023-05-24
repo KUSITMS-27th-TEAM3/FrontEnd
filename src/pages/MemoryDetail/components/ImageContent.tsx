@@ -1,5 +1,5 @@
 import { useRecoilState } from 'recoil';
-import { ImageContainer } from '../../WriteAlbum/components/style/ImageUploadStyle';
+import * as S from '../../WriteAlbum/components/style/ImageUploadStyle';
 import { ImageBox } from './style/MemoryDetailStyle';
 import { isUploadAtom } from '../../../atom/atom';
 import { useEffect } from 'react';
@@ -18,13 +18,13 @@ const ImageContent = ({ imageUrl }: ImageContentProps) => {
   }, []);
 
   return (
-    <ImageContainer>
+    <S.ImageContainer>
       <span className="img_filter" />
-      <img src={imageUrl && imageUrl[0]} alt="AlbumImg" />
+      <S.ImageBackground backgroundUrl={imageUrl[0]} />
       <ImageBox>
-        <img src={imageUrl && imageUrl[0]} alt="AlbumImg" />
+        <img src={imageUrl[0]} alt="AlbumImg" />
       </ImageBox>
-    </ImageContainer>
+    </S.ImageContainer>
   );
 };
 

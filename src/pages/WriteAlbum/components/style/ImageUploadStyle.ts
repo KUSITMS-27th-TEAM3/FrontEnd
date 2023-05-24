@@ -42,7 +42,6 @@ export const ImageBackground = styled.div<ImageUploadModalProps>`
   height: 100%;
   padding: 20px;
   filter: blur(16px);
-  background-color: #000000;
 `;
 
 type ImageUploadBoxProps = {

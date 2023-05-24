@@ -98,11 +98,9 @@ const MemoryDetailContainer = () => {
   const fetchDetailComments = async () => {
     const data = await getDetailComments(albumId);
     console.log('comment', data);
-    const notdeleted = data.content.filter((comment: CommentType) => !comment.deleted);
-    console.log(notdeleted);
-    setCommentList(notdeleted);
+    setCommentList(data.content);
     setCommentCount(() => {
-      return notdeleted.reduce((acc: number, arr: CommentType) => {
+      return data.content.reduce((acc: number, arr: CommentType) => {
         if (!arr.child) return acc + 1;
         else {
           return acc + 1 + arr.child.length;

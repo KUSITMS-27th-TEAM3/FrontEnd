@@ -25,6 +25,7 @@ export const ImageBox = styled.div`
   width: 765px;
   aspect-ratio: 1;
   transform: translate(-50%, 0);
+  z-index: 2;
 
   .img {
     width: 100%;

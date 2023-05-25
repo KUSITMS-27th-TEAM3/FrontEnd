@@ -86,7 +86,7 @@ const SiteLists = () => {
         onClick={handleFetchCard}
       >
         <div>장례 정보 더보기</div>
-        <img src="/img/Arrow.svg" />
+        <img src="/img/arrow.svg" alt="Arrow" />
       </IconButton>
       <div className="background" />
     </ListContainer>

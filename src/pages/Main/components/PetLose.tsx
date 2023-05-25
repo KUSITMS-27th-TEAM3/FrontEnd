@@ -32,23 +32,23 @@ const S = {
 
 const CARD_IMGS = [
   {
-    src: '/img/Petlose1.jpg',
+    src: '/img/Petlose1.svg',
     name: 'Card1',
   },
   {
-    src: '/img/Petlose2.jpg',
+    src: '/img/Petlose2.svg',
     name: 'Card2',
   },
   {
-    src: '/img/Petlose3.jpg',
+    src: '/img/Petlose3.svg',
     name: 'Card3',
   },
   {
-    src: '/img/Petlose4.jpg',
+    src: '/img/Petlose4.svg',
     name: 'Card4',
   },
   {
-    src: '/img/Petlose5.jpg',
+    src: '/img/Petlose5.svg',
     name: 'Card5s',
   },
 ];

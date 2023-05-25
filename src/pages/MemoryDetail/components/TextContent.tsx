@@ -4,8 +4,6 @@ import { CommentIcon, DeleteIcon, DogFootIcon, ReviseIcon } from '../../../compo
 import * as S from './style/MemoryDetailStyle';
 import { AlbumDetail } from '../../../type/AlbumType';
 import { mappingTag } from '../../../util/util';
-import { useRecoilState } from 'recoil';
-import { refetchAtom } from '../../../atom/atom';
 import { postEmpathy } from '../MemoryDetailApi';
 
 type TextContentProps = {
@@ -30,9 +28,7 @@ const TextContent = ({
   setIsCheckedEmpathy,
 }: TextContentProps) => {
   const [tags, setTags] = useState<string[]>([]);
-  // const [commentCount, setCommentCount] = useState<number>(comment);
   const [empathyCount, setEmpathyCount] = useState<number>(empathy);
-  const [refetch, setRefetch] = useRecoilState<boolean>(refetchAtom);
 
   useEffect(() => {
     const newTags = mappingTag(detailInfo.emotionTagList);
@@ -42,16 +38,6 @@ const TextContent = ({
   useEffect(() => {
     setEmpathyCount(empathy);
   }, [empathy]);
-
-  // useEffect(() => {
-  //   setCommentCount(comment);
-  // }, [comment]);
-
-  // useEffect(() => {
-  //   if (refetch) {
-  //     setCommentCount((prev) => prev + 1);
-  //   }
-  // }, [refetch]);
 
   const handleEmpathyClick = async () => {
     const res = await postEmpathy(albumId);

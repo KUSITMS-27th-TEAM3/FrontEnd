@@ -37,7 +37,6 @@ const CommentList = ({
       return;
     } else {
       const res = await putComment(albumId, comment.commentId, textValue);
-      console.log('REs', res);
       setCanRevise(false);
       if (isCommentType(res)) {
         alert('수정되었습니다.');

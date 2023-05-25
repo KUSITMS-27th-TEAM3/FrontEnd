@@ -57,7 +57,6 @@ const MemoryDetailContainer = () => {
       navigate(`/writeAlbum/${albumId}`, { state: { detailInfo } });
     } else if (isCommentDelete) {
       const res = await deleteComment(albumId, targetCommentId);
-      console.log('RES', res);
       if (!res) {
         fetchDetailComments();
       }
@@ -91,13 +90,11 @@ const MemoryDetailContainer = () => {
 
   const fetchDetailAlbum = async () => {
     const data = await getDetailAlbum(albumId);
-    console.log(data);
     setDetailInfo(data);
   };
 
   const fetchDetailComments = async () => {
     const data = await getDetailComments(albumId);
-    console.log('comment', data);
     setCommentList(data.content);
     setCommentCount(() => {
       return data.content.reduce((acc: number, arr: CommentType) => {

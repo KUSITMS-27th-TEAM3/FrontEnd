@@ -59,7 +59,6 @@ const WriteAlbumContainer = () => {
     };
     if (!isRevise) {
       const res = await postAlbum(sendData, albumImages);
-      console.log('res', res);
 
       if (isAlbumDetail(res)) {
         alert('앨범을 업로드했습니다.');
@@ -67,7 +66,6 @@ const WriteAlbumContainer = () => {
       }
     } else {
       const res = await putAlbum(sendData, imageUrlList, albumId, albumImages);
-      console.log('수정값', res);
 
       if (!res) {
         alert('앨범을 수정했습니다.');

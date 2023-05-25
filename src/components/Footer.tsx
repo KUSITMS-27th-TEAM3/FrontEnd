@@ -19,7 +19,7 @@ const FooterContainer = styled.footer`
 const Footer = () => {
   return (
     <FooterContainer>
-      <img src="/img/푸터.svg" />
+      <img src="/img/푸터.jpg" />
     </FooterContainer>
   );
 };

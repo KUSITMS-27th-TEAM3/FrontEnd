@@ -14,7 +14,6 @@ export const getMyAlbum = async ({
   activeTags,
 }: getAlbumParmas) => {
   const activeTagsStr = activeTags.join(',');
-  console.log(activeTagsStr);
   return await API.get(
     `/album/private?page=${page}&size=${size}&emotionTagList=${activeTagsStr}&sortType=${sortOption}`,
   );

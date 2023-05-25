@@ -18,7 +18,6 @@ const SharedAlbumContainer = () => {
 
   const fetchSharedAlbum = async (page: number, sortOption: string, activeTags: string[]) => {
     const data = await getSharedAlbum({ page, sortOption, activeTags });
-    console.log(data);
     setLoading(false);
     setAlbumData([...albumData, ...data.content]);
     setHasNext(data.hasNext);
@@ -27,7 +26,6 @@ const SharedAlbumContainer = () => {
 
   const refetchAlbum = async (page: number, sortOption: string, activeTags: string[]) => {
     const data = await getSharedAlbum({ page, sortOption, activeTags });
-    console.log(data);
     setAlbumData(data.content);
     setHasNext(data.hasNext);
     setPage(data.page + 1);

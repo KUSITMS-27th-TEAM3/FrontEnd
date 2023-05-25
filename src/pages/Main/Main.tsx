@@ -66,7 +66,6 @@ const Main = () => {
       </MainContainer>
     );
   }
-
 };
 
 export default Main;

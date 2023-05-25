@@ -8,28 +8,28 @@ const Q = [
     answerDescription: '/img/A1.svg',
   },
   {
-    questionId: 1,
+    questionId: 2,
     questionTitle:
       '반려동물의 장례 사실을 국가에 신고해야 하는 법적인 제도와 같은 것이 따로 있나요?',
     answerDescription: '/img/A2.svg',
   },
   {
-    questionId: 1,
+    questionId: 3,
     questionTitle: '반려동물 장례식장을 선택할 때 확인해야 할 항목들에는 어떤 것들이 있을까요?',
     answerDescription: '/img/A3.svg',
   },
   {
-    questionId: 1,
+    questionId: 4,
     questionTitle: '반려동물 화장 없이 장례를 치를 수 있을까요?',
     answerDescription: '/img/A4.svg',
   },
   {
-    questionId: 1,
+    questionId: 5,
     questionTitle: '반려동물 사망 시 곧바로 장례를 치뤄야 하나요?',
     answerDescription: '/img/A5.svg',
   },
   {
-    questionId: 1,
+    questionId: 6,
     questionTitle: '아이의 영정사진을 준비해야 하나요?',
     answerDescription: '/img/A6.svg',
   },

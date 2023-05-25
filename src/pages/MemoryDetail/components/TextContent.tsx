@@ -56,7 +56,6 @@ const TextContent = ({
   const handleEmpathyClick = async () => {
     const res = await postEmpathy(albumId);
 
-    console.log('res', res);
     if (!res) {
       if (isCheckedEmpathy) {
         setEmpathyCount((prev) => prev - 1);

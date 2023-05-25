@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Title = () => {
   return (
     <TitleContainer>
-      <img src="/img/FuneralBg.svg" alt="funeral" />
+      <img src="/img/FuneralBg.jpg" alt="Funeral" />
     </TitleContainer>
   );
 };

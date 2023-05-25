@@ -56,25 +56,6 @@ const SiteLists = () => {
     fetchCard(page, activeTags);
   };
 
-<<<<<<< HEAD
-    return (
-        <ListContainer>
-            <div className="card-grid">
-                {cardInfo.map((card, idx) => (
-                    <SiteCard card={card} key={idx} />
-                ))}
-            </div>
-            <div className="background" />
-            <IconButton width="12vw" height="41px" minWidth="130px" maxWidth="171px"
-                id="show-more-button"
-                onClick={handleFetchCard}
-            >
-                장례 정보 더보기 <img src="/img/Arrow.svg" />
-            </IconButton>
-            <div className="background" />
-        </ListContainer>
-    );
-=======
   useEffect(() => {
     fetchCard(page, activeTags);
   }, []);
@@ -110,7 +91,6 @@ const SiteLists = () => {
       <div className="background" />
     </ListContainer>
   );
->>>>>>> origin
 };
 
 export default SiteLists;

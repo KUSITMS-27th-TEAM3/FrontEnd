@@ -73,6 +73,7 @@ const SiteLists = () => {
           <SiteCard card={card} key={idx} />
         ))}
       </div>
+      <div className="background" />
       <IconButton
         width="12vw"
         height="41px"

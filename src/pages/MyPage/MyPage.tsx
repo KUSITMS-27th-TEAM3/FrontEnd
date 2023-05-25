@@ -17,9 +17,7 @@ const MyPageContainer = styled.div`
     justify-content : center;  
   `
 const MainContentWrapper = styled.div`
-// border : 1px solid black;
     display : flex;
-    // justify-content : space-between;  
     margin-top : 35px;
     width : 80%;
     gap : 10px;
@@ -27,8 +25,6 @@ const MainContentWrapper = styled.div`
 const RightWrapper = styled.div`
   display : flex;
   flex-direction : column;
-  // align-items : flex-end;
-  // justify-content : center;
 `
 const MyPage = () => {
   return (

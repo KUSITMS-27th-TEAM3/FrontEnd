@@ -69,13 +69,12 @@ const ContentWrapper = styled.div`
         align-items: center;
         font-size : 1.5vw;
         font-family: ${(props) => props.theme.font.family.pretendard_bold};
-
     }
 
     img {
         width : 100%;
         height : 100%;
-        // position: absolute;
+        position: absolute;
     }
 `
 const GridContainer = styled.div`

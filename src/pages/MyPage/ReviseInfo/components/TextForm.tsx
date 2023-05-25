@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef, ChangeEvent, useCallback } from 'react';
 import styled from 'styled-components';
-import { IconButton } from '../../../../components/CommonStyle';
 import * as API from '../../../../api/API';
+import { useNavigate } from 'react-router-dom';
 
 export type ProfileInfo = {
   petName: string;
   userNickname: string;
   profileImageUrl: string;
+  petImageUrl: string;
   description: string;
   petAge: number;
   petType: string;
@@ -16,7 +17,7 @@ type TextInfo = {
   name: string;
   state: [string, React.Dispatch<React.SetStateAction<string>>];
   placeholder: string;
-}[];
+};
 
 const TextForm = () => {
   const [profile, setProfile] = useState<ProfileInfo | null>(null); // Change initial state to null
@@ -36,7 +37,7 @@ const TextForm = () => {
   const [selectedFileName1, setSelectedFileName1] = useState('');
   const [selectedFileName2, setSelectedFileName2] = useState('');
 
-  const TextInfo: TextInfo = [
+  const TextInfo: TextInfo[] = [
     { name: '닉네임', state: [id, setId], placeholder: '아이디를 수정해주세요.' },
     {
       name: '마이펫 이름',
@@ -52,36 +53,27 @@ const TextForm = () => {
     { name: '나이', state: [age, setAge], placeholder: '나이를 입력해주세요. (숫자로 기입)' },
   ];
 
-  const [textInfo, setTextInfo] = useState<TextInfo[]>([]);
-
-  const getProfileAndSetTextInfo = async () => {
+  const getProfileAndSetProfileInfo = async () => {
     const data = await API.get('/user/mypet');
     setProfile(data);
 
-    if (profile) {
-      const updatedTextInfo = TextInfo.map((item) => {
-        switch (item.name) {
-          case '닉네임':
-            return { ...item, placeholder: profile.userNickname };
-          case '마이펫 이름':
-            return { ...item, placeholder: profile.petName };
-          case '마이펫 한 줄 설명':
-            return { ...item, placeholder: profile.description };
-          case '품종':
-            return { ...item, placeholder: profile.petType };
-          case '나이':
-            return { ...item, placeholder: profile.petAge.toString() };
-          default:
-            return item;
-        }
-      });
-      setTextInfo([updatedTextInfo]);
+    if (data) {
+      setId(data.userNickname)
+      setSubInfo(data.description)
+      setNickname(data.petName)
+      setBreed(data.petType)
+      setAge(data.petAge)
+      const parsedValue1 = data.profileImageUrl.substring(data.profileImageUrl.indexOf(".com/") + 5);
+      const parsedValue2 = data.petImageUrl.substring(data.petImageUrl.indexOf(".com/") + 5);
+      setSelectedFileName1(parsedValue1)
+      setSelectedFileName2(parsedValue2)
     }
   }
 
   useEffect(() => {
-    getProfileAndSetTextInfo();
-  }, [profile]);
+    getProfileAndSetProfileInfo();
+  }, []);
+
 
   const ImgInfo: {
     name: string;
@@ -137,6 +129,7 @@ const TextForm = () => {
     handleCancel();
   };
 
+  const navigate = useNavigate();
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -157,25 +150,21 @@ const TextForm = () => {
 
       // 빈 값 및 파일 업로드 확인
       let hasEmptyValue = false;
-      let fileUploadCount = 0;
 
       formData.forEach((value, key) => {
         if (value === '') {
           hasEmptyValue = true;
         }
-        if (value instanceof File) {
-          fileUploadCount++;
-        }
       });
 
-      if (hasEmptyValue || fileUploadCount < 2) {
+      if (hasEmptyValue) {
         alert('모든 항목을 입력해주세요!');
         return;
       }
 
       const response = await API.post('/user/mypet', formData, 'imgPost');
-      console.log(response);
       alert('수정되었습니다!');
+      navigate('/mypage');
       handleCancel();
     }
   };
@@ -187,7 +176,7 @@ const TextForm = () => {
   return (
     <TextFormContainer>
       <Form onSubmit={handleFormSubmit}>
-        {textInfo.length === 0 ? (
+        {
           TextInfo.map((items, idx) => (
             <FormWrapper key={idx}>
               <div className="title">{items.name}</div>
@@ -200,20 +189,7 @@ const TextForm = () => {
               />
             </FormWrapper>
           ))
-        ) : (
-          textInfo[0].map((items, idx) => (
-            <FormWrapper key={idx}>
-              <div className="title">{items.name}</div>
-              <input
-                className="textInput"
-                type="text"
-                value={items.state[0]}
-                placeholder={items.placeholder}
-                onChange={(e) => items.state[1](e.target.value)}
-              />
-            </FormWrapper>
-          ))
-        )}
+        }
 
         <div className="border" />
 
@@ -247,15 +223,7 @@ const TextForm = () => {
           <button className="backBtn" onClick={handleCancelButtonClick}>
             취소
           </button>
-          <IconButton
-            width="calc(3vw - 36px)"
-            height="1.5vw"
-            maxWidth="100vw"
-            minWidth="6vw"
-            onClick={handleSubmitButtonClick}
-          >
-            회원 정보 수정
-          </IconButton>
+          <button className='reviseBtn' onClick={handleSubmitButtonClick}>회원 정보 수정</button>
           <DeleteBtn>
             <button>
               <img src="/img/회원탈퇴.svg" />
@@ -360,6 +328,20 @@ const BtnWrapper = styled.div`
     font-size: 1vw;
     background-color: ${(props) => props.theme.color.grayScale.lightGray};
     color: ${(props) => props.theme.color.grayScale.gray};
+    font-family: ${(props) => props.theme.font.family.pretendard_medium};
+    cursor: pointer;
+    &:hover {
+      filter: brightness(1.2);
+    }
+  }
+
+  button.reviseBtn {
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 1vw;
+    background-color: ${(props) => props.theme.color.main.orange};
+    color: white;
     font-family: ${(props) => props.theme.font.family.pretendard_medium};
     cursor: pointer;
     &:hover {

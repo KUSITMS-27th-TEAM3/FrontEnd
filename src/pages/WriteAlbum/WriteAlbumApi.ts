@@ -37,12 +37,6 @@ export const postAlbum = async (
   const formData = new FormData();
   const visibility = visible ? 'PUBLIC' : 'PRIVATE';
 
-  console.log('title', title);
-  console.log('description', description);
-  console.log('visibility', visibility);
-  console.log('albumImage', albumImages);
-  console.log(emotionTagList);
-
   formData.append('title', title);
   formData.append('description', description);
   formData.append('visibility', visibility);
@@ -75,13 +69,6 @@ export const putAlbum = async (
 
   const formData = new FormData();
   const visibility = visible ? 'PUBLIC' : 'PRIVATE';
-
-  console.log('title', title);
-  console.log('description', description);
-  console.log('visibility', visibility);
-  console.log('albumImage', albumImages);
-  console.log('imageUrlList', imageUrlList);
-  console.log(emotionTagList);
 
   formData.append('title', title);
   formData.append('description', description);

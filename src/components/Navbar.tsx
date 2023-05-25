@@ -41,14 +41,6 @@ const NavBarContainer = styled.nav`
 const BIContainer = styled.div``;
 
 const NavBar = () => {
-  // let Authorization = sessionStorage.getItem("Authorization");
-  // let RefreshToken = sessionStorage.getItem("RefreshToken");
-
-  // let toValue = "/";
-  // if (Authorization && RefreshToken) {
-  //   toValue = `/main?Authorization=${Authorization}&RefreshToken=${RefreshToken}`
-  // }
-
   const accessToken = sessionStorage.getItem('Authorization');
 
   if (accessToken) {

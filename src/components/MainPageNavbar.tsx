@@ -10,7 +10,6 @@ const MainPageNavbar = () => {
   useEffect(() => {
     const token = sessionStorage.getItem('Authorization');
     setAccessToken(token);
-    console.log(token);
   }, []);
 
   const isUpload = useRecoilValue(isUploadAtom);

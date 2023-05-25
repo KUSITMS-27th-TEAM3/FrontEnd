@@ -19,7 +19,7 @@ const QuestionItemContainer = styled.button<QuestionItemContainerProps>`
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  font-size: 20px;
+  font-size : 1.3vw;
 
   .question_box {
     display: flex;

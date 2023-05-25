@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Image from '../../../components/Image';
 
 const ContentWrapper = styled.div`
@@ -43,14 +41,10 @@ const LoginPage = () => {
   return (
     <div>
       <ContentWrapper>
-        {/* <img src="/img/LoginBg.svg" /> */}
         <Image url={'/img/LoginBg.jpg'} />
         <LoginWrapper>
           <div className="title">소셜 로그인</div>
           <ButtonWrapper>
-            <button>
-              <img src="/img/NaverLogin.svg" />
-            </button>
             <button>
               <a href="http://52.78.181.46.nip.io/oauth2/authorization/google">
                 <img src="/img/GoogleLogin.svg" />

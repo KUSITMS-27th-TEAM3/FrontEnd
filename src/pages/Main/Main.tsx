@@ -28,9 +28,6 @@ const Main = () => {
     const AuthorizationCode = new URL(window.location.href).searchParams.get('Authorization'); //url에서 AuthorizationCode를 가져옴
     const RefreshTokenCode = new URL(window.location.href).searchParams.get('RefreshToken');
 
-    console.log('Authorization:', AuthorizationCode);
-    console.log('RefreshToken:', RefreshTokenCode);
-
     setToken('Authorization', AuthorizationCode);
     setToken('RefreshToken', RefreshTokenCode);
     setAccessToken(AuthorizationCode);

@@ -1,7 +1,6 @@
 import Navbar from '../../components/MainPageNavbar';
 import Footer from '../../components/Footer';
 import { LoginPage } from './components';
-import { useEffect, useState } from 'react';
 
 const Login = () => {
   return (

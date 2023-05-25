@@ -60,7 +60,7 @@ const LinkPage = () => {
     return (
         <ContentWrapper>
             {banner_imgs.map((item, idx) => (
-                <div className="banner">
+                <div className="banner" key={idx}>
                     <img src={item.Bg} alt="banner" />
                     <div className="bannerBtn">
                         <button onClick={item.Event}><img src={item.Btn} /></button>

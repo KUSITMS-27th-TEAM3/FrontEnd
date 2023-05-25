@@ -28,8 +28,6 @@ const WriteAlbumContainer = () => {
   const detailInfo = { ...location?.state?.detailInfo };
   const albumId = useParams().id;
 
-  console.log(detailInfo);
-
   const handleTitleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value);
   };

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import * as API from '../../../api/API';
 import { useEffect, useState } from 'react';
-import Spinner from "../../../components/Spinner";
 
 interface GridItem {
     gridNum: number;
@@ -9,7 +8,6 @@ interface GridItem {
 }
 
 const SlicePictures = () => {
-    // const imageSrc = "/img/마이페이지배경.jpg";
     const [imgUrl, setImgUrl] = useState('');
     const [checkList, setCheckList] = useState<GridItem[]>([]);
     const [isloading, setLoading] = useState(true);
@@ -25,10 +23,6 @@ const SlicePictures = () => {
     useEffect(() => {
         getTF();
     }, []);
-
-    // if (isloading) {
-    //     return <Spinner />;
-    // }
 
     return (
         <ContentWrapper>

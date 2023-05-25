@@ -48,8 +48,6 @@ const SharedAlbumContainer = () => {
     refetchAlbum(0, sortOption, activeTags);
   }, [sortOption, activeTags]);
 
-  console.log(activeTags, sortOption);
-
   if (isLoading) {
     return <Spinner />;
   }

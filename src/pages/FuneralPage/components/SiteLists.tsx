@@ -32,7 +32,6 @@ const SiteLists = () => {
 
   const fetchCard = async (page: number, activeTags: string[]) => {
     const data = await getCardInfo({ page, activeTags });
-    console.log(data);
     setLoading(false);
     setCardInfo([...cardInfo, ...data.content]);
     setHasNext(data.hasNext);
@@ -41,7 +40,6 @@ const SiteLists = () => {
 
   const refetchCard = async (page: number, activeTags: string[]) => {
     const data = await getCardInfo({ page, activeTags });
-    console.log(data);
     setCardInfo(data.content);
     setHasNext(data.hasNext);
     setPage(data.page + 1);
@@ -63,8 +61,6 @@ const SiteLists = () => {
   useEffect(() => {
     refetchCard(0, activeTags);
   }, [activeTags]);
-
-  console.log(activeTags);
 
   if (isLoading) {
     return <Spinner />;

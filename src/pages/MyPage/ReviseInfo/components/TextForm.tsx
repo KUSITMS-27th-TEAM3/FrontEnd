@@ -57,7 +57,6 @@ const TextForm = () => {
   const getProfileAndSetTextInfo = async () => {
     const data = await API.get('/user/mypet');
     setProfile(data);
-    console.log(profile);
 
     if (profile) {
       const updatedTextInfo = TextInfo.map((item) => {
@@ -77,7 +76,6 @@ const TextForm = () => {
         }
       });
       setTextInfo([updatedTextInfo]);
-      console.log(textInfo)
     }
   }
 

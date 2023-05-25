@@ -55,20 +55,20 @@ const CARD_IMGS = [
 
 const PetLose = () => {
   const animatedItem: { [key: number]: { ref: RefObject<HTMLDivElement>; style: AnimatedStyle } } =
-    {
-      0: useScrollFadeIn({ direction: 'up', duration: 1, delay: 0 }),
-      1: useScrollFadeIn({ direction: 'up', duration: 1, delay: 0.2 }),
-      2: useScrollFadeIn({ direction: 'up', duration: 1, delay: 0.6 }),
-      3: useScrollFadeIn({ direction: 'up', duration: 1, delay: 0.8 }),
-      4: useScrollFadeIn({ direction: 'up', duration: 1, delay: 1.0 }),
-    };
+  {
+    0: useScrollFadeIn({ direction: 'up', duration: 1, delay: 0 }),
+    1: useScrollFadeIn({ direction: 'up', duration: 1, delay: 0.2 }),
+    2: useScrollFadeIn({ direction: 'up', duration: 1, delay: 0.6 }),
+    3: useScrollFadeIn({ direction: 'up', duration: 1, delay: 0.8 }),
+    4: useScrollFadeIn({ direction: 'up', duration: 1, delay: 1.0 }),
+  };
 
   return (
     <S.Image>
       <img src="/img/PetloseBg.svg" alt="syndromeInfo"></img>
       <S.CardWrapper>
         {CARD_IMGS.map((item, index) => (
-          <S.Card {...animatedItem[index]}>
+          <S.Card {...animatedItem[index]} key={index}>
             <img src={item.src} key={index} />
           </S.Card>
         ))}

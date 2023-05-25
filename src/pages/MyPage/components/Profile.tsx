@@ -19,7 +19,6 @@ const Profile = () => {
 
   const getProfile = async () => {
     const data = await API.get('/user/mypet');
-    console.log('progile', data);
     setProfile(data);
     setLoading(false);
   };

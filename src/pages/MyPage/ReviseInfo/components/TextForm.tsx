@@ -54,35 +54,36 @@ const TextForm = () => {
 
   const [textInfo, setTextInfo] = useState<TextInfo[]>([]);
 
-  useEffect(() => {
+  const getProfileAndSetTextInfo = async () => {
+    const data = await API.get('/user/mypet');
+    setProfile(data);
+    console.log(profile);
 
-    const getProfileAndSetTextInfo = async () => {
-      const data = await API.get('/user/mypet');
-      setProfile(data);
-
-      if (profile) {
-        const updatedTextInfo = TextInfo.map((item) => {
-          switch (item.name) {
-            case '닉네임':
-              return { ...item, placeholder: profile.userNickname };
-            case '마이펫 이름':
-              return { ...item, placeholder: profile.petName };
-            case '마이펫 한 줄 설명':
-              return { ...item, placeholder: profile.description };
-            case '품종':
-              return { ...item, placeholder: profile.petType };
-            case '나이':
-              return { ...item, placeholder: profile.petAge.toString() };
-            default:
-              return item;
-          }
-        });
-        setTextInfo([updatedTextInfo]);
-        console.log(textInfo)
-      }
+    if (profile) {
+      const updatedTextInfo = TextInfo.map((item) => {
+        switch (item.name) {
+          case '닉네임':
+            return { ...item, placeholder: profile.userNickname };
+          case '마이펫 이름':
+            return { ...item, placeholder: profile.petName };
+          case '마이펫 한 줄 설명':
+            return { ...item, placeholder: profile.description };
+          case '품종':
+            return { ...item, placeholder: profile.petType };
+          case '나이':
+            return { ...item, placeholder: profile.petAge.toString() };
+          default:
+            return item;
+        }
+      });
+      setTextInfo([updatedTextInfo]);
+      console.log(textInfo)
     }
+  }
+
+  useEffect(() => {
     getProfileAndSetTextInfo();
-  }, []);
+  }, [profile]);
 
   const ImgInfo: {
     name: string;

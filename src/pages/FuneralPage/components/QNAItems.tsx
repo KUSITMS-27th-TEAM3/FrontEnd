@@ -53,6 +53,38 @@ const QuestionItemContainer = styled.button<QuestionItemContainerProps>`
   }
 `;
 
+const Answer = styled.div`
+  position: relative;
+  button.linkBtn { 
+    position: absolute;
+    bottom : 1.8vw;
+    left: 2.5vw;
+    z-index: 1;
+    font-size : 0.6vw;
+    cursor: pointer;
+    padding : 0.6vw;
+    border-radius : 8px;
+    border : 1px solid ${(props) => props.theme.color.main.orange};
+    background-color: rgb(0,0,0,0);
+    color : ${(props) => props.theme.color.main.orange};
+    font-family: ${(props) => props.theme.font.family.pretendard_medium};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+      background-color: ${(props) => props.theme.color.main.orange};
+      color : white;
+      img {
+        filter: brightness(0) invert(1);
+      }
+    }
+    img {
+      width : 1vw;
+      margin-left : 2px;
+    }
+  }
+`
+
 type QNAItemProps = {
   question: QNAContent;
 };
@@ -79,7 +111,14 @@ const QNAItems = ({ question }: QNAItemProps) => {
           className={canRead ? 'quesiton_arrow active' : 'quesiton_arrow'}
         />
       </QuestionItemContainer>
-      {canRead ? <QNAForms answerDescription={question.answerDescription} /> : null}
+      {canRead ? (
+        <Answer>
+          <QNAForms answerDescription={question.answerDescription} />
+          {question.questionId === 6 && (
+            <a href="https://eanimal.kr/"><button className='linkBtn'>동물 장례 정보 포털 바로가기<img src="/img/화살표.svg" /></button></a>
+          )}
+        </Answer>
+      ) : null}
     </>
   );
 };

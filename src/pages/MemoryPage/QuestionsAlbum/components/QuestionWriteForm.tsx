@@ -29,14 +29,14 @@ const QuestionWriteForm = ({ answerDescription, questionId }: QuestionWriteFormP
     setTextValue('');
   };
 
-  const handleWrite = () => {
+  const handleWrite = async () => {
     const answer = { answerDescription: textValue };
     setCanRevise(false);
-    if (answerDescription || answerDescription === '') putAnswer(answer, questionId);
+    if (answerDescription || answerDescription === '') await putAnswer(answer, questionId);
     else {
-      postAnswer(answer, questionId);
-      setRefetch(true);
+      await postAnswer(answer, questionId);
     }
+    setRefetch(true);
   };
 
   useEffect(() => {

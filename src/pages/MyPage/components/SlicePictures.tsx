@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import * as API from '../../../api/API';
 import { useEffect, useState } from 'react';
-import Spinner from "../../../components/Spinner";
 
 interface GridItem {
     gridNum: number;
@@ -9,7 +8,6 @@ interface GridItem {
 }
 
 const SlicePictures = () => {
-    // const imageSrc = "/img/마이페이지배경.jpg";
     const [imgUrl, setImgUrl] = useState('');
     const [checkList, setCheckList] = useState<GridItem[]>([]);
     const [isloading, setLoading] = useState(true);
@@ -26,13 +24,11 @@ const SlicePictures = () => {
         getTF();
     }, []);
 
-    if (isloading) {
-        return <Spinner />;
-    }
-
     return (
         <ContentWrapper>
-            <img src={imgUrl} alt="sliceImage" />
+            {(isloading) ?
+                <div className="default">등록된 사진이 없습니다.</div> : <img src={imgUrl} />}
+
             <GridContainer>
 
                 {checkList.map((item) => (
@@ -45,79 +41,9 @@ const SlicePictures = () => {
                 ))}
                 <div className="grid-item-no"></div>
 
-                {/* <div className="grid-item-yes" />
-                <div className="grid-item-yes" />
-                <div className="grid-item-yes" />
-                <div className="grid-item-yes" />
-                <div className="grid-item-yes" />
-
-                <div className="grid-item-yes" />
-                <div className="grid-item-yes" />
-                <div className="grid-item-yes" />
-                <div className="grid-item-yes" />
-                <div className="grid-item-no" />
-
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" />
-                <div className="grid-item-no" /> */}
 
             </GridContainer>
+
         </ContentWrapper>
     )
 }
@@ -129,10 +55,20 @@ const ContentWrapper = styled.div`
     position: relative;
     overflow: hidden;
 
+    div.default { 
+        width : 100%;
+        height : 100%;
+        display : flex;
+        justify-content : center;
+        align-items: center;
+        font-size : 1.5vw;
+        font-family: ${(props) => props.theme.font.family.pretendard_bold};
+    }
+
     img {
         width : 100%;
         height : 100%;
-        // position: absolute;
+        position: absolute;
     }
 `
 const GridContainer = styled.div`

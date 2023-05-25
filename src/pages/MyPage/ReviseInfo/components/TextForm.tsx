@@ -3,7 +3,23 @@ import styled from 'styled-components';
 import { IconButton } from '../../../../components/CommonStyle';
 import * as API from '../../../../api/API';
 
+export type ProfileInfo = {
+  petName: string;
+  userNickname: string;
+  profileImageUrl: string;
+  description: string;
+  petAge: number;
+  petType: string;
+};
+
+type TextInfo = {
+  name: string;
+  state: [string, React.Dispatch<React.SetStateAction<string>>];
+  placeholder: string;
+}[];
+
 const TextForm = () => {
+  const [profile, setProfile] = useState<ProfileInfo | null>(null); // Change initial state to null
   const [id, setId] = useState('');
   const [subInfo, setSubInfo] = useState('');
   const [breed, setBreed] = useState('');
@@ -19,6 +35,73 @@ const TextForm = () => {
 
   const [selectedFileName1, setSelectedFileName1] = useState('');
   const [selectedFileName2, setSelectedFileName2] = useState('');
+
+  const TextInfo: TextInfo = [
+    { name: '닉네임', state: [id, setId], placeholder: '아이디를 수정해주세요.' },
+    {
+      name: '마이펫 이름',
+      state: [nickname, setNickname],
+      placeholder: '마이펫 이름을 적어주세요..',
+    },
+    {
+      name: '마이펫 한 줄 설명',
+      state: [subInfo, setSubInfo],
+      placeholder: '한 줄 설명을 적어주세요.',
+    },
+    { name: '품종', state: [breed, setBreed], placeholder: '품종을 입력해주세요.' },
+    { name: '나이', state: [age, setAge], placeholder: '나이를 입력해주세요. (숫자로 기입)' },
+  ];
+
+  const [textInfo, setTextInfo] = useState<TextInfo[]>([]);
+
+  const getProfileAndSetTextInfo = async () => {
+    const data = await API.get('/user/mypet');
+    setProfile(data);
+
+    if (profile) {
+      const updatedTextInfo = TextInfo.map((item) => {
+        switch (item.name) {
+          case '닉네임':
+            return { ...item, placeholder: profile.userNickname };
+          case '마이펫 이름':
+            return { ...item, placeholder: profile.petName };
+          case '마이펫 한 줄 설명':
+            return { ...item, placeholder: profile.description };
+          case '품종':
+            return { ...item, placeholder: profile.petType };
+          case '나이':
+            return { ...item, placeholder: profile.petAge.toString() };
+          default:
+            return item;
+        }
+      });
+      setTextInfo([updatedTextInfo]);
+    }
+  }
+
+  useEffect(() => {
+    getProfileAndSetTextInfo();
+  }, [profile]);
+
+  const ImgInfo: {
+    name: string;
+    state: [File | null, React.Dispatch<React.SetStateAction<File | null>>];
+    stateName: [string, React.Dispatch<React.SetStateAction<string>>];
+    placeholder: string;
+  }[] = [
+      {
+        name: '프로필 사진',
+        state: [profileImage, setProfileImage],
+        stateName: [selectedFileName1, setSelectedFileName1],
+        placeholder: '프로필 사진을 첨부하세요.',
+      },
+      {
+        name: '마이펫 사진',
+        state: [petImage, setPetImage],
+        stateName: [selectedFileName2, setSelectedFileName2],
+        placeholder: '마이펫 사진을 첨부하세요.',
+      },
+    ];
 
   const handleFileChange = useCallback(
     (
@@ -46,12 +129,6 @@ const TextForm = () => {
     setPetImage(null);
     setSelectedFileName1('');
     setSelectedFileName2('');
-
-    //     fileInputRefs.forEach((ref) => {
-    //         if (ref.current) {
-    //             ref.current.value = ''; // Reset the file input value
-    //         }
-    // });
   };
 
   const [submitButtonClicked, setSubmitButtonClicked] = useState(false);
@@ -78,6 +155,24 @@ const TextForm = () => {
         formData.append('profileImage', profileImage);
       }
 
+      // 빈 값 및 파일 업로드 확인
+      let hasEmptyValue = false;
+      let fileUploadCount = 0;
+
+      formData.forEach((value, key) => {
+        if (value === '') {
+          hasEmptyValue = true;
+        }
+        if (value instanceof File) {
+          fileUploadCount++;
+        }
+      });
+
+      if (hasEmptyValue || fileUploadCount < 2) {
+        alert('모든 항목을 입력해주세요!');
+        return;
+      }
+
       const response = await API.post('/user/mypet', formData, 'imgPost');
       console.log(response);
       alert('수정되었습니다!');
@@ -89,61 +184,36 @@ const TextForm = () => {
     setSubmitButtonClicked(true);
   };
 
-  const TextInfo: {
-    name: string;
-    state: [string, React.Dispatch<React.SetStateAction<string>>];
-    placeholder: string;
-  }[] = [
-    { name: '닉네임', state: [id, setId], placeholder: '아이디를 수정해주세요.' },
-    {
-      name: '마이펫 이름',
-      state: [nickname, setNickname],
-      placeholder: '마이펫 이름을 적어주세요..',
-    },
-    {
-      name: '마이펫 한 줄 설명',
-      state: [subInfo, setSubInfo],
-      placeholder: '한 줄 설명을 적어주세요.',
-    },
-    { name: '품종', state: [breed, setBreed], placeholder: '품종을 입력해주세요.' },
-    { name: '나이', state: [age, setAge], placeholder: '나이를 입력해주세요.' },
-  ];
-
-  const ImgInfo: {
-    name: string;
-    state: [File | null, React.Dispatch<React.SetStateAction<File | null>>];
-    stateName: [string, React.Dispatch<React.SetStateAction<string>>];
-    placeholder: string;
-  }[] = [
-    {
-      name: '프로필 사진',
-      state: [profileImage, setProfileImage],
-      stateName: [selectedFileName1, setSelectedFileName1],
-      placeholder: '프로필 사진을 첨부하세요.',
-    },
-    {
-      name: '마이펫 사진',
-      state: [petImage, setPetImage],
-      stateName: [selectedFileName2, setSelectedFileName2],
-      placeholder: '마이펫 사진을 첨부하세요.',
-    },
-  ];
-
   return (
     <TextFormContainer>
       <Form onSubmit={handleFormSubmit}>
-        {TextInfo.map((items, idx) => (
-          <FormWrapper key={idx}>
-            <div className="title">{items.name}</div>
-            <input
-              className="textInput"
-              type="text"
-              value={items.state[0]}
-              placeholder={items.placeholder}
-              onChange={(e) => items.state[1](e.target.value)}
-            />
-          </FormWrapper>
-        ))}
+        {textInfo.length === 0 ? (
+          TextInfo.map((items, idx) => (
+            <FormWrapper key={idx}>
+              <div className="title">{items.name}</div>
+              <input
+                className="textInput"
+                type="text"
+                value={items.state[0]}
+                placeholder={items.placeholder}
+                onChange={(e) => items.state[1](e.target.value)}
+              />
+            </FormWrapper>
+          ))
+        ) : (
+          textInfo[0].map((items, idx) => (
+            <FormWrapper key={idx}>
+              <div className="title">{items.name}</div>
+              <input
+                className="textInput"
+                type="text"
+                value={items.state[0]}
+                placeholder={items.placeholder}
+                onChange={(e) => items.state[1](e.target.value)}
+              />
+            </FormWrapper>
+          ))
+        )}
 
         <div className="border" />
 
@@ -169,7 +239,7 @@ const TextForm = () => {
                 value={items.stateName[0]}
                 placeholder={items.placeholder}
               />
-              <button onClick={() => fileInputRefs[idx].current?.click()}>사진 첨부</button>
+              <button onClick={() => { fileInputRefs[idx].current?.click(); setSubmitButtonClicked(false); }}>사진 첨부</button>
             </label>
           </FormWrapper>
         ))}

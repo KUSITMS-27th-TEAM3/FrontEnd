@@ -32,7 +32,6 @@ const SiteLists = () => {
 
   const fetchCard = async (page: number, activeTags: string[]) => {
     const data = await getCardInfo({ page, activeTags });
-    console.log(data);
     setLoading(false);
     setCardInfo([...cardInfo, ...data.content]);
     setHasNext(data.hasNext);
@@ -41,7 +40,6 @@ const SiteLists = () => {
 
   const refetchCard = async (page: number, activeTags: string[]) => {
     const data = await getCardInfo({ page, activeTags });
-    console.log(data);
     setCardInfo(data.content);
     setHasNext(data.hasNext);
     setPage(data.page + 1);
@@ -63,8 +61,6 @@ const SiteLists = () => {
   useEffect(() => {
     refetchCard(0, activeTags);
   }, [activeTags]);
-
-  console.log(activeTags);
 
   if (isLoading) {
     return <Spinner />;
@@ -104,15 +100,10 @@ const ListContainer = styled.div`
   align-items: center;
 
   .card-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-
-    width: 90vw;
-    max-height: 1000000vh;
-    overflow-y: auto;
-    padding: 10px;
+    max-width: 90vw;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 18px;
   }
 
   .background {
@@ -122,4 +113,12 @@ const ListContainer = styled.div`
   #show-more-button {
     margin-top: 20px;
   }
+
+  @media screen and (max-width: 1430px) {
+    .card-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+  }
 `;
+
+

@@ -41,7 +41,6 @@ const Stamp = () => {
     const handlePrevButton = () => handleNextButtonClick('prev');
     const handleNextButton = () => handleNextButtonClick('next');
 
-    const VISIBLE_STAMP = "/img/마이페이지배경.jpg";
     const NONVISIBLE_STAMP = "/img/nonVisibleStamp.svg";
 
     return (
@@ -54,8 +53,8 @@ const Stamp = () => {
                     </button>
 
                     <ContentStamp ref={horizontalScrollRef}>
-                        {stamp.map((item) => (
-                            <img src={`${item.imageUrl}`} className={`${item.stampId ? 'visible' : 'nonvisible'}`} />
+                        {stamp.map((item, idx) => (
+                            <img src={`${item.imageUrl}`} className={`${item.stampId ? 'visible' : 'nonvisible'}`} key={idx} />
                         ))}
                         <img src={NONVISIBLE_STAMP} className="nonvisible" />
                         <img src={NONVISIBLE_STAMP} className="nonvisible" />

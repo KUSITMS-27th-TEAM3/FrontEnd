@@ -12,7 +12,6 @@ export const getCardInfo = async ({
     activeTags,
 }: getCardParmas) => {
     const activeTagsStr = activeTags.join(',');
-    console.log(activeTagsStr);
     return await API.get(
         `/funeral?size=${size}&page=${page}&areaTagList=${activeTagsStr}`,
     );

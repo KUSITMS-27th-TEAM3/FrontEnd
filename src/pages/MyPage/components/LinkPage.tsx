@@ -49,7 +49,7 @@ const LinkPage = () => {
         navigate('/writeAlbum');
     };
     const handleToDiary = (e: React.MouseEvent) => {
-        navigate('/diary');
+        navigate('/memory/question');
     };
 
     const banner_imgs = [

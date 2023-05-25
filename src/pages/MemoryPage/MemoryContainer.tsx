@@ -36,9 +36,9 @@ const MemoryContainer = () => {
   return (
     <MemoryWrapper>
       {currentPath !== '/memory/question' ? (
-        <Banner url={'/img/앨범배너.svg'} />
+        <Banner url={'/img/AlbumBanner.jpg'} />
       ) : (
-        <Banner url={'/img/의미배너.svg'} />
+        <Banner url={'/img/QuestionBanner.jpg'} />
       )}
       <MemoryNav />
       {currentPath !== '/memory/question' && (

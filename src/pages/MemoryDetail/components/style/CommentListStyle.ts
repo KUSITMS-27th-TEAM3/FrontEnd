@@ -41,8 +41,9 @@ export const ReWriteBtn = styled.button`
 export const CommmetArea = styled.textarea`
   all: unset;
   width: 80%;
-  height: 50px;
+  height: 40px;
   padding: 10px 0px;
+  line-height: 20px;
   font-family: ${({ theme }) => theme.font.family.pretendard_medium};
   &.active {
     border-bottom: 1px solid #dddddd;

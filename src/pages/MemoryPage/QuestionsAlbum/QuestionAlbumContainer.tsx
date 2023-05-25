@@ -24,7 +24,6 @@ const QuestionAlbumContainer = () => {
 
   const fetchQuestion = async (page: number, size = 10) => {
     const question = await getQuestion(page, size);
-    console.log(question);
     setQuestionList([...questionList, ...question.content]);
     setHasNext(question.hasNext);
     setPage(question.page + 1);
@@ -33,7 +32,6 @@ const QuestionAlbumContainer = () => {
 
   const reFetchQuestion = async (page: number) => {
     const question = await getQuestion(0, page * 10);
-    console.log('refetch', question);
     setQuestionList(question.content);
     setHasNext(question.hasNext);
     setPage((prev) => prev + 1);

@@ -1,45 +1,10 @@
 import axios from 'axios';
-import jwtDecode, { JwtPayload } from 'jwt-decode';
+import { getAccessToken, isTokenExpired, tokenRefresh } from './ApiUtil';
 
 const instance = axios.create();
 
 instance.defaults.withCredentials = true;
 instance.defaults.baseURL = 'http://52.78.181.46';
-
-const getAccessToken = () => {
-  return sessionStorage.getItem('Authorization');
-};
-
-const getRefreshToken = () => {
-  return sessionStorage.getItem('RefreshToken');
-};
-
-const tokenRefresh = async () => {
-  const refreshToken = getRefreshToken(); // 리프레시 토큰을 가져오기
-
-  const { data } = await instance.get('/reissue', {
-    headers: { 'Content-Type': 'application/json', RefreshToken: `Bearer ${refreshToken}` },
-  });
-
-  console.log(data.accessToken);
-  const newAccessToken = data.accessToken;
-  sessionStorage.setItem('Authorization', newAccessToken); // 세션 스토리지에 액세스 토큰 저장
-  console.log('Access token stored:', newAccessToken);
-}; // tokenRefresh() - 토큰을 갱신해주는 함수
-
-const isTokenExpired = () => {
-  const accessToken = getAccessToken();
-  if (!accessToken) {
-    return true;
-  }
-  const decodedToken = jwtDecode<JwtPayload>(accessToken);
-  const currentTime = Date.now() / 1000;
-  if (decodedToken.exp !== undefined && decodedToken.exp < currentTime) {
-    // 토큰이 만료된 경우
-    return true;
-  }
-  return false;
-}; // isTokenExpired() - 토큰 만료 여부를 확인하는 함수
 
 instance.interceptors.request.use(
   (config) => {
@@ -75,7 +40,7 @@ instance.interceptors.response.use(
       if (errorCode === 7001) {
         console.log('토큰만료');
 
-        if (isTokenExpired()) await tokenRefresh();
+        if (isTokenExpired()) await tokenRefresh(instance);
 
         const accessToken = getAccessToken();
 

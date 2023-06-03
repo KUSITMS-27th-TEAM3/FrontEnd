@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { activeTagAtom } from '../atom/atom';
+import { activeTagAtom } from '../../atom/atom';
 import { useRecoilState } from 'recoil';
 
 type TagButtonProps = {

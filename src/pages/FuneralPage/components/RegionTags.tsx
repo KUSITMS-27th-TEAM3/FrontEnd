@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import RegionTag from '../../../components/RegionTag';
+import RegionTag from '../../../components/Tags/RegionTag';
 
 const temp = [
   { name: '전체', isActive: true, tagId: '전체' },

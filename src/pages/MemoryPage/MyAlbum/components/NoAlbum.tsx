@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { IconButton, WhiteLink } from '../../../../components/CommonStyle';
+import { IconButton, WhiteLink } from '../../../../components/common/CommonStyle';
 
 const NoAlbumContainer = styled.section`
   display: flex;

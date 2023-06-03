@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../../components/Layout/MainPageNavbar';
-import LoginNavbar from '../../components/Layout/LoginNavbar';
-import Footer from '../../components/Layout/Footer';
+import Navbar from '../../components/layout/MainPageNavbar';
+import LoginNavbar from '../../components/layout/LoginNavbar';
+import Footer from '../../components/layout/Footer';
 import styled from 'styled-components';
 import { Intro, Vision, PetLose, Function, Service1, Service2, Service3 } from './components';
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Spinner from '../../../components/Spinner';
+import Spinner from '../../../components/common/Spinner';
 import { QuestionContent } from '../../../type/QuestionType';
 import AlbumButton from '../components/AlbumButton';
 import { getQuestion } from './QuestionAlbumApi';

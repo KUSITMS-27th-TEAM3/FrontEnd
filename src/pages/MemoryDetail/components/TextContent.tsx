@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FormButton } from '../../../components/CommonStyle';
+import { FormButton } from '../../../components/common/CommonStyle';
 import { CommentIcon, DeleteIcon, DogFootIcon, ReviseIcon } from '../../../components/Icons/Index';
 import * as S from './style/MemoryDetailStyle';
 import { AlbumDetail } from '../../../type/AlbumType';

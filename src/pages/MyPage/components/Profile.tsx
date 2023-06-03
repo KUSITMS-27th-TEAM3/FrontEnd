@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useLocation, useNavigate } from 'react-router-dom';
 import * as API from '../../../api/API';
 import { useEffect, useState } from 'react';
-import Spinner from '../../../components/Spinner';
+import Spinner from '../../../components/common/Spinner';
 
 export type ProfileInfo = {
   petName: string;

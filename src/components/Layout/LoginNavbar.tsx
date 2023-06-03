@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { WhiteLink } from '../CommonStyle';
+import { WhiteLink } from '../common/CommonStyle';
 import { useRecoilValue } from 'recoil';
 import { isUploadAtom } from '../../atom/atom';
 

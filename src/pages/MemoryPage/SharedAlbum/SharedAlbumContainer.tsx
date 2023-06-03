@@ -1,8 +1,8 @@
 import AlbumPresenter from '../components/AlbumPresenter';
-import { FlexContainer } from '../../../components/CommonStyle';
+import { FlexContainer } from '../../../components/common/CommonStyle';
 import AlbumButton from '../components/AlbumButton';
 import { useEffect, useState } from 'react';
-import Spinner from '../../../components/Spinner';
+import Spinner from '../../../components/common/Spinner';
 import { activeTagAtom, sortOptionAtom } from '../../../atom/atom';
 import { useRecoilValue } from 'recoil';
 import { getSharedAlbum } from './SharedAlbumApi';

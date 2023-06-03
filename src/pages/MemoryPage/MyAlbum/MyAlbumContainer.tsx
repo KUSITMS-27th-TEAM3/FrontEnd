@@ -1,10 +1,10 @@
 import AlbumPresenter from '../components/AlbumPresenter';
-import { FlexContainer } from '../../../components/CommonStyle';
+import { FlexContainer } from '../../../components/common/CommonStyle';
 import AlbumButton from '../components/AlbumButton';
 import { useEffect, useState } from 'react';
 import { activeTagAtom, sortOptionAtom } from '../../../atom/atom';
 import { useRecoilValue } from 'recoil';
-import Spinner from '../../../components/Spinner';
+import Spinner from '../../../components/common/Spinner';
 import { getMyAlbum } from './MyAlbumApi';
 import NoAlbum from './components/NoAlbum';
 import type { AlbumContent } from '../../../type/AlbumType';

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { IconButton } from '../../../components/CommonStyle';
+import { IconButton } from '../../../components/common/CommonStyle';
 import SiteCard from './SiteCard';
 import { useEffect, useState } from 'react';
-import Spinner from '../../../components/Spinner';
+import Spinner from '../../../components/common/Spinner';
 import { getCardInfo } from './FuneralPageApi';
 import { activeRegionTagAtom } from '../../../atom/atom';
 import { useRecoilValue } from 'recoil';
@@ -116,10 +116,8 @@ const ListContainer = styled.div`
   }
 
   @media screen and (max-width: 1430px) {
-    .card-grid{
-        grid-template-columns: repeat(2, 1fr);
+    .card-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 `;
-
-

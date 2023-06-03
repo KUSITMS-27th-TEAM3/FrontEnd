@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FormControl, MenuItem, Select, SelectChangeEvent, useMediaQuery } from '@mui/material';
-import { BlackLink, IconButton } from '../../../components/CommonStyle';
+import { BlackLink, IconButton } from '../../../components/common/CommonStyle';
 import * as S from './style/MemoryNavStyle';
 import { useRecoilState } from 'recoil';
 import { sortOptionAtom } from '../../../atom/atom';

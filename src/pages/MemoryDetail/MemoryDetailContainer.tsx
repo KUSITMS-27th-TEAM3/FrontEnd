@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Modal from '../../components/Modal';
+import Modal from '../../components/common/Modal';
 import * as S from './components/style/MemoryDetailStyle';
 import { CommentList, ImageContent, InputForm, TextContent } from './components';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
@@ -11,7 +11,7 @@ import {
   getComment,
   deleteComment,
 } from './MemoryDetailApi';
-import Spinner from '../../components/Spinner';
+import Spinner from '../../components/common/Spinner';
 import { AlbumDetail, initialDetail } from '../../type/AlbumType';
 import type { CommentType } from '../../type/CommentType';
 import { refetchAtom } from '../../atom/atom';

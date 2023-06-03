@@ -1,4 +1,4 @@
-import LayoutContainer from '../../components/Layout/LayoutContainer';
+import LayoutContainer from '../../components/layout/LayoutContainer';
 import MemoryContainer from './MemoryContainer';
 
 const MemoryPage = () => {

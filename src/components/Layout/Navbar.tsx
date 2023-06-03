@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { WhiteLink } from '../CommonStyle';
+import { WhiteLink } from '../common/CommonStyle';
 
 const LinkContainer = styled.div`
   display: flex;

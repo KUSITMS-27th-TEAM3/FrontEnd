@@ -1,4 +1,4 @@
-import EmotionTags from '../../../components/Tags/EmotionTags';
+import EmotionTags from '../../../components/tags/EmotionTags';
 
 const temp = [
   { name: ' 아늑함', isActive: false, tagId: 'COZY' },

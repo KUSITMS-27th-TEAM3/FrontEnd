@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Image from '../../../components/Image';
+import Image from '../../../components/layout/Image';
 
 const ContentWrapper = styled.div`
   img {

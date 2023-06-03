@@ -1,5 +1,5 @@
 import { MouseEventHandler } from 'react';
-import { IconButton } from '../../../components/CommonStyle';
+import { IconButton } from '../../../components/common/CommonStyle';
 
 type AlbumButtonProps = {
   text: string;

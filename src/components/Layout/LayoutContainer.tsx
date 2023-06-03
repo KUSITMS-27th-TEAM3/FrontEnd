@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import NavBar from './Navbar';
-import Footer from './Footer';
 import MainPageNavbar from './MainPageNavbar';
+import Footer from './Footer';
 
 const PageContainer = styled.section``;
 

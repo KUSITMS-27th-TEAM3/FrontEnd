@@ -1,31 +1,25 @@
-import Navbar from '../../components/MainPageNavbar';
-import Footer from '../../components/Footer';
-import {
-  Profile,
-  SlicePictures,
-  Stamp,
-  Question,
-  LinkPage
-} from './components';
+import Navbar from '../../components/Layout/MainPageNavbar';
+import Footer from '../../components/Layout/Footer';
+import { Profile, SlicePictures, Stamp, Question, LinkPage } from './components';
 import styled from 'styled-components';
 
 const MyPageContainer = styled.div`
-    width : 100%;
-    display : flex;
-    flex-direction : column;
-    align-items: center;  
-    justify-content : center;  
-  `
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
 const MainContentWrapper = styled.div`
-    display : flex;
-    margin-top : 35px;
-    width : 80%;
-    gap : 10px;
-  `
+  display: flex;
+  margin-top: 35px;
+  width: 80%;
+  gap: 10px;
+`;
 const RightWrapper = styled.div`
-  display : flex;
-  flex-direction : column;
-`
+  display: flex;
+  flex-direction: column;
+`;
 const MyPage = () => {
   return (
     <MyPageContainer>

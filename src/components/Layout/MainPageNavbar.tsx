@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { WhiteLink } from './CommonStyle';
+import { WhiteLink } from '../CommonStyle';
 import { useRecoilValue } from 'recoil';
-import { isUploadAtom } from '../atom/atom';
+import { isUploadAtom } from '../../atom/atom';
 import { useState, useEffect } from 'react';
 
 const MainPageNavbar = () => {
-  const [accessToken, setAccessToken] = useState(sessionStorage.getItem('Authorization'))
+  const [accessToken, setAccessToken] = useState(sessionStorage.getItem('Authorization'));
 
   useEffect(() => {
     const token = sessionStorage.getItem('Authorization');
@@ -18,7 +18,7 @@ const MainPageNavbar = () => {
     return (
       <NavBarContainer isUpload={isUpload}>
         <BIContainer>
-          <WhiteLink to='/'>
+          <WhiteLink to="/">
             <img src="/img/BI.svg" alt="logo" />
           </WhiteLink>
         </BIContainer>
@@ -41,7 +41,7 @@ const MainPageNavbar = () => {
     return (
       <NavBarContainer isUpload={isUpload}>
         <BIContainer>
-          <WhiteLink to='/'>
+          <WhiteLink to="/">
             <img src="/img/BI.svg" alt="logo" />
           </WhiteLink>
         </BIContainer>
@@ -65,7 +65,6 @@ const MainPageNavbar = () => {
       </NavBarContainer>
     );
   }
-
 };
 
 export default MainPageNavbar;

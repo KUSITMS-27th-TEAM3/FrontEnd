@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import { MemoryNav, EmotionTags } from './components';
 import { useEffect, useState } from 'react';
-import Banner from '../../components/Banner';
+import Banner from '../../components/Layout/Banner';
 import styled from 'styled-components';
 
 const MemoryWrapper = styled.section`

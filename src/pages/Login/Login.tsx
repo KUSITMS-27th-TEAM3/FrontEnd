@@ -1,5 +1,5 @@
-import Navbar from '../../components/MainPageNavbar';
-import Footer from '../../components/Footer';
+import Navbar from '../../components/Layout/MainPageNavbar';
+import Footer from '../../components/Layout/Footer';
 import { LoginPage } from './components';
 
 const Login = () => {

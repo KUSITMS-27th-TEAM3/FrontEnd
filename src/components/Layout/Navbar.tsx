@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { WhiteLink } from './CommonStyle';
+import { WhiteLink } from '../CommonStyle';
 
 const LinkContainer = styled.div`
   display: flex;
@@ -47,7 +47,7 @@ const NavBar = () => {
     return (
       <NavBarContainer>
         <BIContainer>
-          <WhiteLink to='/'>
+          <WhiteLink to="/">
             <img src="/img/BI2.svg" alt="logo" />
           </WhiteLink>
         </BIContainer>
@@ -70,7 +70,7 @@ const NavBar = () => {
     return (
       <NavBarContainer>
         <BIContainer>
-          <WhiteLink to='/'>
+          <WhiteLink to="/">
             <img src="/img/BI2.svg" alt="logo" />
           </WhiteLink>
         </BIContainer>
@@ -94,7 +94,6 @@ const NavBar = () => {
       </NavBarContainer>
     );
   }
-
 };
 
 export default NavBar;

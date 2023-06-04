@@ -24,7 +24,6 @@ const Router = () => {
           <Route path="myAlbum" element={<MyAlbumContainer />} />
           <Route path="question" element={<QuestionAlbumContainer />} />
           <Route path="sharedAlbum" element={<SharedAlbumContainer />} />
-          <Route path="notFound" element={<NotFound />} />
           <Route path="*" element={<NotFound />} />
         </Route>
         <Route path="/memory/myAlbum/:id" element={<MemoryDetail />} />
@@ -35,6 +34,7 @@ const Router = () => {
         <Route path="/ReviseInfo" element={<ReviseInfo />} />
         <Route path="/funeral" element={<FuneralPage />} />
         <Route path="/unauthorized" element={<UnAuthorized />} />
+        <Route path="notFound" element={<NotFound />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

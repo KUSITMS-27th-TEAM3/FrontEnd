@@ -9,7 +9,6 @@ instance.defaults.baseURL = 'http://52.78.181.46';
 instance.interceptors.request.use(
   (config) => {
     const accessToken = getAccessToken();
-    // const accessToken = "eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODQ4ODkwMDYsImV4cCI6MTY4NTQ5MzgwNiwic3ViIjoic3Jmc3JmMDEwM0BnbWFpbC5jb20iLCJUT0tFTl9UWVBFIjoiUkVGUkVTSF9UT0tFTiJ9.II5ilGE2YudWmAM8rybr0sP19eedBpPTA9hwMNf7tEBuFn-qcf6pe-bml55ghJvDOISNedd8dAmkja75cRy3BQ"
 
     if (!accessToken) {
       window.location.href = '/unauthorized';
@@ -29,7 +28,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   (response) => {
     if (response.status === 404) {
-      console.log('404 페이지로 넘어가야 함!');
+      window.location.href = '/notFound';
     }
     return response;
   },
@@ -39,13 +38,9 @@ instance.interceptors.response.use(
       const errorCode = error.response.data.errorCode;
       if (errorCode === 7001) {
         console.log('토큰만료');
-
-        if (isTokenExpired()) await tokenRefresh(instance);
-
+        await tokenRefresh(instance);
         const accessToken = getAccessToken();
-
         error.config.headers.Authorization = `Bearer ${accessToken}`;
-
         // 중단된 요청을(에러난 요청)을 토큰 갱신 후 재요청
         return instance(error.config);
       }

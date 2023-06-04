@@ -30,6 +30,10 @@ instance.interceptors.response.use(
     if (response.status === 404) {
       window.location.href = '/notFound';
     }
+
+    if (response.status === 401) {
+      window.location.href = '/unauthorized';
+    }
     return response;
   },
   async (error) => {

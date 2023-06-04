@@ -11,7 +11,7 @@ instance.interceptors.request.use(
     const accessToken = getAccessToken();
 
     if (!accessToken) {
-      window.location.href = '/unauthorized';
+      window.location.href = '/login';
     }
 
     config.headers['Content-Type'] = 'application/json';

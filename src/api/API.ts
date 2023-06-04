@@ -28,18 +28,14 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   (response) => {
-    if (response.status === 404) {
-      window.location.href = '/notFound';
-    }
-
-    if (response.status === 401) {
-      window.location.href = '/unauthorized';
-    }
     return response;
   },
   async (error) => {
-    console.log('error', error);
-    if (error.response && error.response?.status === 500) {
+    if (error.response?.status === 401) {
+      window.location.href = '/unauthorized';
+    } else if (error.response?.status === 404) {
+      window.location.href = '/notFound';
+    } else if (error.response && error.response?.status === 500) {
       const errorCode = error.response.data.errorCode;
       if (errorCode === 7001) {
         console.log('토큰만료');

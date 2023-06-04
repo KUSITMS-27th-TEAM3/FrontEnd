@@ -12,6 +12,7 @@ instance.interceptors.request.use(
 
     if (!accessToken) {
       window.location.href = '/login';
+      return config;
     }
 
     config.headers['Content-Type'] = 'application/json';

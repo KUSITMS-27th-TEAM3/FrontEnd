@@ -57,3 +57,19 @@ export const CommentBtn = styled(ContentButton)`
 `;
 
 export const ReplyCommentWrapper = styled.div``;
+
+export const InputBox = styled.form`
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+`;
+
+export const CommentInput = styled.input`
+  all: unset;
+  height: 20px;
+  width: 100%;
+  border-radius: 8px;
+  padding: 18px 16px;
+  font-family: ${({ theme }) => theme.font.family.pretendard_medium};
+  background-color: ${({ theme }) => theme.color.grayScale.lightGray};
+`;

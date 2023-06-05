@@ -1,25 +1,9 @@
-import styled from 'styled-components';
 import { useState } from 'react';
 import { postComment, postCommentReply } from '../MemoryDetailApi';
 import { isCommentType } from '../../../type/CommentType';
 import { useRecoilState } from 'recoil';
 import { refetchAtom } from '../../../atom/atom';
-
-const InputBox = styled.form`
-  display: flex;
-  align-items: center;
-  margin-top: 20px;
-`;
-
-const CommentInput = styled.input`
-  all: unset;
-  height: 20px;
-  width: 100%;
-  border-radius: 8px;
-  padding: 18px 16px;
-  font-family: ${({ theme }) => theme.font.family.pretendard_medium};
-  background-color: ${({ theme }) => theme.color.grayScale.lightGray};
-`;
+import * as S from './style/CommentListStyle';
 
 type InputFormProps = {
   albumId: string | undefined;
@@ -57,18 +41,18 @@ const InputForm = ({ albumId, commentId, accessUserProfileImageUrl }: InputFormP
   };
 
   return (
-    <InputBox onSubmit={handleSubmit}>
+    <S.InputBox onSubmit={handleSubmit}>
       <img
         src={accessUserProfileImageUrl ? accessUserProfileImageUrl : '/img/default.png'}
         alt="AlbumImg"
         className="profileImg"
       />
-      <CommentInput
+      <S.CommentInput
         placeholder="댓글을 입력해주세요."
         value={inputValue}
         onChange={handleInputChange}
       />
-    </InputBox>
+    </S.InputBox>
   );
 };
 

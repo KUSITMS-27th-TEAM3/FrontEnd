@@ -8,7 +8,9 @@ instance.defaults.baseURL = 'http://52.78.181.46';
 
 instance.interceptors.request.use(
   (config) => {
-    const accessToken = getAccessToken();
+    // const accessToken = getAccessToken();
+    const accessToken =
+      'eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE2ODYwMjE0ODgsImV4cCI6MTY4NjAyNTA4OCwic3ViIjoibmV3ZGVhczEwMEBnbWFpbC5jb20iLCJUT0tFTl9UWVBFIjoiQUNDRVNTX1RPS0VOIn0.BANpHuZXnYIPQNxNqNpfC-XYnjVoCEiBLdmtw__kVCAX6zh_5MzcC-hdk7qdzYqQxsM9G49WGyrjbUmJ1GGRTw';
 
     if (!accessToken) {
       window.location.href = '/login';

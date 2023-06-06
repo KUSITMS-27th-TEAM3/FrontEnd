@@ -3,19 +3,12 @@ import Modal from '../../components/common/Modal';
 import * as S from './components/style/MemoryDetailStyle';
 import { CommentList, ImageContent, InputForm, TextContent } from './components';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import {
-  getDetailComments,
-  getDetailAlbum,
-  deleteAlbum,
-  getEmpathy,
-  getComment,
-  deleteComment,
-} from './MemoryDetailApi';
+import { getDetailComments, deleteAlbum, getEmpathy, deleteComment } from './MemoryDetailApi';
 import Spinner from '../../components/common/Spinner';
-import { AlbumDetail, initialDetail } from '../../type/AlbumType';
 import type { CommentType } from '../../type/CommentType';
 import { refetchAtom } from '../../atom/atom';
 import { useRecoilState } from 'recoil';
+import useDetailInfo from '../../hooks/useDetailInfo';
 
 const deleteModalText = {
   text: '삭제하시겠습니까?',
@@ -30,21 +23,21 @@ const reviseModalText = {
 };
 
 const MemoryDetailContainer = () => {
+  const albumId = useParams().id;
   const [isModal, setModal] = useState<boolean>(false);
   const [isRevise, setIsRevise] = useState<boolean>(false);
   const [isloading, setLoading] = useState<boolean>(true);
   const [commentList, setCommentList] = useState<CommentType[]>([]);
-  const [detailInfo, setDetailInfo] = useState<AlbumDetail>(initialDetail);
+  const { detailInfo, setDetailInfo } = useDetailInfo(albumId);
   const [refetch, setRefetch] = useRecoilState<boolean>(refetchAtom);
   const [isSharedAlbum, setSharedAlbum] = useState<boolean>(false);
-  const albumId = useParams().id;
-  const location = useLocation();
-  const navigate = useNavigate();
   const [isCheckedEmpathy, setIsCheckedEmpathy] = useState<boolean>(false);
   const [empathyCount, setEmpathyCount] = useState<number>(0);
   const [commentCount, setCommentCount] = useState<number>(0);
   const [isCommentDelete, setCommentDelete] = useState<boolean>(false);
   const [targetCommentId, setTargetCommentId] = useState<number>(0);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const firstBtnHandler = () => {
     setModal(false);
@@ -88,11 +81,6 @@ const MemoryDetailContainer = () => {
     setTargetCommentId(commentId);
   };
 
-  const fetchDetailAlbum = async () => {
-    const data = await getDetailAlbum(albumId);
-    setDetailInfo(data);
-  };
-
   const fetchDetailComments = async () => {
     const data = await getDetailComments(albumId);
     setCommentList(data.content);
@@ -116,7 +104,6 @@ const MemoryDetailContainer = () => {
     if (location.pathname.includes('/memory/sharedAlbum')) {
       setSharedAlbum(true);
     }
-    fetchDetailAlbum();
     fetchDetailComments();
     fetchEmapty();
     setLoading(false);

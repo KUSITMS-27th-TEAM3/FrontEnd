@@ -1,5 +1,4 @@
 import RadioButton from '../../../components/common/RadioButton';
-import * as S from './style/WriteFormStyle';
 
 type RadioFormProps = {
   visible: boolean;
@@ -11,10 +10,15 @@ const RadioForm = ({ visible, handleIsOpen }: RadioFormProps) => {
     <div className="flexBoxStart">
       <div className="write_title littleMargin">공개여부</div>
       <div className="checkbox">
-        <RadioButton visible={visible} handleIsOpen={handleIsOpen} text={'공개'} />
+        <RadioButton visible={visible} handleIsOpen={handleIsOpen} text={'공개'} id={'open'} />
       </div>
       <div className="checkbox">
-        <RadioButton visible={!visible} handleIsOpen={handleIsOpen} text={'비공개'} />
+        <RadioButton
+          visible={!visible}
+          handleIsOpen={handleIsOpen}
+          text={'비공개'}
+          id={'notOpen'}
+        />
       </div>
     </div>
   );

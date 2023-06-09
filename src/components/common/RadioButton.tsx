@@ -40,13 +40,21 @@ type RadioButtonProps = {
   visible: boolean;
   handleIsOpen: (e: React.ChangeEvent<HTMLInputElement>) => void;
   text: string;
+  id: string;
 };
 
-const RadioButton = ({ visible, handleIsOpen, text }: RadioButtonProps) => {
+const RadioButton = ({ visible, handleIsOpen, text, id }: RadioButtonProps) => {
   return (
     <>
-      <CheckBox type="radio" name="check2" value={text} onChange={handleIsOpen} checked={visible} />
-      <label htmlFor="open" className="write_content">
+      <CheckBox
+        type="radio"
+        name="check2"
+        value={text}
+        onChange={handleIsOpen}
+        checked={visible}
+        id={id}
+      />
+      <label htmlFor={id} className="write_content">
         {text}
       </label>
     </>

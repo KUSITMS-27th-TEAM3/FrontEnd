@@ -1,4 +1,4 @@
-import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AlbumContainer } from './style/AlbumPresenterStyle';
 import type { AlbumContent } from '../../../type/AlbumType';
 
@@ -7,14 +7,6 @@ type AlbumPresenterProps = {
 };
 
 const AlbumPresenter = ({ albumData }: AlbumPresenterProps) => {
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
-
-  const handleToDetail = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const { id } = e.currentTarget;
-    navigate(`${pathname}/${id}`);
-  };
-
   return (
     <AlbumContainer>
       {albumData.map((item) => (

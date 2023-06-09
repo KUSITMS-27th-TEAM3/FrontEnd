@@ -37,7 +37,7 @@ const WriteAlbumContainer = () => {
   };
 
   const handleIsOpen = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.target.value === 'open' ? setVisible(true) : setVisible(false);
+    e.target.value === '공개' ? setVisible(true) : setVisible(false);
   };
 
   const setImageFile = (file: File) => {

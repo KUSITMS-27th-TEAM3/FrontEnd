@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { AlbumContainer } from './style/AlbumPresenterStyle';
 import type { AlbumContent } from '../../../type/AlbumType';
 
@@ -18,12 +18,7 @@ const AlbumPresenter = ({ albumData }: AlbumPresenterProps) => {
   return (
     <AlbumContainer>
       {albumData.map((item) => (
-        <button
-          className="imgLink"
-          onClick={handleToDetail}
-          id={item.albumId.toString()}
-          key={item.albumId}
-        >
+        <Link to={`${item.albumId}`} className="imgLink" key={item.albumId}>
           <figure>
             <img src={item.imageUrl} loading="lazy" alt={item.title} />
             <div className="figBox">
@@ -39,7 +34,7 @@ const AlbumPresenter = ({ albumData }: AlbumPresenterProps) => {
               </figcaption>
             </div>
           </figure>
-        </button>
+        </Link>
       ))}
     </AlbumContainer>
   );

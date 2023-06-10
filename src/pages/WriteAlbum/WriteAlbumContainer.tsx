@@ -90,7 +90,7 @@ const WriteAlbumContainer = () => {
       <ImageUpload
         uploadImage={uploadImage}
         setUploadImage={setUploadImage}
-        setImageUpload={setImageFile}
+        setImageFile={setImageFile}
       />
       <WriteBox>
         <TitleForm title={title} handleTitleChange={handleTitleChange} />

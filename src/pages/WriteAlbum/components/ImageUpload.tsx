@@ -7,10 +7,10 @@ import { useRecoilState } from 'recoil';
 type ImageUploadProps = {
   uploadImage: string;
   setUploadImage: (albumImg: string) => void;
-  setImageUpload: (file: File) => void;
+  setImageFile: (file: File) => void;
 };
 
-const ImageUpload = ({ uploadImage, setUploadImage, setImageUpload }: ImageUploadProps) => {
+const ImageUpload = ({ uploadImage, setUploadImage, setImageFile }: ImageUploadProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isUpload, setIsUpload] = useRecoilState(isUploadAtom);
   const reader = new FileReader();
@@ -22,7 +22,7 @@ const ImageUpload = ({ uploadImage, setUploadImage, setImageUpload }: ImageUploa
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
     reader.readAsDataURL(e.target.files[0]);
-    setImageUpload(e.target.files[0]);
+    setImageFile(e.target.files[0]);
     reader.onload = () => {
       setUploadImage(reader.result as string);
       setIsUpload(true);

@@ -26,11 +26,11 @@ export const ImageContainer = styled.div`
   }
 `;
 
-type ImageUploadModalProps = {
+type ImageBackgroundProps = {
   backgroundUrl: string;
 };
 
-export const ImageBackground = styled.div<ImageUploadModalProps>`
+export const ImageBackground = styled.div<ImageBackgroundProps>`
   position: absolute;
   top: -20px;
   left: -20px;

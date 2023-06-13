@@ -32,10 +32,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "vite",
+    "build": "tsc && vite build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "preview": "vite preview"
   },
   "eslintConfig": {
     "extends": [
@@ -58,6 +59,8 @@
   "devDependencies": {
     "@types/react": "^18.2.0",
     "@types/react-scroll": "^1.8.7",
-    "@types/styled-components": "^5.1.26"
+    "@types/styled-components": "^5.1.26",
+    "vite": "^4.3.9",
+    "@vitejs/plugin-react": "^4.0.0"
   }
 }
